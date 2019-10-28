@@ -1,0 +1,29 @@
+<?php
+
+namespace Korobovn\CloudPayments\ModelFieldTrait;
+
+trait PaymentCurrencyString
+{
+    /** @var string */
+    protected $payment_currency;
+
+    /**
+     * @return string
+     */
+    public function getPaymentCurrency(): string
+    {
+        return $this->payment_currency;
+    }
+
+    /**
+     * @param string $payment_currency
+     *
+     * @return $this
+     */
+    protected function setPaymentCurrency(string $payment_currency): self
+    {
+        $this->payment_currency = $payment_currency;
+
+        return $this;
+    }
+}
