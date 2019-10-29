@@ -2,24 +2,26 @@
 
 namespace Korobovn\CloudPayments\Request\Model;
 
+use Korobovn\CloudPayments\ModelFieldTrait\AccountIdString;
 use Korobovn\CloudPayments\ModelFieldTrait\AmountFloat;
+use Korobovn\CloudPayments\ModelFieldTrait\CardCryptogramPacket;
 use Korobovn\CloudPayments\ModelFieldTrait\CurrencyString;
 use Korobovn\CloudPayments\ModelFieldTrait\DescriptionString;
-use Korobovn\CloudPayments\ModelFieldTrait\AccountIdString;
 use Korobovn\CloudPayments\ModelFieldTrait\InvoiceIdString;
-use Korobovn\CloudPayments\ModelFieldTrait\TokenString;
+use Korobovn\CloudPayments\ModelFieldTrait\NameString;
 
-class TokenPaymentRequestModel implements ModelInterface
+class CryptogramPaymentModel implements ModelInterface
 {
     use AmountFloat,
         CurrencyString,
         InvoiceIdString,
         DescriptionString,
         AccountIdString,
-        TokenString;
+        NameString,
+        CardCryptogramPacket;
 
     /**
-     * CryptogramPaymentRequestModel constructor.
+     * CryptogramPaymentModel constructor.
      *
      * @param float  $amount
      * @param string $currency
@@ -49,12 +51,13 @@ class TokenPaymentRequestModel implements ModelInterface
     public function toArray(): array
     {
         return [
-            'Amount'      => $this->getAmount(),
-            'Currency'    => $this->getDescription(),
-            'InvoiceId'   => $this->getAccountId(),
-            'Description' => $this->getDescription(),
-            'AccountId'   => $this->getAccountId(),
-            'Token'       => $this->getToken(),
+            'Amount'               => $this->getAmount(),
+            'Currency'             => $this->getCurrency(),
+            'InvoiceId'            => $this->getInvoiceId(),
+            'Description'          => $this->getDescription(),
+            'AccountId'            => $this->getAccountId(),
+            'Name'                 => $this->getName(),
+            'CardCryptogramPacket' => $this->getCardCryptogramPacket(),
         ];
     }
 }

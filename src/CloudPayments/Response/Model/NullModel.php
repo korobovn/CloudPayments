@@ -6,6 +6,6 @@ class NullModel implements ModelInterface
 {
     public function toArray(): array
     {
-        return null;
+        return [];
     }
 }

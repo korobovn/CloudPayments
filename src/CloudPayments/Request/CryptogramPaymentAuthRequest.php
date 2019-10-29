@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Request;
 
-use Korobovn\CloudPayments\Request\Model\CryptogramPaymentRequestModel;
+use Korobovn\CloudPayments\Request\Model\CryptogramPaymentModel;
 
 class CryptogramPaymentAuthRequest extends CryptogramPaymentOnestepRequest
 {

@@ -4,11 +4,13 @@ namespace Korobovn\CloudPayments\Response;
 
 use Korobovn\CloudPayments\Response\Model\TransactionRejectedModel;
 
+/**
+ * Class TransactionRejectedResponse.
+ *
+ * @method TransactionRejectedModel getModel()
+ */
 class TransactionRejectedResponse extends AbstractResponse
 {
-    /** @var TransactionRejectedModel */
-    protected $model;
-
     /**
      * TransactionRejectedResponse constructor.
      *

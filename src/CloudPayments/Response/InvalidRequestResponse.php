@@ -4,6 +4,11 @@ namespace Korobovn\CloudPayments\Response;
 
 use Korobovn\CloudPayments\Response\Model\NullModel;
 
+/**
+ * Class InvalidRequestResponse.
+ *
+ * @method NullModel getModel()
+ */
 class InvalidRequestResponse extends AbstractResponse
 {
     /**

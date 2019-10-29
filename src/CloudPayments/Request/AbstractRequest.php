@@ -15,6 +15,17 @@ class AbstractRequest implements RequestInterface
     /** @var ModelInterface */
     protected $model;
 
+    /** @var string */
+    protected $method = 'POST';
+
+    /** @var array */
+    protected $headers = [
+        'Content-Type' => 'application/json',
+    ];
+
+    /** @var string */
+    protected $version = '1.1';
+
     /**
      * AbstractRequest constructor.
      *
@@ -39,5 +50,29 @@ class AbstractRequest implements RequestInterface
     public function getModel(): ModelInterface
     {
         return $this->model;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->version;
     }
 }

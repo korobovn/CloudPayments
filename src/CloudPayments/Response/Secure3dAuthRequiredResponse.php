@@ -4,11 +4,14 @@ namespace Korobovn\CloudPayments\Response;
 
 use Korobovn\CloudPayments\Response\Model\Secure3dAuthRequiredModel;
 
+/**
+ * Class Secure3dAuthRequiredResponse.
+ *
+ * @method Secure3dAuthRequiredModel getModel()
+ *
+ */
 class Secure3dAuthRequiredResponse extends AbstractResponse
 {
-    /** @var Secure3dAuthRequiredModel */
-    protected $model;
-
     /**
      * Secure3dAuthRequiredResponse constructor.
      *

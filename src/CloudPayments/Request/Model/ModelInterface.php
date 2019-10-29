@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Request\Model;
 
-use Korobovn\CloudPayments\Gateway\Arrayable;
+use Korobovn\CloudPayments\Gateway\Illuminate\Arrayable;
 
 interface ModelInterface extends Arrayable
 {

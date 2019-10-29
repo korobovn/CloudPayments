@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Korobovn\Tests\RequestManagementStrategy\Specification;
+namespace Korobovn\Tests\RequestManagementStrategy\Specification;
 
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsMessageSpecification;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsModelSpecification;
