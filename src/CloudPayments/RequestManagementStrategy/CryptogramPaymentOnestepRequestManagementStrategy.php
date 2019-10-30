@@ -3,7 +3,7 @@
 namespace Korobovn\CloudPayments\RequestManagementStrategy;
 
 use Korobovn\CloudPayments\Request\CryptogramPaymentOnestepRequest;
-use Korobovn\CloudPayments\RequestManagementStrategy\Exception\RequestManagementStrategyCannotCreateResponse;
+use Korobovn\CloudPayments\RequestManagementStrategy\Exception\RequestManagementStrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsAcsUrlInModelSpecification;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsMessageSpecification;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsReasonCodeInModelSpecification;
@@ -37,7 +37,7 @@ class CryptogramPaymentOnestepRequestManagementStrategy extends AbstractRequestM
      * @param array $response
      *
      * @return ResponseInterface
-     * @throws RequestManagementStrategyCannotCreateResponse
+     * @throws RequestManagementStrategyCannotCreateResponseException
      */
     public function prepareRawResponse(array $response): ResponseInterface
     {
@@ -148,7 +148,7 @@ class CryptogramPaymentOnestepRequestManagementStrategy extends AbstractRequestM
                 $model['Token']
             ));
         } else {
-            throw new RequestManagementStrategyCannotCreateResponse('Request management strategy cannot create a response');
+            throw new RequestManagementStrategyCannotCreateResponseException('Request management strategy cannot create a response');
         }
 
         return $response_interface;

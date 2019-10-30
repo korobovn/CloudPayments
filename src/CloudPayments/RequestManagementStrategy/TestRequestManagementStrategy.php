@@ -3,7 +3,7 @@
 namespace Korobovn\CloudPayments\RequestManagementStrategy;
 
 use Korobovn\CloudPayments\Request\TestRequest;
-use Korobovn\CloudPayments\RequestManagementStrategy\Exception\RequestManagementStrategyCannotCreateResponse;
+use Korobovn\CloudPayments\RequestManagementStrategy\Exception\RequestManagementStrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsMessageSpecification;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\IsSuccessSpecification;
 use Korobovn\CloudPayments\RequestManagementStrategy\Specification\NotModelSpecification;
@@ -26,7 +26,7 @@ class TestRequestManagementStrategy extends AbstractRequestManagementStrategy
      * @param array $response
      *
      * @return TestResponse
-     * @throws RequestManagementStrategyCannotCreateResponse
+     * @throws RequestManagementStrategyCannotCreateResponseException
      */
     public function prepareRawResponse(array $response): ResponseInterface
     {
@@ -37,7 +37,7 @@ class TestRequestManagementStrategy extends AbstractRequestManagementStrategy
         ) {
             $response_interface = new TestResponse($response['Message']);
         } else {
-            throw new RequestManagementStrategyCannotCreateResponse('Request management strategy cannot create a response');
+            throw new RequestManagementStrategyCannotCreateResponseException('Request management strategy cannot create a response');
         }
 
         return $response_interface;

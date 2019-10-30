@@ -2,11 +2,11 @@
 
 namespace Korobovn\CloudPayments\Request\Decorator;
 
-class JsonRequestDecorator extends AbstractRequestDecorator
+class UrlEncodeRequestDecorator extends AbstractRequestDecorator
 {
     /** @var array */
     protected $headers = [
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencode',
     ];
 
     /**
@@ -14,6 +14,6 @@ class JsonRequestDecorator extends AbstractRequestDecorator
      */
     public function getBody(): ?string
     {
-        return json_encode($this->getModel()->toArray());
+        return http_build_query($this->getModel()->toArray());
     }
 }

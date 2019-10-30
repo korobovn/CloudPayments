@@ -24,8 +24,7 @@ class GuzzleRequestAdapter extends AbstractRequestAdapter
             $request->getMethod(),
             $request->getUrl(),
             $request->getHeaders(),
-            $request->getBody(),
-            $request->getVersion()
+            $request->getBody()
         );
     }
 

@@ -15,19 +15,4 @@ interface RequestInterface
      * @return string
      */
     public function getUrl(): string;
-
-    /**
-     * @return string
-     */
-    public function getMethod(): string;
-
-    /**
-     * @return array
-     */
-    public function getHeaders(): array;
-
-    /**
-     * @return string
-     */
-    public function getVersion(): string;
 }

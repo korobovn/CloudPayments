@@ -1,6 +1,6 @@
 <?php
 
-namespace Korobovn\CloudPayments\Gateway\Illuminate;
+namespace Korobovn\CloudPayments\Gateway;
 
 interface Arrayable extends \Illuminate\Contracts\Support\Arrayable
 {
