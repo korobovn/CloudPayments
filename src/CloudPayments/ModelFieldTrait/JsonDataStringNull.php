@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\ModelFieldTrait;
 
-trait JsonDataString
+trait JsonDataStringNull
 {
     /** @var string|null */
     protected $json_data;

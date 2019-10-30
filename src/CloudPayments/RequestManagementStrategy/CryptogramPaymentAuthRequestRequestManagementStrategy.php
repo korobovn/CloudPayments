@@ -4,6 +4,11 @@ namespace Korobovn\CloudPayments\RequestManagementStrategy;
 
 use Korobovn\CloudPayments\Request\CryptogramPaymentAuthRequest;
 
+/**
+ * Class CryptogramPaymentAuthRequestRequestManagementStrategy.
+ *
+ * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
+ */
 class CryptogramPaymentAuthRequestRequestManagementStrategy extends CryptogramPaymentOnestepRequestManagementStrategy
 {
     /**

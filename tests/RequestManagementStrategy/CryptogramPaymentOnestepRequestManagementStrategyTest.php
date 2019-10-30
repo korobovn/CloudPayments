@@ -6,9 +6,9 @@ use Korobovn\CloudPayments\Request\CryptogramPaymentOnestepRequest;
 use Korobovn\CloudPayments\Request\Model\CryptogramPaymentModel;
 use Korobovn\CloudPayments\RequestManagementStrategy\CryptogramPaymentOnestepRequestManagementStrategy;
 use Korobovn\CloudPayments\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Response\Secure3dAuthRequiredResponse;
-use Korobovn\CloudPayments\Response\TransactionAcceptedResponse;
-use Korobovn\CloudPayments\Response\TransactionRejectedResponse;
+use Korobovn\CloudPayments\Response\Cryptogram3dSecureAuthRequiredResponse;
+use Korobovn\CloudPayments\Response\CryptogramTransactionAcceptedResponse;
+use Korobovn\CloudPayments\Response\CryptogramTransactionRejectedResponse;
 use PHPUnit\Framework\TestCase;
 
 class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
@@ -25,11 +25,12 @@ class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
             new CryptogramPaymentModel(
                 10,
                 'RUB',
-                '1234567',
-                'Оплата товаров в example.com',
-                'user_x',
+                '127.0.0.1',
                 'CARDHOLDER NAME',
-                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY'
+                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY',
+                'invoice_id',
+                'Оплата товаров в example.com',
+                'account_id'
             )
         ));
     }
@@ -48,7 +49,7 @@ class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
         $this->assertSame(false, $response->isSuccess());
     }
 
-    public function testPrepareSecure3dAuthRequiredResponse(): void
+    public function testPrepareCryptogram3dSecureAuthRequiredResponse(): void
     {
         $raw_response = [
             'Model'   => [
@@ -62,11 +63,11 @@ class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
 
         $response = $this->strategy->prepareRawResponse($raw_response);
 
-        $this->assertTrue($response instanceof Secure3dAuthRequiredResponse);
+        $this->assertTrue($response instanceof Cryptogram3dSecureAuthRequiredResponse);
         $this->assertSame(false, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
 
-        if ($response instanceof Secure3dAuthRequiredResponse) {
+        if ($response instanceof Cryptogram3dSecureAuthRequiredResponse) {
             $this->assertSame(504, $response->getModel()->getTransactionId());
         }
     }
@@ -117,10 +118,10 @@ class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
 
         $response = $this->strategy->prepareRawResponse($raw_response);
 
-        $this->assertTrue($response instanceof TransactionRejectedResponse);
+        $this->assertTrue($response instanceof CryptogramTransactionRejectedResponse);
         $this->assertSame(false, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof TransactionRejectedResponse) {
+        if ($response instanceof CryptogramTransactionRejectedResponse) {
             $this->assertSame(5051, $response->getModel()->getReasonCode());
         }
     }
@@ -174,10 +175,10 @@ class CryptogramPaymentOnestepRequestManagementStrategyTest extends TestCase
 
         $response = $this->strategy->prepareRawResponse($raw_response);
 
-        $this->assertTrue($response instanceof TransactionAcceptedResponse);
+        $this->assertTrue($response instanceof CryptogramTransactionAcceptedResponse);
         $this->assertSame(true, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof TransactionAcceptedResponse) {
+        if ($response instanceof CryptogramTransactionAcceptedResponse) {
             $this->assertSame(3, $response->getModel()->getStatusCode());
         }
     }

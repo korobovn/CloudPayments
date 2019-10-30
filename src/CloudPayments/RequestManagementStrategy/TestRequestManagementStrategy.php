@@ -37,7 +37,7 @@ class TestRequestManagementStrategy extends AbstractRequestManagementStrategy
         ) {
             $response_interface = new TestResponse($response['Message']);
         } else {
-            throw new RequestManagementStrategyCannotCreateResponseException('Request management strategy cannot create a response');
+            throw $this->throwCannotCreateResponseException($response);
         }
 
         return $response_interface;

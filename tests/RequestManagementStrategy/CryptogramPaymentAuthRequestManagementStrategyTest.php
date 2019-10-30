@@ -20,11 +20,12 @@ class CryptogramPaymentAuthRequestManagementStrategyTest extends CryptogramPayme
             new CryptogramPaymentModel(
                 10,
                 'RUB',
-                '1234567',
-                'Оплата товаров в example.com',
-                'user_x',
+                '127.0.0.1',
                 'CARDHOLDER NAME',
-                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY'
+                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY',
+                'invoice_id',
+                'Оплата товаров в example.com',
+                'account_id'
             )
         ));
     }

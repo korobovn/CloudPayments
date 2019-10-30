@@ -6,14 +6,17 @@ use Korobovn\CloudPayments\ModelFieldTrait\AcsUrlString;
 use Korobovn\CloudPayments\ModelFieldTrait\PaReqString;
 use Korobovn\CloudPayments\ModelFieldTrait\TransactionIdInt;
 
-class Secure3dAuthRequiredModel implements ModelInterface
+/**
+ *
+ * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
+ */
+class Cryptogram3dSecureAuthRequiredModel implements ModelInterface
 {
     use TransactionIdInt,
         PaReqString,
         AcsUrlString;
 
     /**
-     * Secure3dAuthRequiredModel constructor.
      *
      * @param int    $transaction_id
      * @param string $pa_req
