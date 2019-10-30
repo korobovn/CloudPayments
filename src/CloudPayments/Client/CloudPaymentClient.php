@@ -23,20 +23,32 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /** @var AbstractRequestAdapter */
     protected $request_adapter;
 
+    /** @var string */
+    protected $public_id;
+
+    /** @var string */
+    protected $api_secret;
+
     /**
      * CloudPaymentClient constructor.
      *
      * @param ClientInterface           $http_client
+     * @param string                    $public_id
+     * @param string                    $api_secret
      * @param RequestDecoratorInterface $request_decorator
      * @param AbstractRequestAdapter    $request_adapter
      */
     public function __construct(
         ClientInterface $http_client,
+        string $public_id,
+        string $api_secret,
         RequestDecoratorInterface $request_decorator,
         AbstractRequestAdapter $request_adapter
     )
     {
         $this->http_client       = $http_client;
+        $this->public_id         = $public_id;
+        $this->api_secret        = $api_secret;
         $this->request_decorator = $request_decorator;
         $this->request_adapter   = $request_adapter;
     }
@@ -50,7 +62,6 @@ class CloudPaymentClient implements CloudPaymentClientInterface
 
         $this->request_decorator->setRequest($request);
         $this->request_adapter->setRequest($this->request_decorator);
-
 
         $psr_response = $this->sendHttpRequest($this->request_adapter);
         $raw_response = $this->decodeBody($psr_response->getBody()->getContents());
@@ -84,6 +95,8 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      */
     protected function sendHttpRequest(PsrRequestInterface $request): PsrResponseInterface
     {
+        $this->setAuthHeader($request);
+
         $psr_response = $this->http_client->sendRequest($request);
 
         if ($psr_response->getStatusCode() != 200) {
@@ -92,5 +105,14 @@ class CloudPaymentClient implements CloudPaymentClientInterface
         }
 
         return $psr_response;
+    }
+
+    /**
+     * @param PsrRequestInterface $request
+     */
+    protected function setAuthHeader(PsrRequestInterface $request): void
+    {
+        $request = $request->withAddedHeader('Authorization', sprintf('Basic %s',
+            base64_encode($this->public_id . ':' . $this->api_secret)));
     }
 }
