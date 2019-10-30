@@ -7,5 +7,9 @@ use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 
 abstract class AbstractRequestAdapter implements PsrRequestInterface
 {
-    abstract public function __construct(RequestDecoratorInterface $request);
+    /**
+     * @param RequestDecoratorInterface $request
+     */
+    abstract public function setRequest(RequestDecoratorInterface $request): void;
+
 }

@@ -56,8 +56,8 @@ class CloudPaymentClientTest extends TestCase
 
         $cloud_payment_client = new CloudPaymentClient(
             $http_client,
-            JsonRequestDecorator::class,
-            GuzzleRequestAdapter::class
+            new JsonRequestDecorator,
+            new GuzzleRequestAdapter
         );
 
         return $cloud_payment_client;

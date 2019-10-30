@@ -14,11 +14,9 @@ class GuzzleRequestAdapter extends AbstractRequestAdapter
     protected $request;
 
     /**
-     * GuzzleRequestAdapter constructor.
-     *
-     * @param RequestDecoratorInterface $request
+     * {@inheritDoc}
      */
-    public function __construct(RequestDecoratorInterface $request)
+    public function setRequest(RequestDecoratorInterface $request): void
     {
         $this->request = new Request(
             $request->getMethod(),

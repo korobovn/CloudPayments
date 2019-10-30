@@ -3,14 +3,9 @@
 namespace Korobovn\CloudPayments\Client;
 
 use Korobovn\CloudPayments\Adapter\Request\AbstractRequestAdapter;
-use Korobovn\CloudPayments\Client\Exception\ClassIsNotInstanceOfAbstractRequestAdapterException;
-use Korobovn\CloudPayments\Client\Exception\ClassIsNotInstanceOfRequestDecoratorInterfaceException;
 use Korobovn\CloudPayments\Client\Exception\JsonDecodeErrorException;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
-use Korobovn\CloudPayments\Client\Exception\RequestAdapterClassNotFoundException;
-use Korobovn\CloudPayments\Client\Exception\RequestDecoratorClassNotFoundException;
 use Korobovn\CloudPayments\Request\Decorator\RequestDecoratorInterface;
-use Korobovn\CloudPayments\Request\RequestInterface;
 use Korobovn\CloudPayments\RequestManagementStrategy\RequestManagementStrategyInterface;
 use Korobovn\CloudPayments\Response\ResponseInterface;
 use Psr\Http\Client\ClientInterface;
@@ -22,41 +17,28 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /** @var ClientInterface */
     protected $http_client;
 
-    /** @var string|string */
-    protected $request_decorator_class_name;
+    /** @var RequestDecoratorInterface */
+    protected $request_decorator;
 
-    /** @var string */
-    protected $request_adapter_class_name;
+    /** @var AbstractRequestAdapter */
+    protected $request_adapter;
 
     /**
      * CloudPaymentClient constructor.
      *
-     * @param ClientInterface $http_client
-     * @param string          $request_decorator_class_name
-     * @param string          $request_adapter_class_name
-     *
-     * @throws RequestAdapterClassNotFoundException
-     * @throws RequestDecoratorClassNotFoundException
+     * @param ClientInterface           $http_client
+     * @param RequestDecoratorInterface $request_decorator
+     * @param AbstractRequestAdapter    $request_adapter
      */
     public function __construct(
         ClientInterface $http_client,
-        string $request_decorator_class_name,
-        string $request_adapter_class_name
+        RequestDecoratorInterface $request_decorator,
+        AbstractRequestAdapter $request_adapter
     )
     {
-        $this->http_client = $http_client;
-
-        if (! class_exists($request_decorator_class_name)) {
-            throw new RequestDecoratorClassNotFoundException(sprintf('%s decorator class not found',
-                $request_decorator_class_name));
-        }
-        $this->request_decorator_class_name = $request_decorator_class_name;
-
-        if (! class_exists($request_adapter_class_name)) {
-            throw new RequestAdapterClassNotFoundException(sprintf('%s adaptor class not found',
-                $request_adapter_class_name));
-        }
-        $this->request_adapter_class_name = $request_adapter_class_name;
+        $this->http_client       = $http_client;
+        $this->request_decorator = $request_decorator;
+        $this->request_adapter   = $request_adapter;
     }
 
     /**
@@ -64,13 +46,13 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      */
     public function send(RequestManagementStrategyInterface $request_management_strategy): ResponseInterface
     {
-        $request           = $request_management_strategy->getRequest();
-        $request_decorator = $this->createRequestDecorator($request);
+        $request = $request_management_strategy->getRequest();
 
-        $request_adaptor   = $this->createRequestAdaptor($request_decorator);
+        $this->request_decorator->setRequest($request);
+        $this->request_adapter->setRequest($this->request_decorator);
 
-        $psr_response = $this->sendHttpRequest($request_adaptor);
 
+        $psr_response = $this->sendHttpRequest($this->request_adapter);
         $raw_response = $this->decodeBody($psr_response->getBody()->getContents());
 
         return $request_management_strategy->prepareRawResponse($raw_response);
@@ -110,61 +92,5 @@ class CloudPaymentClient implements CloudPaymentClientInterface
         }
 
         return $psr_response;
-    }
-
-    /**
-     * @param RequestInterface $request
-     *
-     * @return RequestDecoratorInterface
-     * @throws ClassIsNotInstanceOfRequestDecoratorInterfaceException
-     */
-    protected function createRequestDecorator(RequestInterface $request): RequestDecoratorInterface
-    {
-        try {
-            /** @var RequestDecoratorInterface $request_decorator */
-            $request_decorator = new $this->request_decorator_class_name($request);
-        } catch (\Exception $exception) {
-            throw new ClassIsNotInstanceOfRequestDecoratorInterfaceException(
-                sprintf('The class %s is not instance of RequestDecoratorInterface',
-                    $this->request_decorator_class_name),
-                $exception->getCode(),
-                $exception
-            );
-        }
-
-        if (! ($request_decorator instanceof RequestDecoratorInterface)) {
-            throw new ClassIsNotInstanceOfRequestDecoratorInterfaceException(
-                sprintf('The class %s is not instance of RequestDecoratorInterface',
-                    $this->request_decorator_class_name));
-        }
-
-        return $request_decorator;
-    }
-
-    /**
-     * @param RequestDecoratorInterface $request_decorator
-     *
-     * @return AbstractRequestAdapter|PsrRequestInterface
-     * @throws ClassIsNotInstanceOfAbstractRequestAdapterException
-     */
-    protected function createRequestAdaptor(RequestDecoratorInterface $request_decorator): AbstractRequestAdapter
-    {
-        try {
-            $request_adaptor = new $this->request_adapter_class_name($request_decorator);
-        } catch (\Exception $exception) {
-            throw new ClassIsNotInstanceOfAbstractRequestAdapterException(
-                sprintf('The class %s is not instance of AbstractRequestAdapter', $this->request_adapter_class_name),
-                $exception->getCode(),
-                $exception
-            );
-        }
-
-        if (! ($request_adaptor instanceof AbstractRequestAdapter)) {
-            throw new ClassIsNotInstanceOfAbstractRequestAdapterException(
-                sprintf('The class %s is not instance of AbstractRequestAdapter',
-                    $this->request_adapter_class_name));
-        }
-
-        return $request_adaptor;
     }
 }

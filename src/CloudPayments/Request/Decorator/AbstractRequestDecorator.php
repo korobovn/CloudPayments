@@ -17,11 +17,9 @@ abstract class AbstractRequestDecorator implements RequestDecoratorInterface
     protected $headers = [];
 
     /**
-     * JsonRequestDecorator constructor.
-     *
      * @param RequestInterface $request
      */
-    public function __construct(RequestInterface $request)
+    public function setRequest(RequestInterface $request): void
     {
         $this->request = $request;
     }

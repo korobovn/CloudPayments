@@ -7,6 +7,11 @@ use Korobovn\CloudPayments\Request\RequestInterface;
 interface RequestDecoratorInterface extends RequestInterface
 {
     /**
+     * @param RequestInterface $request
+     */
+    public function setRequest(RequestInterface $request): void;
+
+    /**
      * @return string|null
      */
     public function getBody(): ?string;
