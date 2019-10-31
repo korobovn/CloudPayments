@@ -2,7 +2,6 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Strategy\Exception\RequestManagementStrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Strategy\Specification\InvalidRequestSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsAcsUrlInModelSpecification;

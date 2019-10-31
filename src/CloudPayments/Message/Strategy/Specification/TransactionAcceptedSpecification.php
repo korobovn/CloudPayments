@@ -6,6 +6,9 @@ use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecific
 
 class TransactionAcceptedSpecification extends CompositeSpecification
 {
+    /**
+     * {@inheritDoc}
+     */
     public function isSatisfiedBy(array $response): bool
     {
         return (new ZeroReasonCodeInModelSpecification)

@@ -7,9 +7,7 @@ use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecific
 class IsModelSpecification extends CompositeSpecification
 {
     /**
-     * @param array $response
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isSatisfiedBy(array $response): bool
     {

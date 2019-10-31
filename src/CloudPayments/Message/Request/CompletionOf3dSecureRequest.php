@@ -3,6 +3,7 @@
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
+use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
@@ -18,7 +19,9 @@ class CompletionOf3dSecureRequest extends AbstractRequest
 
     public function __construct(CompletionOf3dSecureModel $model, StrategyInterface $strategy = null)
     {
-
+        if (! $strategy) {
+            $strategy = new CryptogramPaymentStrategy;
+        }
 
         parent::__construct($model, $strategy);
     }
