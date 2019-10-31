@@ -23,21 +23,22 @@ class TestStrategy extends AbstractStrategy
     }
 
     /**
-     * @param array $response
+     * @param array $raw_response
      *
      * @return TestResponse
      * @throws RequestManagementStrategyCannotCreateResponseException
      */
-    public function prepareRawResponse(array $response): ResponseInterface
+    public function prepareRawResponse(array $raw_response): ResponseInterface
     {
         if ((new IsSuccessSpecification)
             ->and(new IsMessageSpecification)
             ->and(new NotModelSpecification)
-            ->isSatisfiedBy($response)
+            ->isSatisfiedBy($raw_response)
         ) {
-            $response_interface = new TestResponse($response['Message']);
+            $response_interface = new TestResponse;
+            $response_interface->createFromArray($raw_response);
         } else {
-            throw $this->throwCannotCreateResponseException($response);
+            throw $this->throwCannotCreateResponseException($raw_response);
         }
 
         return $response_interface;

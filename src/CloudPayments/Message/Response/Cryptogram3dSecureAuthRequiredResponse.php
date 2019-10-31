@@ -12,13 +12,8 @@ use Korobovn\CloudPayments\Message\Response\Model\Cryptogram3dSecureAuthRequired
  */
 class Cryptogram3dSecureAuthRequiredResponse extends AbstractResponse
 {
-    /**
-     * Cryptogram3dSecureAuthRequiredResponse constructor.
-     *
-     * @param Cryptogram3dSecureAuthRequiredModel $model
-     */
-    public function __construct(Cryptogram3dSecureAuthRequiredModel $model)
+    public function __construct()
     {
-        parent::__construct($model, false, null, null);
+        $this->model = new Cryptogram3dSecureAuthRequiredModel;
     }
 }

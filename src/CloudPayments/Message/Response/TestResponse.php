@@ -5,14 +5,15 @@ namespace Korobovn\CloudPayments\Message\Response;
 use Korobovn\CloudPayments\Message\Response\Model\NullModel;
 
 /**
- * Class TestResponse.
+ *
+ * @method NullModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#testovyy-metod
  */
 class TestResponse extends AbstractResponse
 {
-    public function __construct(?string $message)
+    public function __construct()
     {
-        parent::__construct(new NullModel, true, $message, null);
+        $this->model = new NullModel;
     }
 }

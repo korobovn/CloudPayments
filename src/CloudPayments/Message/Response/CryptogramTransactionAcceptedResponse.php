@@ -12,12 +12,8 @@ use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionAcceptedM
  */
 class CryptogramTransactionAcceptedResponse extends AbstractResponse
 {
-    /**
-     *
-     * @param CryptogramTransactionAcceptedModel $model
-     */
-    public function __construct(CryptogramTransactionAcceptedModel $model)
+    public function __construct()
     {
-        parent::__construct($model, true, null, null);
+        $this->model = new CryptogramTransactionAcceptedModel;
     }
 }

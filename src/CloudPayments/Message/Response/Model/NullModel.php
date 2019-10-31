@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Response\Model;
 
-class NullModel implements ModelInterface
+class NullModel extends AbstractModel
 {
     public function toArray(): array
     {

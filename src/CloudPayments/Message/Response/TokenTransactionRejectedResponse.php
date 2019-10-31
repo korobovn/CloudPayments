@@ -12,12 +12,8 @@ use Korobovn\CloudPayments\Message\Response\Model\TokenTransactionRejectedModel;
  */
 class TokenTransactionRejectedResponse extends AbstractResponse
 {
-    /**
-     *
-     * @param TokenTransactionRejectedModel $model
-     */
-    public function __construct(TokenTransactionRejectedModel $model)
+    public function __construct()
     {
-        parent::__construct($model, false, null, null);
+        $this->model = new TokenTransactionRejectedModel;
     }
 }

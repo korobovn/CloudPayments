@@ -6,4 +6,8 @@ use Korobovn\CloudPayments\Gateway\Arrayable;
 
 interface ModelInterface extends Arrayable
 {
+    /**
+     * @param array $data
+     */
+    public function createFromArray(array $data): void;
 }

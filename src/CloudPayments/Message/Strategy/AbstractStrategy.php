@@ -30,11 +30,11 @@ abstract class AbstractStrategy implements StrategyInterface
     }
 
     /**
-     * @param array $response
+     * @param array $raw_response
      *
      * @return ResponseInterface
      */
-    abstract public function prepareRawResponse(array $response): ResponseInterface;
+    abstract public function prepareRawResponse(array $raw_response): ResponseInterface;
 
     /**
      * @param array $response

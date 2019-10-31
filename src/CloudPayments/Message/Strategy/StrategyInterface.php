@@ -13,9 +13,9 @@ interface StrategyInterface
     public function getRequest(): RequestInterface;
 
     /**
-     * @param array $response
+     * @param array $raw_response
      *
      * @return ResponseInterface
      */
-    public function prepareRawResponse(array $response): ResponseInterface;
+    public function prepareRawResponse(array $raw_response): ResponseInterface;
 }

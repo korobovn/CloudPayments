@@ -19,19 +19,23 @@ abstract class AbstractResponse implements ResponseInterface
     protected $inner_result = null;
 
     /**
-     * AbstractResponse constructor.
-     *
-     * @param ModelInterface $model
-     * @param bool           $success
-     * @param string|null    $message
-     * @param mixed|null     $inner_result
+     * @param array $data
      */
-    public function __construct(ModelInterface $model, bool $success, ?string $message, $inner_result = null)
+    public function createFromArray(array $data): void
     {
-        $this->model        = $model;
-        $this->success      = $success;
-        $this->message      = $message;
-        $this->inner_result = $inner_result;
+        $this->success = $data['Success'];
+
+        if (isset($data['Message'])) {
+            $this->message = $data['Message'];
+        }
+
+        if (isset($data['Message'])) {
+            $this->inner_result = $data['InnerResult'];
+        }
+
+        if (isset($data['Model'])) {
+            $this->model->createFromArray($data['Model']);
+        }
     }
 
     /**
