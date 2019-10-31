@@ -8,7 +8,6 @@ use Korobovn\CloudPayments\Message\Strategy\Specification\TransactionRejectedSpe
 use Korobovn\CloudPayments\Message\Response\TokenTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 
 /**
  *
@@ -16,26 +15,10 @@ use Korobovn\CloudPayments\Message\Response\ResponseInterface;
  */
 class TokenPaymentStrategy extends AbstractStrategy
 {
-    /**
-     * @param array $raw_response
-     *
-     * @return ResponseInterface
-     * @throws Exception\RequestManagementStrategyCannotCreateResponseException
-     */
-    public function prepareRawResponse(array $raw_response): ResponseInterface
-    {
-        if ((new InvalidRequestSpecification)->isSatisfiedBy($raw_response)) {
-            $response = new InvalidRequestResponse;
-        } elseif ((new TransactionRejectedSpecification)->isSatisfiedBy($raw_response)) {
-            $response = new TokenTransactionRejectedResponse;
-        } elseif ((new TransactionAcceptedSpecification)->isSatisfiedBy($raw_response)) {
-            $response = new TokenTransactionAcceptedResponse;
-        } else {
-            throw $this->throwCannotCreateResponseException($raw_response);
-        }
-
-        $response->fillFromArray($raw_response);
-
-        return $response;
-    }
+    /** @var array */
+    protected $specifications = [
+        InvalidRequestSpecification::class      => InvalidRequestResponse::class,
+        TransactionRejectedSpecification::class => TokenTransactionRejectedResponse::class,
+        TransactionAcceptedSpecification::class => TokenTransactionAcceptedResponse::class,
+    ];
 }

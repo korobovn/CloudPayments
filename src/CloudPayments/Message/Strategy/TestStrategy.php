@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Strategy\Exception\RequestManagementStrategyCannotCreateResponseException;
+use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsMessageSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsSuccessSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\NotModelSpecification;
@@ -15,7 +15,7 @@ class TestStrategy extends AbstractStrategy
      * @param array $raw_response
      *
      * @return TestResponse
-     * @throws RequestManagementStrategyCannotCreateResponseException
+     * @throws StrategyCannotCreateResponseException
      */
     public function prepareRawResponse(array $raw_response): ResponseInterface
     {

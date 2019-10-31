@@ -17,7 +17,7 @@ class ApplePayStartSessionStrategy extends AbstractStrategy
      * @param array $raw_response
      *
      * @return ResponseInterface
-     * @throws Exception\RequestManagementStrategyCannotCreateResponseException
+     * @throws Exception\StrategyCannotCreateResponseException
      */
     public function prepareRawResponse(array $raw_response): ResponseInterface
     {
