@@ -2,7 +2,6 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\TestRequest;
 use Korobovn\CloudPayments\Message\Strategy\Exception\RequestManagementStrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsMessageSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsSuccessSpecification;
@@ -12,16 +11,6 @@ use Korobovn\CloudPayments\Message\Response\TestResponse;
 
 class TestStrategy extends AbstractStrategy
 {
-    /**
-     * TestRequestManagementStrategy constructor.
-     *
-     * @param TestRequest $request
-     */
-    public function __construct(TestRequest $request)
-    {
-        parent::__construct($request);
-    }
-
     /**
      * @param array $raw_response
      *
@@ -36,7 +25,7 @@ class TestStrategy extends AbstractStrategy
             ->isSatisfiedBy($raw_response)
         ) {
             $response_interface = new TestResponse;
-            $response_interface->createFromArray($raw_response);
+            $response_interface->fillFromArray($raw_response);
         } else {
             throw $this->throwCannotCreateResponseException($raw_response);
         }

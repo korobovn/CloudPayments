@@ -6,7 +6,7 @@ use Korobovn\CloudPayments\Adapter\Request\AbstractRequestAdapter;
 use Korobovn\CloudPayments\Client\Exception\JsonDecodeErrorException;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 use Korobovn\CloudPayments\Message\Request\Decorator\RequestDecoratorInterface;
-use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
@@ -56,17 +56,15 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /**
      * {@inheritDoc}
      */
-    public function send(StrategyInterface $request_management_strategy): ResponseInterface
+    public function send(RequestInterface $request): ResponseInterface
     {
-        $request = $request_management_strategy->getRequest();
-
         $this->request_decorator->setRequest($request);
         $this->request_adapter->setRequest($this->request_decorator);
 
         $psr_response = $this->sendHttpRequest($this->request_adapter);
         $raw_response = $this->decodeBody($psr_response->getBody()->getContents());
 
-        return $request_management_strategy->prepareRawResponse($raw_response);
+        return $request->getStrategy()->prepareRawResponse($raw_response);
     }
 
     /**

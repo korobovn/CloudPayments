@@ -21,7 +21,7 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * @param array $data
      */
-    public function createFromArray(array $data): void
+    public function fillFromArray(array $data): void
     {
         $this->success = $data['Success'];
 
@@ -34,7 +34,7 @@ abstract class AbstractResponse implements ResponseInterface
         }
 
         if (isset($data['Model'])) {
-            $this->model->createFromArray($data['Model']);
+            $this->model->fillFromArray($data['Model']);
         }
     }
 

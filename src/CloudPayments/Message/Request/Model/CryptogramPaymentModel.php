@@ -14,11 +14,10 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\JsonDataStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\NameString;
 
 /**
- * Class CryptogramPaymentModel.
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
  */
-class CryptogramPaymentModel implements ModelInterface
+class CryptogramPaymentModel extends AbstractModel
 {
     use AmountFloat,
         CurrencyString,
@@ -32,7 +31,6 @@ class CryptogramPaymentModel implements ModelInterface
         JsonDataStringNull;
 
     /**
-     * CryptogramPaymentModel constructor.
      *
      * @param float       $amount
      * @param string      $currency
@@ -66,21 +64,5 @@ class CryptogramPaymentModel implements ModelInterface
             ->setAccountId($account_id)
             ->setEmail($email)
             ->setJsonData($json_data);
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'Amount'               => $this->getAmount(),
-            'Currency'             => $this->getCurrency(),
-            'IpAddress'            => $this->getIpAddress(),
-            'Name'                 => $this->getName(),
-            'CardCryptogramPacket' => $this->getCardCryptogramPacket(),
-            'InvoiceId'            => $this->getInvoiceId(),
-            'Description'          => $this->getDescription(),
-            'AccountId'            => $this->getAccountId(),
-            'Email'                => $this->getEmail(),
-            'JsonData'             => $this->getJsonData(),
-        ];
     }
 }

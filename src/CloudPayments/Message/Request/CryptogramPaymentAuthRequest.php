@@ -11,7 +11,7 @@ use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
  */
-class CryptogramPaymentAuthRequest extends CryptogramPaymentOnestepRequest
+class CryptogramPaymentAuthRequest extends CryptogramPaymentOneStepRequest
 {
     /** @var string */
     protected $url = '/payments/cards/auth';

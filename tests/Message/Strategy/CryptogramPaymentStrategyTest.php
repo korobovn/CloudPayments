@@ -2,18 +2,16 @@
 
 namespace Korobovn\Tests\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOnestepRequest;
-use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
-use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentOnestepStrategy;
+use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
 use PHPUnit\Framework\TestCase;
 
-class CryptogramPaymentOnestepStrategyTest extends TestCase
+class CryptogramPaymentStrategyTest extends TestCase
 {
-    /** @var CryptogramPaymentOnestepStrategy */
+    /** @var CryptogramPaymentStrategy */
     protected $strategy;
 
     /**
@@ -21,18 +19,7 @@ class CryptogramPaymentOnestepStrategyTest extends TestCase
      */
     public function setUp(): void
     {
-        $this->strategy = new CryptogramPaymentOnestepStrategy(new CryptogramPaymentOnestepRequest(
-            new CryptogramPaymentModel(
-                10,
-                'RUB',
-                '127.0.0.1',
-                'CARDHOLDER NAME',
-                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY',
-                'invoice_id',
-                'Оплата товаров в example.com',
-                'account_id'
-            )
-        ));
+        $this->strategy = new CryptogramPaymentStrategy;
     }
 
     public function testPrepareInvalidRequestResponse(): void

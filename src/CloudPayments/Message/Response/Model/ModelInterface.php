@@ -9,5 +9,5 @@ interface ModelInterface extends Arrayable
     /**
      * @param array $data
      */
-    public function createFromArray(array $data): void;
+    public function fillFromArray(array $data): void;
 }

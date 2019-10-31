@@ -7,16 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 /**
  *
- * @group CreateFromArrayTest
+ * @group FillFromArrayTest
  */
-class CreateFromArrayTest extends TestCase
+class FillFromArrayTest extends TestCase
 {
     public function testBasicTest(): void
     {
 
         $model = new CryptogramTransactionRejectedModel;
 
-        $model->createFromArray([
+        $model->fillFromArray([
             'TransactionId'       => 504,
             'Amount'              => 10.00000,
             'Currency'            => 'RUB',

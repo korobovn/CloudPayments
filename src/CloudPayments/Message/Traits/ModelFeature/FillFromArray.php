@@ -4,14 +4,14 @@ namespace Korobovn\CloudPayments\Message\Traits\ModelFeature;
 
 use Korobovn\CloudPayments\Message\Traits\ModelFeature\Exception\SetterMethodIsNotExist;
 
-trait CreateFromArray
+trait FillFromArray
 {
     /**
      * @param array $data
      *
      * @throws SetterMethodIsNotExist
      */
-    public function createFromArray(array $data): void
+    public function fillFromArray(array $data): void
     {
         foreach ($data as $name => $value) {
             $setter = sprintf('set%s', $name);

@@ -3,6 +3,8 @@
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\NullModel;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Strategy\TestStrategy;
 
 /**
  * Class TestRequest.
@@ -16,8 +18,16 @@ class TestRequest extends AbstractRequest
     /** @var string */
     protected $url = '/test';
 
-    public function __construct()
+    /**
+     *
+     * @param StrategyInterface|null $strategy
+     */
+    public function __construct(StrategyInterface $strategy = null)
     {
-        parent::__construct(new NullModel);
+        if (! $strategy) {
+            $strategy = new TestStrategy;
+        }
+
+        parent::__construct(new NullModel, $strategy);
     }
 }

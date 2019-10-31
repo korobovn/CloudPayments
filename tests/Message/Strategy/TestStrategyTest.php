@@ -2,7 +2,6 @@
 
 namespace Korobovn\Tests\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\TestRequest;
 use Korobovn\CloudPayments\Message\Strategy\TestStrategy;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +9,7 @@ class TestStrategyTest extends TestCase
 {
     public function test(): void
     {
-        $strategy = new TestStrategy(new TestRequest);
+        $strategy = new TestStrategy;
 
         $raw_response = [
             'Success' => true,

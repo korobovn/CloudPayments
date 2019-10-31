@@ -5,19 +5,14 @@ namespace Korobovn\CloudPayments\Message\Request;
 use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 
 /**
- * Class TokenPaymentOnestepRequest.
+ * Class TokenPaymentAuthRequest.
  *
  * @method TokenPaymentModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
  */
-class TokenPaymentOnestepRequest extends AbstractRequest
+class TokenPaymentTwoStepRequest extends TokenPaymentOneStepRequest
 {
     /** @var string */
-    protected $url = '/payments/tokens/charge';
-
-    public function __construct(TokenPaymentModel $model)
-    {
-        parent::__construct($model);
-    }
+    protected $url = '/payments/tokens/auth';
 }

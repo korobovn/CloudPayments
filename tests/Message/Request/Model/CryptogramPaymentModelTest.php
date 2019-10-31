@@ -5,6 +5,10 @@ namespace Korobovn\Tests\Message\Request\Model;
 use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ * @group request-model
+ */
 class CryptogramPaymentModelTest extends TestCase
 {
     public function testCreateWithRequiredFields(): void

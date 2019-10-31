@@ -13,11 +13,10 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\JsonDataStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\TokenString;
 
 /**
- * Class TokenPaymentModel.
  *
  * @see https://developers.cloudpayments.ru/#obrabotka-3-d-secure
  */
-class TokenPaymentModel implements ModelInterface
+class TokenPaymentModel extends AbstractModel
 {
     use AmountFloat,
         CurrencyString,
@@ -61,17 +60,5 @@ class TokenPaymentModel implements ModelInterface
             ->setIpAddress($ip_address)
             ->setEmail($email)
             ->setJsonData($json_data);
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'Amount'      => $this->getAmount(),
-            'Currency'    => $this->getDescription(),
-            'InvoiceId'   => $this->getAccountId(),
-            'Description' => $this->getDescription(),
-            'AccountId'   => $this->getAccountId(),
-            'Token'       => $this->getToken(),
-        ];
     }
 }

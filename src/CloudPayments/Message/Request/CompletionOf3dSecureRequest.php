@@ -3,6 +3,7 @@
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
  *
@@ -15,8 +16,10 @@ class CompletionOf3dSecureRequest extends AbstractRequest
     /** @var string */
     protected $url = '/payments/cards/post3ds';
 
-    public function __construct(CompletionOf3dSecureModel $model)
+    public function __construct(CompletionOf3dSecureModel $model, StrategyInterface $strategy = null)
     {
-        parent::__construct($model);
+
+
+        parent::__construct($model, $strategy);
     }
 }

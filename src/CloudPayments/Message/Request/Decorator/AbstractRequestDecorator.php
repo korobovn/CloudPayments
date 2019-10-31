@@ -4,6 +4,7 @@ namespace Korobovn\CloudPayments\Message\Request\Decorator;
 
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 abstract class AbstractRequestDecorator implements RequestDecoratorInterface
 {
@@ -35,6 +36,11 @@ abstract class AbstractRequestDecorator implements RequestDecoratorInterface
     public function getModel(): ModelInterface
     {
         return $this->request->getModel();
+    }
+
+    public function getStrategy(): StrategyInterface
+    {
+        return $this->request->getStrategy();
     }
 
     /**

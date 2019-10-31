@@ -5,10 +5,9 @@ namespace Korobovn\Tests\Client;
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOnestepRequest;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
 use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
-use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentOnestepStrategy;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use PHPUnit\Framework\TestCase;
@@ -18,15 +17,15 @@ use Psr\Http\Message\StreamInterface;
 
 class CloudPaymentClientTest extends TestCase
 {
-    /** @var CryptogramPaymentOnestepStrategy */
-    protected $strategy;
+    /** @var CryptogramPaymentOneStepRequest */
+    protected $request;
 
     /**
      * @inheritdoc
      */
     public function setUp(): void
     {
-        $this->strategy = new CryptogramPaymentOnestepStrategy(new CryptogramPaymentOnestepRequest(
+        $this->request = new CryptogramPaymentOneStepRequest(
             new CryptogramPaymentModel(
                 10,
                 'RUB',
@@ -37,7 +36,7 @@ class CloudPaymentClientTest extends TestCase
                 'Оплата товаров в example.com',
                 'account_id'
             )
-        ));
+        );
     }
 
     public function testInvalidRequestResponse(): void
@@ -49,7 +48,7 @@ class CloudPaymentClientTest extends TestCase
 
         $cloud_payment_client = $this->createCloudPaymentClient($raw_response, 200);
 
-        $response = $cloud_payment_client->send($this->strategy);
+        $response = $cloud_payment_client->send($this->request);
 
         $this->assertTrue($response instanceof InvalidRequestResponse);
     }
@@ -68,7 +67,7 @@ class CloudPaymentClientTest extends TestCase
 
         $cloud_payment_client = $this->createCloudPaymentClient($raw_response, 200);
 
-        $response = $cloud_payment_client->send($this->strategy);
+        $response = $cloud_payment_client->send($this->request);
 
         $this->assertTrue($response instanceof Cryptogram3dSecureAuthRequiredResponse);
     }

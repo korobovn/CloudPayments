@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOnestepRequest;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Strategy\Exception\RequestManagementStrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Strategy\Specification\InvalidRequestSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\IsAcsUrlInModelSpecification;
@@ -20,16 +20,8 @@ use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedRespons
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
  */
-class CryptogramPaymentOnestepStrategy extends AbstractStrategy
+class CryptogramPaymentStrategy extends AbstractStrategy
 {
-    /**
-     *
-     * @param CryptogramPaymentOnestepRequest $request
-     */
-    public function __construct(CryptogramPaymentOnestepRequest $request)
-    {
-        parent::__construct($request);
-    }
 
     /**
      * @param array $raw_response
@@ -41,7 +33,7 @@ class CryptogramPaymentOnestepStrategy extends AbstractStrategy
     {
         if ((new InvalidRequestSpecification)->isSatisfiedBy($raw_response)) {
             $response = new InvalidRequestResponse;
-            $response->createFromArray($raw_response);
+            $response->fillFromArray($raw_response);
         } elseif ((new IsAcsUrlInModelSpecification)
             ->and(new NotSuccessSpecification)
             ->and(new NotMessageSpecification)
@@ -56,7 +48,7 @@ class CryptogramPaymentOnestepStrategy extends AbstractStrategy
             throw $this->throwCannotCreateResponseException($raw_response);
         }
 
-        $response->createFromArray($raw_response);
+        $response->fillFromArray($raw_response);
 
         return $response;
     }

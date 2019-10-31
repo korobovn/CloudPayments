@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Request\TokenPaymentOnestepRequest;
+use Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Strategy\Specification\InvalidRequestSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\TransactionAcceptedSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\TransactionRejectedSpecification;
@@ -15,17 +15,8 @@ use Korobovn\CloudPayments\Message\Response\ResponseInterface;
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
  */
-class TokenPaymentOnestepStrategy extends AbstractStrategy
+class TokenPaymentStrategy extends AbstractStrategy
 {
-    /**
-     *
-     * @param TokenPaymentOnestepRequest $request
-     */
-    public function __construct(TokenPaymentOnestepRequest $request)
-    {
-        parent::__construct($request);
-    }
-
     /**
      * @param array $raw_response
      *
@@ -44,7 +35,7 @@ class TokenPaymentOnestepStrategy extends AbstractStrategy
             throw $this->throwCannotCreateResponseException($raw_response);
         }
 
-        $response->createFromArray($raw_response);
+        $response->fillFromArray($raw_response);
 
         return $response;
     }
