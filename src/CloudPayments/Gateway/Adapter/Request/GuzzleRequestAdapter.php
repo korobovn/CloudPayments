@@ -4,7 +4,7 @@ namespace Korobovn\CloudPayments\Gateway\Adapter\Request;
 
 use GuzzleHttp\Psr7\Request;
 use Korobovn\CloudPayments\Adapter\Request\AbstractRequestAdapter;
-use Korobovn\CloudPayments\Request\Decorator\RequestDecoratorInterface;
+use Korobovn\CloudPayments\Message\Request\Decorator\RequestDecoratorInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 

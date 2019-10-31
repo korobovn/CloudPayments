@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Adapter\Request;
 
-use Korobovn\CloudPayments\Request\Decorator\RequestDecoratorInterface;
+use Korobovn\CloudPayments\Message\Request\Decorator\RequestDecoratorInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 
 abstract class AbstractRequestAdapter implements PsrRequestInterface

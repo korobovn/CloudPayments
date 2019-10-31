@@ -2,10 +2,10 @@
 
 namespace Korobovn\CloudPayments\Client;
 
-use Korobovn\CloudPayments\RequestManagementStrategy\RequestManagementStrategyInterface;
-use Korobovn\CloudPayments\Response\ResponseInterface;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 
 interface CloudPaymentClientInterface
 {
-    public function send(RequestManagementStrategyInterface $request_management_strategy): ResponseInterface;
+    public function send(StrategyInterface $request_management_strategy): ResponseInterface;
 }

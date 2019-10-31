@@ -5,12 +5,12 @@ namespace Korobovn\Tests\Client;
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
-use Korobovn\CloudPayments\Request\CryptogramPaymentOnestepRequest;
-use Korobovn\CloudPayments\Request\Decorator\JsonRequestDecorator;
-use Korobovn\CloudPayments\Request\Model\CryptogramPaymentModel;
-use Korobovn\CloudPayments\RequestManagementStrategy\CryptogramPaymentOnestepRequestManagementStrategy;
-use Korobovn\CloudPayments\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Response\Cryptogram3dSecureAuthRequiredResponse;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOnestepRequest;
+use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
+use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
+use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentOnestepStrategy;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -18,7 +18,7 @@ use Psr\Http\Message\StreamInterface;
 
 class CloudPaymentClientTest extends TestCase
 {
-    /** @var CryptogramPaymentOnestepRequestManagementStrategy */
+    /** @var CryptogramPaymentOnestepStrategy */
     protected $strategy;
 
     /**
@@ -26,7 +26,7 @@ class CloudPaymentClientTest extends TestCase
      */
     public function setUp(): void
     {
-        $this->strategy = new CryptogramPaymentOnestepRequestManagementStrategy(new CryptogramPaymentOnestepRequest(
+        $this->strategy = new CryptogramPaymentOnestepStrategy(new CryptogramPaymentOnestepRequest(
             new CryptogramPaymentModel(
                 10,
                 'RUB',
