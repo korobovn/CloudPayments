@@ -20,7 +20,7 @@ trait CreatedDateIsoString
      *
      * @return $this
      */
-    protected function setCreatedDateIso(string $created_date_iso): self
+    public function setCreatedDateIso(string $created_date_iso): self
     {
         $this->created_date_iso = $created_date_iso;
 

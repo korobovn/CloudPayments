@@ -20,7 +20,7 @@ trait ConfirmDateString
      *
      * @return $this
      */
-    protected function setConfirmDate(string $confirm_date): self
+    public function setConfirmDate(string $confirm_date): self
     {
         $this->confirm_date = $confirm_date;
 

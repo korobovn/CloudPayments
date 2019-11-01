@@ -48,15 +48,13 @@ class CryptogramPaymentStrategyTest extends TestCase
             'Message' => null,
         ];
 
+        /** @var Cryptogram3dSecureAuthRequiredResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof Cryptogram3dSecureAuthRequiredResponse);
         $this->assertSame(false, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-
-        if ($response instanceof Cryptogram3dSecureAuthRequiredResponse) {
-            $this->assertSame(504, $response->getModel()->getTransactionId());
-        }
+        $this->assertSame(504, $response->getModel()->getTransactionId());
     }
 
     public function testPrepareTransactionRejectedResponse(): void
@@ -103,14 +101,13 @@ class CryptogramPaymentStrategyTest extends TestCase
             'Message' => null,
         ];
 
+        /** @var CryptogramTransactionRejectedResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof CryptogramTransactionRejectedResponse);
         $this->assertSame(false, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof CryptogramTransactionRejectedResponse) {
-            $this->assertSame(5051, $response->getModel()->getReasonCode());
-        }
+        $this->assertSame(5051, $response->getModel()->getReasonCode());
     }
 
     public function testPrepareTransactionAcceptedResponse(): void
@@ -160,13 +157,12 @@ class CryptogramPaymentStrategyTest extends TestCase
             'Message' => null,
         ];
 
+        /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof CryptogramTransactionAcceptedResponse);
         $this->assertSame(true, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof CryptogramTransactionAcceptedResponse) {
-            $this->assertSame(3, $response->getModel()->getStatusCode());
-        }
+        $this->assertSame(3, $response->getModel()->getStatusCode());
     }
 }

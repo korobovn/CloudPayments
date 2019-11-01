@@ -20,7 +20,7 @@ trait AccountIdStringNull
      *
      * @return $this
      */
-    protected function setAccountId(?string $account_id): self
+    public function setAccountId(?string $account_id): self
     {
         $this->account_id = $account_id;
 

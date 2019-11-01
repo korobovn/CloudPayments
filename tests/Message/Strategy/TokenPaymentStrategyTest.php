@@ -21,13 +21,14 @@ class TokenPaymentStrategyTest extends TestCase
         $this->strategy = new TokenPaymentStrategy;
     }
 
-    public function testPrepareInvalidRequestResponse(): void
+    public function testInvalidRequestResponse(): void
     {
         $raw_response = [
             'Success' => false,
             'Message' => 'Amount is required',
         ];
 
+        /** @var InvalidRequestResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof InvalidRequestResponse);
@@ -35,7 +36,7 @@ class TokenPaymentStrategyTest extends TestCase
         $this->assertSame(false, $response->isSuccess());
     }
 
-    public function testPrepareTransactionRejectedResponse(): void
+    public function testTransactionRejectedResponse(): void
     {
         $raw_response = [
             'Model'   => [
@@ -75,17 +76,16 @@ class TokenPaymentStrategyTest extends TestCase
             'Message' => null,
         ];
 
+        /** @var TokenTransactionRejectedResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof TokenTransactionRejectedResponse);
         $this->assertSame(false, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof TokenTransactionRejectedResponse) {
-            $this->assertSame(5051, $response->getModel()->getReasonCode());
-        }
+        $this->assertSame(5051, $response->getModel()->getReasonCode());
     }
 
-    public function testPrepareTransactionAcceptedResponse(): void
+    public function testTransactionAcceptedResponse(): void
     {
         $raw_response = [
             'Model'   => [
@@ -131,13 +131,12 @@ class TokenPaymentStrategyTest extends TestCase
             'Message' => null,
         ];
 
+        /** @var TokenTransactionAcceptedResponse $response */
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof TokenTransactionAcceptedResponse);
         $this->assertSame(true, $response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
-        if ($response instanceof TokenTransactionAcceptedResponse) {
-            $this->assertSame(3, $response->getModel()->getStatusCode());
-        }
+        $this->assertSame(3, $response->getModel()->getStatusCode());
     }
 }

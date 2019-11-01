@@ -27,38 +27,4 @@ class TokenPaymentModel extends AbstractModel
         IpAddressStringNull,
         EmailStringNull,
         JsonDataStringNull;
-
-    /**
-     * TokenPaymentModel constructor.
-     *
-     * @param float       $amount
-     * @param string      $currency
-     * @param string      $account_id
-     * @param string      $token
-     * @param string|null $invoice_id
-     * @param string|null $description
-     * @param string|null $ip_address
-     * @param string|null $email
-     * @param string|null $json_data
-     */
-    public function __construct(float $amount,
-                                string $currency,
-                                string $account_id,
-                                string $token,
-                                ?string $invoice_id = null,
-                                ?string $description = null,
-                                ?string $ip_address = null,
-                                ?string $email = null,
-                                ?string $json_data = null)
-    {
-        $this->setAmount($amount)
-            ->setCurrency($currency)
-            ->setAccountId($account_id)
-            ->setToken($token)
-            ->setInvoiceId($invoice_id)
-            ->setDescription($description)
-            ->setIpAddress($ip_address)
-            ->setEmail($email)
-            ->setJsonData($json_data);
-    }
 }

@@ -20,7 +20,7 @@ trait CardTypeString
      *
      * @return $this
      */
-    protected function setCardType(string $card_type): self
+    public function setCardType(string $card_type): self
     {
         $this->card_type = $card_type;
 

@@ -20,7 +20,7 @@ trait PaResString
      *
      * @return $this
      */
-    protected function setPaRes(string $pa_res): self
+    public function setPaRes(string $pa_res): self
     {
         $this->pa_res = $pa_res;
 

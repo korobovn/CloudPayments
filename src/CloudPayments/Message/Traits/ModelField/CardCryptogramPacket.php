@@ -20,7 +20,7 @@ trait CardCryptogramPacket
      *
      * @return $this
      */
-    protected function setCardCryptogramPacket(string $card_cryptogram_packet): self
+    public function setCardCryptogramPacket(string $card_cryptogram_packet): self
     {
         $this->card_cryptogram_packet = $card_cryptogram_packet;
 

@@ -20,7 +20,7 @@ trait AuthDateString
      *
      * @return $this
      */
-    protected function setAuthDate(string $auth_date): self
+    public function setAuthDate(string $auth_date): self
     {
         $this->auth_date = $auth_date;
 

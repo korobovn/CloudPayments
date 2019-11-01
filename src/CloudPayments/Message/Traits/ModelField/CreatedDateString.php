@@ -20,7 +20,7 @@ trait CreatedDateString
      *
      * @return $this
      */
-    protected function setCreatedDate(string $created_date): self
+    public function setCreatedDate(string $created_date): self
     {
         $this->created_date = $created_date;
 

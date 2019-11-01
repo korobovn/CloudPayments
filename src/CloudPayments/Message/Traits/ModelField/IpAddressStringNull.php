@@ -20,7 +20,7 @@ trait IpAddressStringNull
      *
      * @return $this
      */
-    protected function setIpAddress(?string $ip_address): self
+    public function setIpAddress(?string $ip_address): self
     {
         $this->ip_address = $ip_address;
 

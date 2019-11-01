@@ -20,7 +20,7 @@ trait IssuerBankCountryString
      *
      * @return $this
      */
-    protected function setIssuerBankCountry(string $issuer_bank_country): self
+    public function setIssuerBankCountry(string $issuer_bank_country): self
     {
         $this->issuer_bank_country = $issuer_bank_country;
 

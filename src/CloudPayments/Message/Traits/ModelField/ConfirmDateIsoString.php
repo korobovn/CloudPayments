@@ -20,7 +20,7 @@ trait ConfirmDateIsoString
      *
      * @return $this
      */
-    protected function setConfirmDateIso(string $confirm_date_iso): self
+    public function setConfirmDateIso(string $confirm_date_iso): self
     {
         $this->confirm_date_iso = $confirm_date_iso;
 

@@ -20,7 +20,7 @@ trait PaReqString
      *
      * @return $this
      */
-    protected function setPaReq(string $pa_req): self
+    public function setPaReq(string $pa_req): self
     {
         $this->pa_req = $pa_req;
 

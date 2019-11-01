@@ -20,7 +20,7 @@ trait TokenString
      *
      * @return $this
      */
-    protected function setToken(string $token): self
+    public function setToken(string $token): self
     {
         $this->token = $token;
 

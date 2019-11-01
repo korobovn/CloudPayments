@@ -12,11 +12,9 @@ class CompletionOf3dSecureModelTest extends TestCase
 {
     public function test()
     {
-        new CompletionOf3dSecureModel(
-            504,
-            'dsdsdsd'
-
-        );
+        (new CompletionOf3dSecureModel)
+            ->setTransactionId(504)
+            ->setPaRes('dsdsdsd');
         $this->assertTrue(true);
     }
 }

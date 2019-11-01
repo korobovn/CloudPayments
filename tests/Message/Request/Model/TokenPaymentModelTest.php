@@ -9,29 +9,26 @@ class TokenPaymentModelTest extends TestCase
 {
     public function testCreateWithRequiredFields(): void
     {
-        new TokenPaymentModel(
-            10,
-            'RUB',
-            'account_id',
-            '123456'
-        );
+        (new TokenPaymentModel)
+            ->setAmount(10)
+            ->setCurrency('RUB')
+            ->setAccountId('account_id')
+            ->setInvoiceId('');
 
         $this->assertTrue(true);
     }
 
     public function testCreateWithAllFields(): void
     {
-        new TokenPaymentModel(
-            10,
-            'RUB',
-            'account_id',
-            '123456',
-            '12345678',
-            'test description',
-            '127.0.0.1',
-            'mail@mail.com',
-            ''
-        );
+        (new TokenPaymentModel)
+            ->setAmount(10)
+            ->setCurrency('RUB')
+            ->setAccountId('account_id')
+            ->setInvoiceId('')
+            ->setDescription('test description')
+            ->setIpAddress('127.0.0.1')
+            ->setEmail('127.0.0.1')
+            ->setJsonData('');
 
         $this->assertTrue(true);
     }

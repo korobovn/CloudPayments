@@ -3,7 +3,6 @@
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
-use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Strategy\TokenPaymentStrategy;
 
 /**
@@ -17,17 +16,9 @@ class TokenPaymentOneStepRequest extends AbstractRequest
     /** @var string */
     protected $url = '/payments/tokens/charge';
 
-    /**
-     *
-     * @param TokenPaymentModel      $model
-     * @param StrategyInterface|null $strategy
-     */
-    public function __construct(TokenPaymentModel $model, StrategyInterface $strategy = null)
+    public function __construct()
     {
-        if (! $strategy) {
-            $strategy = new TokenPaymentStrategy;
-        }
-
-        parent::__construct($model, $strategy);
+        $this->model    = new TokenPaymentModel;
+        $this->strategy = new TokenPaymentStrategy;
     }
 }

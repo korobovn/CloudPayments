@@ -20,7 +20,7 @@ trait IpLatitudeFloat
      *
      * @return $this
      */
-    protected function setIpLatitude(float $ip_latitude): self
+    public function setIpLatitude(float $ip_latitude): self
     {
         $this->ip_latitude = $ip_latitude;
 

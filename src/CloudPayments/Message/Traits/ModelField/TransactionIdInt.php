@@ -20,7 +20,7 @@ trait TransactionIdInt
      *
      * @return $this
      */
-    protected function setTransactionId(int $transaction_id): self
+    public function setTransactionId(int $transaction_id): self
     {
         $this->transaction_id = $transaction_id;
 

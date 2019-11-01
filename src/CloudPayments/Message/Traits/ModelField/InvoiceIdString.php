@@ -20,7 +20,7 @@ trait InvoiceIdString
      *
      * @return $this
      */
-    protected function setInvoiceId(string $invoice_id): self
+    public function setInvoiceId(string $invoice_id): self
     {
         $this->invoice_id = $invoice_id;
 

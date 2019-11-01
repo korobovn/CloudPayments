@@ -20,7 +20,7 @@ trait ReasonCodeInt
      *
      * @return $this
      */
-    protected function setReasonCode(int $reason_code): self
+    public function setReasonCode(int $reason_code): self
     {
         $this->reason_code = $reason_code;
 

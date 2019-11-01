@@ -20,7 +20,7 @@ trait DescriptionStringNull
      *
      * @return $this
      */
-    protected function setDescription(?string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

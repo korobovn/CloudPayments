@@ -20,7 +20,7 @@ trait JsonDataStringNull
      *
      * @return $this
      */
-    protected function setJsonData(?string $json_data): self
+    public function setJsonData(?string $json_data): self
     {
         $this->json_data = $json_data;
 

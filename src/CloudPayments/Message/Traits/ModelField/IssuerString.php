@@ -20,7 +20,7 @@ trait IssuerString
      *
      * @return $this
      */
-    protected function setIssuer(string $issuer): self
+    public function setIssuer(string $issuer): self
     {
         $this->issuer = $issuer;
 

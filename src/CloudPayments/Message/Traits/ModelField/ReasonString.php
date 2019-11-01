@@ -20,7 +20,7 @@ trait ReasonString
      *
      * @return $this
      */
-    protected function setReason(string $reason): self
+    public function setReason(string $reason): self
     {
         $this->reason = $reason;
 

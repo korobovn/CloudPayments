@@ -20,7 +20,7 @@ trait AcsUrlString
      *
      * @return $this
      */
-    protected function setAcsUrl(string $acs_url): self
+    public function setAcsUrl(string $acs_url): self
     {
         $this->acs_url = $acs_url;
 

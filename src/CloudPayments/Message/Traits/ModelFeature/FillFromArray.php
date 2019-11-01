@@ -14,7 +14,7 @@ trait FillFromArray
     public function fillFromArray(array $data): void
     {
         foreach ($data as $name => $value) {
-            $setter = sprintf('set%s', $name);
+            $setter = sprintf('set%s', ucfirst($name));
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
             } else {

@@ -20,7 +20,7 @@ trait PaymentAmountFloat
      *
      * @return $this
      */
-    protected function setPaymentAmount(float $payment_amount): self
+    public function setPaymentAmount(float $payment_amount): self
     {
         $this->payment_amount = $payment_amount;
 

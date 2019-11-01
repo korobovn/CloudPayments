@@ -20,7 +20,7 @@ trait CardFirstSixString
      *
      * @return $this
      */
-    protected function setCardFirstSix(string $card_first_six): self
+    public function setCardFirstSix(string $card_first_six): self
     {
         $this->card_first_six = $card_first_six;
 

@@ -7,7 +7,6 @@ use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
-use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use PHPUnit\Framework\TestCase;
@@ -25,18 +24,17 @@ class CloudPaymentClientTest extends TestCase
      */
     public function setUp(): void
     {
-        $this->request = new CryptogramPaymentOneStepRequest(
-            new CryptogramPaymentModel(
-                10,
-                'RUB',
-                '127.0.0.1',
-                'CARDHOLDER NAME',
-                '01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY',
-                'invoice_id',
-                'Оплата товаров в example.com',
-                'account_id'
-            )
-        );
+        $this->request = new CryptogramPaymentOneStepRequest;
+        $this->request->getModel()
+            ->setAmount(10)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('CARDHOLDER NAME')
+            ->setCardCryptogramPacket('01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY')
+            ->setInvoiceId('1234567')
+            ->setDescription('Test Description')
+            ->setAccountId('account_id')
+            ->setEmail('mail@mail.com');
     }
 
     public function testInvalidRequestResponse(): void

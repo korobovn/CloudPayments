@@ -20,7 +20,7 @@ trait PaymentCurrencyCodeInt
      *
      * @return $this
      */
-    protected function setPaymentCurrencyCode(int $payment_currency_code): self
+    public function setPaymentCurrencyCode(int $payment_currency_code): self
     {
         $this->payment_currency_code = $payment_currency_code;
 

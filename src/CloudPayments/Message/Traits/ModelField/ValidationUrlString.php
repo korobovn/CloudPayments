@@ -20,7 +20,7 @@ trait ValidationUrlString
      *
      * @return $this
      */
-    protected function setValidationUrl(string $validation_url): self
+    public function setValidationUrl(string $validation_url): self
     {
         $this->validation_url = $validation_url;
 

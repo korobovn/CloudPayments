@@ -20,7 +20,7 @@ trait CardLastFourString
      *
      * @return $this
      */
-    protected function setCardLastFour(string $card_last_four): self
+    public function setCardLastFour(string $card_last_four): self
     {
         $this->card_last_four = $card_last_four;
 

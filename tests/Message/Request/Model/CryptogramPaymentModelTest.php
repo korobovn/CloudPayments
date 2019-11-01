@@ -13,31 +13,28 @@ class CryptogramPaymentModelTest extends TestCase
 {
     public function testCreateWithRequiredFields(): void
     {
-        new CryptogramPaymentModel(
-            10.0,
-            'RUB',
-            '127.0.0.1',
-            'Ivanov Ivan',
-            '1234567'
-        );
+        (new CryptogramPaymentModel)
+            ->setAmount(10)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('Ivanov Ivan')
+            ->setInvoiceId('1234567');
 
         $this->assertTrue(true);
     }
 
     public function testCreateWithAllFields(): void
     {
-        new CryptogramPaymentModel(
-            10.0,
-            'RUB',
-            '127.0.0.1',
-            'Ivanov Ivan',
-            '1234567',
-            'invoice_id',
-            'Test Description',
-            'account_id',
-            'mail@mail.com',
-            ''
-        );
+        (new CryptogramPaymentModel)
+            ->setAmount(10)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('Ivanov Ivan')
+            ->setInvoiceId('1234567')
+            ->setDescription('Test Description')
+            ->setAccountId('account_id')
+            ->setEmail('mail@mail.com')
+            ->setJsonData('');
 
         $this->assertTrue(true);
     }

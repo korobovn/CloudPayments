@@ -2,10 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
+use Korobovn\CloudPayments\Message\Response\ApplePayStartSessionResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Message\Response\ResponseInterface;
+use Korobovn\CloudPayments\Message\Strategy\Specification\ApplePayStartSessionCorrectSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\InvalidRequestSpecification;
-use Korobovn\CloudPayments\Message\Strategy\Specification\IsMerchantSessionIdentifierSpecification;
 
 /**
  *
@@ -13,24 +13,8 @@ use Korobovn\CloudPayments\Message\Strategy\Specification\IsMerchantSessionIdent
  */
 class ApplePayStartSessionStrategy extends AbstractStrategy
 {
-    /**
-     * @param array $raw_response
-     *
-     * @return ResponseInterface
-     * @throws Exception\StrategyCannotCreateResponseException
-     */
-    public function prepareRawResponse(array $raw_response): ResponseInterface
-    {
-        if ((new InvalidRequestSpecification)->isSatisfiedBy($raw_response)) {
-            $response = new InvalidRequestResponse;
-        } elseif ((new IsMerchantSessionIdentifierSpecification)->isSatisfiedBy($raw_response)) {
-           // $response = new TokenTransactionRejectedResponse;
-        } else {
-            throw $this->throwCannotCreateResponseException($raw_response);
-        }
-
-        $response->fillFromArray($raw_response);
-
-        return $response;
-    }
+    protected $specifications = [
+        InvalidRequestSpecification::class              => InvalidRequestResponse::class,
+        ApplePayStartSessionCorrectSpecification::class => ApplePayStartSessionResponse::class,
+    ];
 }

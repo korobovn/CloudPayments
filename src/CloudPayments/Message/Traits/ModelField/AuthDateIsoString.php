@@ -20,7 +20,7 @@ trait AuthDateIsoString
      *
      * @return $this
      */
-    protected function setAuthDateIso(string $auth_date_iso): self
+    public function setAuthDateIso(string $auth_date_iso): self
     {
         $this->auth_date_iso = $auth_date_iso;
 

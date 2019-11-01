@@ -20,7 +20,7 @@ trait StatusString
      *
      * @return $this
      */
-    protected function setStatus(string $status): self
+    public function setStatus(string $status): self
     {
         $this->status = $status;
 

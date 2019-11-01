@@ -20,7 +20,7 @@ trait CardHolderMessageString
      *
      * @return $this
      */
-    protected function setCardHolderMessage(string $card_holder_message): self
+    public function setCardHolderMessage(string $card_holder_message): self
     {
         $this->card_holder_message = $card_holder_message;
 

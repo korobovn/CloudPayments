@@ -20,7 +20,7 @@ trait TestModeBool
      *
      * @return $this
      */
-    protected function setTestMode(bool $test_mode): self
+    public function setTestMode(bool $test_mode): self
     {
         $this->test_mode = $test_mode;
 

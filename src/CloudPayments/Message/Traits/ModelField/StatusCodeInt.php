@@ -20,7 +20,7 @@ trait StatusCodeInt
      *
      * @return $this
      */
-    protected function setStatusCode(int $status_code): self
+    public function setStatusCode(int $status_code): self
     {
         $this->status_code = $status_code;
 

@@ -13,15 +13,4 @@ class CompletionOf3dSecureModel extends AbstractModel
 {
     use TransactionIdInt,
         PaResString;
-
-    /**
-     *
-     * @param int    $transaction_id
-     * @param string $pa_res
-     */
-    public function __construct(int $transaction_id, string $pa_res)
-    {
-        $this->setTransactionId($transaction_id)
-            ->setPaRes($pa_res);
-    }
 }

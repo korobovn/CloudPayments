@@ -20,7 +20,7 @@ trait IpDistrictString
      *
      * @return $this
      */
-    protected function setIpDistrict(string $ip_district): self
+    public function setIpDistrict(string $ip_district): self
     {
         $this->ip_district = $ip_district;
 

@@ -20,18 +20,6 @@ class AbstractRequest implements RequestInterface
     protected $strategy;
 
     /**
-     * AbstractRequest constructor.
-     *
-     * @param ModelInterface    $model
-     * @param StrategyInterface $strategy
-     */
-    public function __construct(ModelInterface $model, StrategyInterface $strategy)
-    {
-        $this->model    = $model;
-        $this->strategy = $strategy;
-    }
-
-    /**
      * @return string
      */
     public function getUrl(): string

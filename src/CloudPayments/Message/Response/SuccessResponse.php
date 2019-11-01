@@ -9,8 +9,9 @@ use Korobovn\CloudPayments\Message\Response\Model\NullModel;
  * @method NullModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#testovyy-metod
+ * @see https://developers.cloudpayments.ru/#otmena-podpiski-na-rekurrentnye-platezhi
  */
-class TestResponse extends AbstractResponse
+class SuccessResponse extends AbstractResponse
 {
     public function __construct()
     {

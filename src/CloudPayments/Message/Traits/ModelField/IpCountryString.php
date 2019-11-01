@@ -20,7 +20,7 @@ trait IpCountryString
      *
      * @return $this
      */
-    protected function setIpCountry(string $ip_country): self
+    public function setIpCountry(string $ip_country): self
     {
         $this->ip_country = $ip_country;
 
