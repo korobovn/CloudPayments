@@ -5,6 +5,8 @@ namespace Korobovn\CloudPayments\Client;
 use Korobovn\CloudPayments\Adapter\Request\AbstractRequestAdapter;
 use Korobovn\CloudPayments\Client\Exception\JsonDecodeErrorException;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
+use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
+use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
 use Korobovn\CloudPayments\Message\Request\Decorator\RequestDecoratorInterface;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
@@ -32,25 +34,45 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /**
      * CloudPaymentClient constructor.
      *
-     * @param ClientInterface           $http_client
-     * @param string                    $public_id
-     * @param string                    $api_secret
-     * @param RequestDecoratorInterface $request_decorator
-     * @param AbstractRequestAdapter    $request_adapter
+     * @param ClientInterface $http_client
+     * @param string          $public_id
+     * @param string          $api_secret
      */
     public function __construct(
         ClientInterface $http_client,
         string $public_id,
-        string $api_secret,
-        RequestDecoratorInterface $request_decorator,
-        AbstractRequestAdapter $request_adapter
+        string $api_secret
     )
     {
         $this->http_client       = $http_client;
         $this->public_id         = $public_id;
         $this->api_secret        = $api_secret;
+        $this->request_decorator = new JsonRequestDecorator;
+        $this->request_adapter   = new GuzzleRequestAdapter;
+    }
+
+    /**
+     * @param RequestDecoratorInterface $request_decorator
+     *
+     * @return $this
+     */
+    public function setRequestDecorator(RequestDecoratorInterface $request_decorator): self
+    {
         $this->request_decorator = $request_decorator;
-        $this->request_adapter   = $request_adapter;
+
+        return $this;
+    }
+
+    /**
+     * @param AbstractRequestAdapter $request_adapter
+     *
+     * @return $this
+     */
+    public function setRequestAdapter(AbstractRequestAdapter $request_adapter): self
+    {
+        $this->request_adapter = $request_adapter;
+
+        return $this;
     }
 
     /**

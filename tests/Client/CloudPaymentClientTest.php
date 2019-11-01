@@ -81,13 +81,12 @@ class CloudPaymentClientTest extends TestCase
     {
         $http_client = $this->createHttpClientMock($raw_response, $status_code);
 
-        $cloud_payment_client = new CloudPaymentClient(
+        $cloud_payment_client = (new CloudPaymentClient(
             $http_client,
             '',
-            '',
-            new JsonRequestDecorator,
-            new GuzzleRequestAdapter
-        );
+            ''
+        ))->setRequestDecorator(new JsonRequestDecorator)
+            ->setRequestAdapter(new GuzzleRequestAdapter);
 
         return $cloud_payment_client;
     }

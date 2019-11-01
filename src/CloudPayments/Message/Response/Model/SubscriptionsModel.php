@@ -7,7 +7,7 @@ namespace Korobovn\CloudPayments\Message\Response\Model;
  * @see https://developers.cloudpayments.ru/#poisk-podpisok
  *
  */
-class SubscriptionsModel implements ModelInterface, \Iterator, \ArrayAccess, \Countable
+class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAccess, \Countable
 {
     /** @var array|SubscriptionModel[] */
     protected $subscriptions = [];
