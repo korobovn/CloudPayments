@@ -2,15 +2,12 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecification;
-
-class ApplePayStartSessionCorrectSpecification extends CompositeSpecification
+class ApplePayStartSessionCorrectSpecification implements SpecificationInterface
 {
     public function isSatisfiedBy(array $response): bool
     {
-        return (new IsMerchantSessionIdentifierSpecification)
-            ->and(new IsSuccessSpecification)
-            ->and(new NotMessageSpecification)
-            ->isSatisfiedBy($response);
+        return ! empty($response['Model']['merchantSessionIdentifier']) &&
+               (new IsSuccessSpecification)->isSatisfiedBy($response) &&
+               (new NotMessageSpecification)->isSatisfiedBy($response);
     }
 }

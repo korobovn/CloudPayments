@@ -5,7 +5,7 @@ namespace Korobovn\CloudPayments\Message\Strategy;
 use Korobovn\CloudPayments\Message\Strategy\Exception\IsNotInstanceOfException;
 use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\SpecificationInterface;
+use Korobovn\CloudPayments\Message\Strategy\Specification\SpecificationInterface;
 
 abstract class AbstractStrategy implements StrategyInterface
 {

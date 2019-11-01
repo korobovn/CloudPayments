@@ -2,18 +2,15 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecification;
-
-class SubscriptionSpecification extends CompositeSpecification
+class SubscriptionSpecification implements SpecificationInterface
 {
     /**
      * {@inheritDoc}
      */
     public function isSatisfiedBy(array $response): bool
     {
-        return (new IsIdInModelSpecification)
-            ->and(new IsSuccessSpecification)
-            ->and(new NotMessageSpecification)
-            ->isSatisfiedBy($response);
+        return ! empty($response['Model']['Id']) &&
+               (new IsSuccessSpecification)->isSatisfiedBy($response) &&
+               (new NotMessageSpecification)->isSatisfiedBy($response);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Response;
 
-use Korobovn\CloudPayments\Gateway\Arrayable;
+use Illuminate\Contracts\Support\Arrayable;
 use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 
 interface ResponseInterface extends Arrayable

@@ -85,8 +85,7 @@ class CloudPaymentClientTest extends TestCase
             $http_client,
             '',
             ''
-        ))->setRequestDecorator(new JsonRequestDecorator)
-            ->setRequestAdapter(new GuzzleRequestAdapter);
+        ))->setRequestDecorator(new JsonRequestDecorator);
 
         return $cloud_payment_client;
     }

@@ -2,18 +2,15 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecification;
-
-class InvalidRequestSpecification extends CompositeSpecification
+class InvalidRequestSpecification implements SpecificationInterface
 {
     /**
      * {@inheritDoc}
      */
     public function isSatisfiedBy(array $response): bool
     {
-        return (new NotModelSpecification)
-            ->and(new NotSuccessSpecification)
-            ->and(new IsMessageSpecification)
-            ->isSatisfiedBy($response);
+        return (new NotModelSpecification)->isSatisfiedBy($response) &&
+               (new NotSuccessSpecification)->isSatisfiedBy($response) &&
+               (new IsMessageSpecification)->isSatisfiedBy($response);
     }
 }

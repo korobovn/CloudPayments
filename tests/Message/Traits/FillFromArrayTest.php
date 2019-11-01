@@ -13,10 +13,7 @@ class FillFromArrayTest extends TestCase
 {
     public function testBasicTest(): void
     {
-
-        $model = new CryptogramTransactionRejectedModel;
-
-        $model->fillFromArray([
+        $raw = [
             'TransactionId'       => 504,
             'Amount'              => 10.00000,
             'Currency'            => 'RUB',
@@ -52,10 +49,11 @@ class FillFromArrayTest extends TestCase
             'ReasonCode'          => 5051, //код отказа
             'CardHolderMessage'   => 'Недостаточно средств на карте', //сообщение для покупателя
             'Name'                => 'CARDHOLDER NAME',
-        ]);
+        ];
 
+        $model = new CryptogramTransactionRejectedModel;
+        $model->fillFromArray($raw);
 
-
-        $this->assertTrue(true);
+        $this->assertSame($raw, $model->toArray());
     }
 }

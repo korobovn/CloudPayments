@@ -2,9 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecification;
-
-class NotModelSpecification extends CompositeSpecification
+class NotModelSpecification implements SpecificationInterface
 {
     /**
      * {@inheritDoc}

@@ -2,10 +2,9 @@
 
 namespace Korobovn\CloudPayments\Client;
 
-use Korobovn\CloudPayments\Adapter\Request\AbstractRequestAdapter;
+use GuzzleHttp\Psr7\Request;
 use Korobovn\CloudPayments\Client\Exception\JsonDecodeErrorException;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
-use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
 use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
 use Korobovn\CloudPayments\Message\Request\Decorator\RequestDecoratorInterface;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
@@ -21,9 +20,6 @@ class CloudPaymentClient implements CloudPaymentClientInterface
 
     /** @var RequestDecoratorInterface */
     protected $request_decorator;
-
-    /** @var AbstractRequestAdapter */
-    protected $request_adapter;
 
     /** @var string */
     protected $public_id;
@@ -48,7 +44,6 @@ class CloudPaymentClient implements CloudPaymentClientInterface
         $this->public_id         = $public_id;
         $this->api_secret        = $api_secret;
         $this->request_decorator = new JsonRequestDecorator;
-        $this->request_adapter   = new GuzzleRequestAdapter;
     }
 
     /**
@@ -64,26 +59,19 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     }
 
     /**
-     * @param AbstractRequestAdapter $request_adapter
-     *
-     * @return $this
-     */
-    public function setRequestAdapter(AbstractRequestAdapter $request_adapter): self
-    {
-        $this->request_adapter = $request_adapter;
-
-        return $this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function send(RequestInterface $request): ResponseInterface
     {
         $this->request_decorator->setRequest($request);
-        $this->request_adapter->setRequest($this->request_decorator);
 
-        $psr_response = $this->sendHttpRequest($this->request_adapter);
+        $psr_request  = new Request(
+            $this->request_decorator->getMethod(),
+            $this->request_decorator->getUrl(),
+            $this->request_decorator->getHeaders(),
+            $this->request_decorator->getBody()
+        );
+        $psr_response = $this->sendHttpRequest($psr_request);
         $raw_response = $this->decodeBody($psr_response->getBody()->getContents());
 
         return $request->getStrategy()->prepareRawResponse($raw_response);

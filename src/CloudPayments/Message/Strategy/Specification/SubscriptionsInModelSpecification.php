@@ -2,9 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
-use Korobovn\CloudPayments\Message\Strategy\Specification\Base\CompositeSpecification;
-
-class SubscriptionsInModelSpecification extends CompositeSpecification
+class SubscriptionsInModelSpecification implements SpecificationInterface
 {
     public function isSatisfiedBy(array $response): bool
     {
