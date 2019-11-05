@@ -4,9 +4,7 @@ namespace Korobovn\Tests\Client;
 
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
-use Korobovn\CloudPayments\Gateway\Adapter\Request\GuzzleRequestAdapter;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
-use Korobovn\CloudPayments\Message\Request\Decorator\JsonRequestDecorator;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use PHPUnit\Framework\TestCase;
@@ -85,7 +83,7 @@ class CloudPaymentClientTest extends TestCase
             $http_client,
             '',
             ''
-        ))->setRequestDecorator(new JsonRequestDecorator);
+        ));
 
         return $cloud_payment_client;
     }

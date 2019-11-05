@@ -19,6 +19,14 @@ class AbstractRequest implements RequestInterface
     /** @var StrategyInterface */
     protected $strategy;
 
+    /** @var string */
+    protected $method = 'POST';
+
+    /** @var array */
+    protected $headers = [
+        'Content-Type' => 'application/json',
+    ];
+
     /**
      * @return string
      */
@@ -41,5 +49,29 @@ class AbstractRequest implements RequestInterface
     public function getStrategy(): StrategyInterface
     {
         return $this->strategy;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBody(): ?string
+    {
+        return json_encode($this->getModel()->toArray());
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
     }
 }

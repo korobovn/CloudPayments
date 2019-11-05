@@ -21,4 +21,19 @@ interface RequestInterface
      * @return StrategyInterface
      */
     public function getStrategy(): StrategyInterface;
+
+    /**
+     * @return string|null
+     */
+    public function getBody(): ?string;
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string;
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array;
 }
