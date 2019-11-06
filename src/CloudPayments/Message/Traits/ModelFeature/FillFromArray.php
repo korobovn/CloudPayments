@@ -8,8 +8,6 @@ trait FillFromArray
 {
     /**
      * @param array $data
-     *
-     * @throws SetterMethodIsNotExist
      */
     public function fillFromArray(array $data): void
     {
@@ -18,9 +16,9 @@ trait FillFromArray
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
             } else {
-                throw new SetterMethodIsNotExist(sprintf('The setter method %s for class %s is not exist',
+                /*throw new SetterMethodIsNotExist(sprintf('The setter method %s for class %s is not exist',
                     $setter, static::class
-                ));
+                ));*/
             }
         }
     }

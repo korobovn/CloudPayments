@@ -9,7 +9,7 @@ class InvalidRequestSpecification implements SpecificationInterface
      */
     public function isSatisfiedBy(array $response): bool
     {
-        return (new NotModelSpecification)->isSatisfiedBy($response) &&
+        return empty($response['Model']) &&
                (new NotSuccessSpecification)->isSatisfiedBy($response) &&
                (new IsMessageSpecification)->isSatisfiedBy($response);
     }

@@ -2,6 +2,6 @@
 
 namespace Korobovn\CloudPayments\Client\Exception;
 
-class InvalidHttpResponseCodeException extends \HttpException
+class InvalidHttpResponseCodeException extends \InvalidArgumentException
 {
 }

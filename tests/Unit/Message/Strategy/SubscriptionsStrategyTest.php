@@ -1,0 +1,100 @@
+<?php
+
+namespace Korobovn\Tests\Unit\Message\Strategy;
+
+use Korobovn\CloudPayments\Message\Response\Model\SubscriptionsModel;
+use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
+use Korobovn\CloudPayments\Message\Strategy\SubscriptionsStrategy;
+
+/**
+ * @group unit
+ */
+class SubscriptionsStrategyTest extends AbstractStrategyTest
+{
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
+    {
+        $this->strategy = new SubscriptionsStrategy;
+    }
+
+    public function testCorrectResponse()
+    {
+        $raw_response = [
+            'Model'       => [
+                [
+                    'Id'                           => 'sc_4bae8f5823bb8cdc966ccd1590a3b',
+                    'AccountId'                    => 'user@example.com',
+                    'Description'                  => 'Подписка на сервис',
+                    'Email'                        => 'user@example.com',
+                    'Amount'                       => 1.02,
+                    'CurrencyCode'                 => 0,
+                    'Currency'                     => 'RUB',
+                    'RequireConfirmation'          => false,
+                    'StartDate'                    => '/Date(1473665268000)/',
+                    'StartDateIso'                 => '2016-09-12T15:27:48',
+                    'IntervalCode'                 => 1,
+                    'Interval'                     => 'Month',
+                    'Period'                       => 1,
+                    'MaxPeriods'                   => null,
+                    'CultureName'                  => 'ru',
+                    'StatusCode'                   => 0,
+                    'Status'                       => 'Active',
+                    'SuccessfulTransactionsNumber' => 0,
+                    'FailedTransactionsNumber'     => 0,
+                    'LastTransactionDate'          => null,
+                    'LastTransactionDateIso'       => null,
+                    'NextTransactionDate'          => '/Date(1473665268000)/',
+                    'NextTransactionDateIso'       => '2016-09-12T15:27:48',
+                ],
+                [
+                    'Id'                           => 'sc_b4bdedba0e2bdf279be2e0bab9c99',
+                    'AccountId'                    => 'user@example.com',
+                    'Description'                  => 'Подписка на сервис',
+                    'Email'                        => 'user@example.com',
+                    'Amount'                       => 3.04,
+                    'CurrencyCode'                 => 0,
+                    'Currency'                     => 'RUB',
+                    'RequireConfirmation'          => false,
+                    'StartDate'                    => '/Date(1473665268000)/',
+                    'StartDateIso'                 => '2016-09-12T15:27:48',
+                    'IntervalCode'                 => 0,
+                    'Interval'                     => 'Week',
+                    'Period'                       => 2,
+                    'MaxPeriods'                   => null,
+                    'CultureName'                  => 'ru',
+                    'StatusCode'                   => 0,
+                    'Status'                       => 'Active',
+                    'SuccessfulTransactionsNumber' => 0,
+                    'FailedTransactionsNumber'     => 0,
+                    'LastTransactionDate'          => null,
+                    'LastTransactionDateIso'       => null,
+                    'NextTransactionDate'          => '/Date(1473665268000)/',
+                    'NextTransactionDateIso'       => '2016-09-12T15:27:48',
+                ],
+            ],
+            'InnerResult' => null,
+            'Success'     => true,
+            'Message'     => null,
+        ];
+
+        /** @var SubscriptionsResponse $response */
+        $response = $this->strategy->prepareRawResponse($raw_response);
+
+        $this->assertTrue($response instanceof SubscriptionsResponse);
+        $this->assertSame(true, $response->isSuccess());
+        $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
+
+        /** @var SubscriptionsModel $subscriptions */
+        $subscriptions = $response->getModel();
+        $this->assertSame(2, count($subscriptions));
+
+        $this->assertSame('sc_4bae8f5823bb8cdc966ccd1590a3b', $subscriptions[0]->getId());
+        $this->assertSame('sc_b4bdedba0e2bdf279be2e0bab9c99', $subscriptions[1]->getId());
+
+        foreach ($response->getModel() as $subscription) {
+            $this->assertSame('Active', $subscription->getStatus());
+        }
+    }
+}

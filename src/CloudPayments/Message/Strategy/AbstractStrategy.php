@@ -6,6 +6,7 @@ use Korobovn\CloudPayments\Message\Strategy\Exception\IsNotInstanceOfException;
 use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateResponseException;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\Specification\SpecificationInterface;
+use Tarampampam\Wrappers\Json;
 
 abstract class AbstractStrategy implements StrategyInterface
 {
@@ -59,7 +60,7 @@ abstract class AbstractStrategy implements StrategyInterface
          */
         return new StrategyCannotCreateResponseException(
             sprintf('Strategy %s cannot create a response [%s]',
-                static::class, json_encode($response)
+                static::class, Json::encode($response)
             )
         );
     }

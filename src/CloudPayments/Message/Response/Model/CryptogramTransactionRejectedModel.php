@@ -18,12 +18,12 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\DescriptionString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\EmailStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\InvoiceIdString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IpAddressString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\IpCityString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\IpCityStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IpCountryString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\IpDistrictString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\IpLatitudeFloat;
-use Korobovn\CloudPayments\Message\Traits\ModelField\IpLongitudeFloat;
-use Korobovn\CloudPayments\Message\Traits\ModelField\IpRegionString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\IpDistrictStringNull;
+use Korobovn\CloudPayments\Message\Traits\ModelField\IpLatitudeFloatNull;
+use Korobovn\CloudPayments\Message\Traits\ModelField\IpLongitudeFloatNull;
+use Korobovn\CloudPayments\Message\Traits\ModelField\IpRegionStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IssuerBankCountryString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IssuerString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\JsonDataStringNull;
@@ -61,11 +61,11 @@ class CryptogramTransactionRejectedModel extends AbstractModel
         TestModeBool,
         IpAddressString,
         IpCountryString,
-        IpCityString,
-        IpRegionString,
-        IpDistrictString,
-        IpLatitudeFloat,
-        IpLongitudeFloat,
+        IpCityStringNull,
+        IpRegionStringNull,
+        IpDistrictStringNull,
+        IpLatitudeFloatNull,
+        IpLongitudeFloatNull,
         CardFirstSixString,
         CardLastFourString,
         CardExpDateString,

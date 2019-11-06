@@ -5,5 +5,11 @@ build:
 composer-install:
 	./php.sh composer install
 
-run-tests:
+test:
 	./php.sh vendor/bin/phpunit --coverage-html ./coverage tests
+
+unit-tests:
+	./php.sh vendor/bin/phpunit --group unit tests
+
+feature-tests:
+	./php.sh vendor/bin/phpunit --group feature tests

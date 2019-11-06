@@ -10,7 +10,6 @@ class TransactionRejectedSpecification implements SpecificationInterface
     public function isSatisfiedBy(array $response): bool
     {
         return ! empty($response['Model']['ReasonCode']) &&
-               (new NotSuccessSpecification)->isSatisfiedBy($response) &&
-               (new NotMessageSpecification)->isSatisfiedBy($response);
+               (new NotSuccessSpecification)->isSatisfiedBy($response);
     }
 }

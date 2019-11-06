@@ -4,6 +4,7 @@ namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Tarampampam\Wrappers\Json;
 
 class AbstractRequest implements RequestInterface
 {
@@ -56,7 +57,7 @@ class AbstractRequest implements RequestInterface
      */
     public function getBody(): ?string
     {
-        return json_encode($this->getModel()->toArray());
+        return Json::encode($this->getModel()->toArray());
     }
 
     /**

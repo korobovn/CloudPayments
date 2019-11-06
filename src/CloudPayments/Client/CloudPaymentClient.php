@@ -2,14 +2,16 @@
 
 namespace Korobovn\CloudPayments\Client;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use Korobovn\CloudPayments\Client\Exception\JsonDecodeErrorException;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
-use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
+use Tarampampam\Wrappers\Json;
 
 class CloudPaymentClient implements CloudPaymentClientInterface
 {
@@ -23,11 +25,10 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     protected $api_secret;
 
     /**
-     * CloudPaymentClient constructor.
      *
-     * @param ClientInterface $http_client
-     * @param string          $public_id
-     * @param string          $api_secret
+     * @param Client $http_client
+     * @param string $public_id
+     * @param string $api_secret
      */
     public function __construct(
         ClientInterface $http_client,
@@ -61,18 +62,10 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      * @param string $body
      *
      * @return array
-     * @throws JsonDecodeErrorException
      */
     protected function decodeBody(string $body): array
     {
-        $result = json_decode($body, true);
-
-        if (json_last_error() != JSON_ERROR_NONE) {
-            throw new JsonDecodeErrorException(sprintf('Json Decode Error: %d - %s',
-                json_last_error(), json_last_error_msg()));
-        }
-
-        return $result;
+        return Json::decode($body, true);
     }
 
     /**
@@ -85,7 +78,15 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     {
         $this->setAuthHeader($request);
 
-        $psr_response = $this->http_client->sendRequest($request);
+        try {
+            $psr_response = $this->http_client->send($request);
+        } catch (RequestException $exception) {
+            if ($exception->hasResponse()) {
+                $psr_response = $exception->getResponse();
+            } else {
+                throw new InvalidHttpResponseCodeException($exception->getMessage(), $exception->getCode(), $exception);
+            }
+        }
 
         if ($psr_response->getStatusCode() != 200) {
             throw new InvalidHttpResponseCodeException(sprintf('%d is an invalid http response code',
@@ -98,7 +99,7 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /**
      * @param PsrRequestInterface $request
      */
-    protected function setAuthHeader(PsrRequestInterface $request): void
+    protected function setAuthHeader(PsrRequestInterface &$request): void
     {
         $request = $request->withAddedHeader('Authorization', sprintf('Basic %s',
             base64_encode($this->public_id . ':' . $this->api_secret)));
