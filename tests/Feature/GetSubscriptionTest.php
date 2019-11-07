@@ -3,31 +3,32 @@
 namespace Korobovn\Tests\Feature;
 
 use Korobovn\CloudPayments\Message\Request\GetSubscriptionRequest;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
 
 /**
  * @group feature
  * @group get-subscription
  *
- * @see https://developers.cloudpayments.ru/#zapros-informatsii-o-podpiske
+ * @see   https://developers.cloudpayments.ru/#zapros-informatsii-o-podpiske
  */
-class GetSubscriptionTest extends AbstractFeatureTest
+class GetSubscriptionTest extends CreateSubscriptionTest
 {
-    public function test(): void
+    /**
+     * The test depends on testCreateSubscription. The first step is to create a subscription.
+     * 
+     * @param string $subscription_id
+     *
+     * @depends testCreateSubscription
+     */
+    public function testGetSubscription(string $subscription_id): void
     {
         $request = new GetSubscriptionRequest;
         $request->getModel()
-            ->setId('sc_8cf8a9338fb8ebf7202b08d09c938');
+            ->setId($subscription_id);
 
+        /** @var SubscriptionResponse $response */
         $response = $this->client->send($request);
 
-        if ($response instanceof SubscriptionResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof InvalidRequestResponse) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
-        }
+        $this->assertInstanceOf(SubscriptionResponse::class, $response);
     }
 }

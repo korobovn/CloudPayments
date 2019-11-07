@@ -2,40 +2,59 @@
 
 namespace Korobovn\Tests\Feature;
 
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Message\Response\TokenTransactionAcceptedResponse;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
 
 /**
  * @group feature
  * @group token-payment
  *
- * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
+ * @see   https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
  */
 class TokenPaymentTest extends AbstractFeatureTest
 {
+    /** @var float */
+    protected $amount = 100.0;
+
+    /** @var string */
+    protected $currency = 'RUB';
+
+    /** @var string */
+    protected $account_id = 'user_x';
+
+    /** @var string */
+    protected $ip_address = '127.0.0.1';
+
     public function test(): void
     {
-        $request = new TokenPaymentOneStepRequest;
+        $request = new CryptogramPaymentOneStepRequest;
         $request->getModel()
-            ->setAmount(10)
-            ->setCurrency('RUB')
-            ->setInvoiceId('1234567')
-            ->setDescription('Test Description')
-            ->setAccountId('user_x')
-            ->setToken('a4e67841-abb0-42de-a364-d1d8f9f4b3c0');
+            ->setAmount($this->amount)
+            ->setCurrency($this->currency)
+            ->setAccountId($this->account_id)
+            ->setIpAddress($this->ip_address)
+            ->setName('CARDHOLDER NAME')
+            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
 
+        /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);
 
-        if ($response instanceof TokenTransactionAcceptedResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof TokenTransactionRejectedResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof InvalidRequestResponse) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
-        }
+        $this->assertInstanceOf(CryptogramTransactionAcceptedResponse::class, $response);
+
+        $token = $response->getModel()->getToken();
+
+        $request = new TokenPaymentOneStepRequest;
+        $request->getModel()
+            ->setAmount($this->amount)
+            ->setCurrency($this->currency)
+            ->setAccountId($this->account_id)
+            ->setToken($token);
+
+        /** @var TokenTransactionRejectedResponse $response */
+        $response = $this->client->send($request);
+
+        $this->assertInstanceOf(TokenTransactionRejectedResponse::class, $response);
     }
 }

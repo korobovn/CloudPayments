@@ -3,6 +3,7 @@
 namespace Korobovn\Tests\Feature;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use PHPUnit\Framework\TestCase;
 
@@ -13,9 +14,9 @@ abstract class AbstractFeatureTest extends TestCase
 
     protected function setUp(): void
     {
-        $config            = include 'config.php';
-        $public_key  = $config['CLOUD_PAYMENTS_PUBLIC_KEY'] ?? '';
-        $private_key = $config['CLOUD_PAYMENTS_PRIVATE_KEY'] ?? '';
+        $config      = include __DIR__ . '/../../config/config.php';
+        $public_key  = Arr::get($config, 'cloud_payments.public_key');
+        $private_key = Arr::get($config, 'cloud_payments.private_key');
 
         $this->client = new CloudPaymentClient(
             new Client,

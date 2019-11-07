@@ -3,34 +3,38 @@
 namespace Korobovn\Tests\Feature;
 
 use Korobovn\CloudPayments\Message\Request\FindSubscriptionRequest;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
 use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
 
 /**
  * @group feature
  * @group find-subscription
  *
- * @see https://developers.cloudpayments.ru/#poisk-podpisok
+ * @see   https://developers.cloudpayments.ru/#poisk-podpisok
  */
-class FindSubscriptionTest extends AbstractFeatureTest
+class FindSubscriptionTest extends CreateSubscriptionTest
 {
-    public function test(): void
+    /**
+     * The test depends on testCreateSubscription. The first step is to create a subscription.
+     *
+     * @param string $subscription_id
+     *
+     * @depends testCreateSubscription
+     */
+    public function test($subscription_id): void
     {
         $request = new FindSubscriptionRequest;
         $request->getModel()
-            ->setAccountId('user@example.com');
+            ->setAccountId($this->account_id);
 
+        /** @var SubscriptionsResponse $response */
         $response = $this->client->send($request);
 
-        if ($response instanceof SubscriptionsResponse) {
-            $this->assertTrue(true);
-            foreach ($response->getModel() as $subscription) {
-                $this->assertTrue(! empty($subscription->getId()));
-            }
-        } elseif ($response instanceof InvalidRequestResponse) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
+        $this->assertInstanceOf(SubscriptionsResponse::class, $response);
+
+        foreach ($response->getModel() as $subscription_model) {
+            $this->assertInstanceOf(SubscriptionModel::class, $subscription_model);
+            break;
         }
     }
 }

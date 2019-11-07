@@ -3,7 +3,6 @@
 namespace Korobovn\Tests\Feature;
 
 use Korobovn\CloudPayments\Message\Request\TestRequest;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SuccessResponse;
 
 /**
@@ -20,12 +19,6 @@ class TestTest extends AbstractFeatureTest
 
         $response = $this->client->send($request);
 
-        if ($response instanceof SuccessResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof InvalidRequestResponse) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
-        }
+        $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 }

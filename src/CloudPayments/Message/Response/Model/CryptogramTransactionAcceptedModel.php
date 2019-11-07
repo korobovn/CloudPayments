@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Response\Model;
 
-use Korobovn\CloudPayments\Message\Traits\ModelField\AccountIdString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\AccountIdStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\AmountFloat;
 use Korobovn\CloudPayments\Message\Traits\ModelField\AuthCodeString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\AuthDateIsoString;
@@ -19,9 +19,9 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\CreatedDateIsoString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CreatedDateString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CurrencyCodeInt;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CurrencyString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\DescriptionString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\DescriptionStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\EmailStringNull;
-use Korobovn\CloudPayments\Message\Traits\ModelField\InvoiceIdString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\InvoiceIdStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IpAddressString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IpCityStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\IpCountryString;
@@ -51,10 +51,10 @@ class CryptogramTransactionAcceptedModel extends AbstractModel
         AmountFloat,
         CurrencyString,
         CurrencyCodeInt,
-        InvoiceIdString,
-        AccountIdString,
+        InvoiceIdStringNull,
+        AccountIdStringNull,
         EmailStringNull,
-        DescriptionString,
+        DescriptionStringNull,
         JsonDataStringNull,
         CreatedDateString,
         CreatedDateIsoString,

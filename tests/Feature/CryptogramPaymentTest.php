@@ -12,36 +12,74 @@ use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
  * @group feature
  * @group cryptogram-payment
  *
- * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
+ * @see   https://developers.cloudpayments.ru/#oplata-po-kriptogramme
  */
 class CryptogramPaymentTest extends AbstractFeatureTest
 {
-    public function test(): void
+    public function testSuccessPaymentWith3d(): void
     {
         $request = new CryptogramPaymentOneStepRequest;
         $request->getModel()
-            ->setAmount(10)
+            ->setAmount(100.0)
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket('01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY')
-            ->setInvoiceId('1234567')
-            ->setDescription('Test Description')
-            ->setAccountId('account_id')
-            ->setEmail('mail@mail.com');
+            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS'));
 
+        /** @var Cryptogram3dSecureAuthRequiredResponse $response */
         $response = $this->client->send($request);
 
-        if ($response instanceof CryptogramTransactionAcceptedResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof CryptogramTransactionRejectedResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof Cryptogram3dSecureAuthRequiredResponse) {
-            $this->assertTrue(true);
-        } elseif ($response instanceof InvalidRequestResponse) {
-            $this->assertTrue(true);
-        } else {
-            $this->assertTrue(false);
-        }
+        $this->assertInstanceOf(Cryptogram3dSecureAuthRequiredResponse::class, $response);
+    }
+
+    public function testSuccessPaymentWithout3d(): void
+    {
+        $request = new CryptogramPaymentOneStepRequest;
+        $request->getModel()
+            ->setAmount(100.0)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('CARDHOLDER NAME')
+            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+
+        /** @var CryptogramTransactionAcceptedResponse $response */
+        $response = $this->client->send($request);
+
+        $this->assertInstanceOf(CryptogramTransactionAcceptedResponse::class, $response);
+    }
+
+    public function testFailPaymentWithout3d(): void
+    {
+        $request = new CryptogramPaymentOneStepRequest;
+        $request->getModel()
+            ->setAmount(100.0)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('CARDHOLDER NAME')
+            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_FAIL'));
+
+        /** @var CryptogramTransactionRejectedResponse $response */
+        $response = $this->client->send($request);
+
+        $this->assertInstanceOf(CryptogramTransactionRejectedResponse::class, $response);
+        $this->assertSame('InsufficientFunds', $response->getModel()->getReason());
+        $this->assertSame(5051, $response->getModel()->getReasonCode());
+    }
+
+    public function testInvalidRequest(): void
+    {
+        $request = new CryptogramPaymentOneStepRequest;
+        $request->getModel()
+            ->setAmount(0)
+            ->setCurrency('RUB')
+            ->setIpAddress('127.0.0.1')
+            ->setName('CARDHOLDER NAME')
+            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+
+        /** @var InvalidRequestResponse $response */
+        $response = $this->client->send($request);
+
+        $this->assertInstanceOf(InvalidRequestResponse::class, $response);
+        $this->assertSame('Amount is required; Amount value is too small', $response->getMessage());
     }
 }
