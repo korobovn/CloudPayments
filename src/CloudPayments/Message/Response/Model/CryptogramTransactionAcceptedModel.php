@@ -13,8 +13,8 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\CardHolderMessageString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CardLastFourString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CardTypeCodeInt;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CardTypeString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\ConfirmDateIsoString;
-use Korobovn\CloudPayments\Message\Traits\ModelField\ConfirmDateString;
+use Korobovn\CloudPayments\Message\Traits\ModelField\ConfirmDateIsoStringNull;
+use Korobovn\CloudPayments\Message\Traits\ModelField\ConfirmDateStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CreatedDateIsoString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CreatedDateString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\CurrencyCodeInt;
@@ -60,8 +60,8 @@ class CryptogramTransactionAcceptedModel extends AbstractModel
         CreatedDateIsoString,
         AuthDateString,
         AuthDateIsoString,
-        ConfirmDateString,
-        ConfirmDateIsoString,
+        ConfirmDateStringNull,
+        ConfirmDateIsoStringNull,
         AuthCodeString,
         TestModeBool,
         IpAddressString,

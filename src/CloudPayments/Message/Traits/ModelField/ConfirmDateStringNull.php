@@ -2,25 +2,25 @@
 
 namespace Korobovn\CloudPayments\Message\Traits\ModelField;
 
-trait ConfirmDateString
+trait ConfirmDateStringNull
 {
-    /** @var string */
+    /** @var string|null */
     protected $confirm_date;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getConfirmDate(): string
+    public function getConfirmDate(): ?string
     {
         return $this->confirm_date;
     }
 
     /**
-     * @param string $confirm_date
+     * @param string|null $confirm_date
      *
      * @return $this
      */
-    public function setConfirmDate(string $confirm_date): self
+    public function setConfirmDate(?string $confirm_date): self
     {
         $this->confirm_date = $confirm_date;
 

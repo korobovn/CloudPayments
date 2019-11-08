@@ -14,7 +14,7 @@ abstract class AbstractFeatureTest extends TestCase
 
     protected function setUp(): void
     {
-        $config      = include __DIR__ . '/../../config/config.php';
+        $config      = include __DIR__ . '/../../config/cloud-payments.php';
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 

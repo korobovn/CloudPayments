@@ -23,5 +23,12 @@
         "psr-4": {
             "Korobovn\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Korobovn\\CloudPayments\\CloudPaymentsServiceProvider"
+            ]
+        }
     }
 }
