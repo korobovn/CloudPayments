@@ -2,8 +2,6 @@
 
 namespace Korobovn\CloudPayments\Message\Traits\ModelField;
 
-use Tarampampam\Wrappers\Json;
-
 trait JsonDataStringNull
 {
     /** @var string|null */
@@ -27,23 +25,5 @@ trait JsonDataStringNull
         $this->json_data = $json_data;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     * @throws \Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException
-     */
-    public function getJsonDataPayload(): array
-    {
-        return Json::decode($this->json_data, true)['payload'] ?? [];
-    }
-
-    /**
-     * @return bool
-     * @throws \Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException
-     */
-    public function isJsonDataSaveBankCard(): bool
-    {
-        return (bool) (Json::decode($this->json_data, true)['is_save_card'] ?? false);
     }
 }
