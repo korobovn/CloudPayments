@@ -29,7 +29,7 @@ abstract class AbstractResponse implements ResponseInterface
             $this->message = $data['Message'];
         }
 
-        if (isset($data['Message'])) {
+        if (isset($data['InnerResult'])) {
             $this->inner_result = $data['InnerResult'];
         }
 
