@@ -1,5 +1,6 @@
 {
     "name": "korobovn/cloud-payments",
+    "version": "1.0.0",
     "type": "project",
     "require": {
         "php": "^7.1.3",
