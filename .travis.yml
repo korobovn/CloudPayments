@@ -4,6 +4,10 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+env:
+  global:
+    - coverage=false
+    - CODECOV_TOKEN="062645b0-9868-4c0b-a18e-f80e4cc5fcc4"
 
 sudo: false
 
@@ -14,8 +18,8 @@ install:
 script:
   - composer unit-test
 
-#after_success:
-#  - if [[ $coverage = 'true' ]]; then bash <(curl -s https://codecov.io/bash); fi
+after_success:
+  - if [[ $coverage = 'true' ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 matrix:
   include:
@@ -23,11 +27,7 @@ matrix:
     - php: 7.1.3
 
     - php: 7.2
-
+      env: coverage=true
 
     - php: 7.3
 
-    - php: nightly
-
-  allow_failures:
-    - php: nightly
