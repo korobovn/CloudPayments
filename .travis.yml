@@ -12,7 +12,7 @@ install:
   - composer update --prefer-dist --no-interaction --no-suggest
 
 script:
-  - vendor/bin/phpunit
+  - composer unit-test
 
 #after_success:
 #  - if [[ $coverage = 'true' ]]; then bash <(curl -s https://codecov.io/bash); fi
