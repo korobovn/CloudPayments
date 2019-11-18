@@ -1,6 +1,12 @@
 <?php
 
 use Dotenv\Dotenv;
+use Dotenv\Exception\InvalidPathException;
 
-$dotenv = Dotenv::create(__DIR__ . '/../');
-$dotenv->load();
+try {
+    $dotenv = Dotenv::create(__DIR__ . '/../');
+    $dotenv->load();
+} catch (InvalidPathException $exception) {
+
+}
+
