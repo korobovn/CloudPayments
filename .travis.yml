@@ -16,7 +16,7 @@ install:
   - composer update --prefer-dist --no-interaction --no-suggest
 
 script:
-  - composer unit-test
+  - if [[ $coverage = 'true' ]]; then composer unit-test-cover; else composer unit-test; fi
 
 after_success:
   - if [[ $coverage = 'true' ]]; then bash <(curl -s https://codecov.io/bash); fi
