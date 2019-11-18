@@ -7,7 +7,6 @@ use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionRejectedM
 
 /**
  * @group FillFromArrayTest
- * @coversNothing
  */
 class FillFromArrayTest extends TestCase
 {

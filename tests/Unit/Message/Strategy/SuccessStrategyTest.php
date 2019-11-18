@@ -9,7 +9,6 @@ use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 
 /**
  * @group unit
- * @coversNothing
  */
 class SuccessStrategyTest extends TestCase
 {

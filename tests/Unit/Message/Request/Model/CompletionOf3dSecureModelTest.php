@@ -8,7 +8,6 @@ use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 /**
  * @see   https://developers.cloudpayments.ru/#obrabotka-3-d-secure
  * @group unit
- * @coversNothing
  */
 class CompletionOf3dSecureModelTest extends TestCase
 {

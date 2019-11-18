@@ -7,7 +7,6 @@ use Korobovn\CloudPayments\Message\Strategy\ApplePayStartSessionStrategy;
 
 /**
  * @group unit
- * @coversNothing
  */
 class ApplePayStartSessionStrategyTest extends AbstractStrategyTest
 {

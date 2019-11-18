@@ -7,7 +7,6 @@ use Korobovn\CloudPayments\Message\Strategy\SubscriptionStrategy;
 
 /**
  * @group unit
- * @coversNothing
  */
 class SubscriptionStrategyTest extends AbstractStrategyTest
 {

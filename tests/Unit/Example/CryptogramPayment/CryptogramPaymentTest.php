@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit
- * @coversNothing
  */
 class CryptogramPaymentTest extends TestCase
 {

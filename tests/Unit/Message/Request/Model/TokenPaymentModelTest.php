@@ -7,7 +7,6 @@ use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 
 /**
  * @group unit
- * @coversNothing
  */
 class TokenPaymentModelTest extends TestCase
 {

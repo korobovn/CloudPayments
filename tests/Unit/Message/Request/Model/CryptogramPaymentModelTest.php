@@ -8,7 +8,6 @@ use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 /**
  * @group request-model
  * @group unit
- * @coversNothing
  */
 class CryptogramPaymentModelTest extends TestCase
 {
