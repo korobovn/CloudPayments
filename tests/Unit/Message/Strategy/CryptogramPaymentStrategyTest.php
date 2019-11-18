@@ -2,15 +2,16 @@
 
 namespace Korobovn\Tests\Unit\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
+use PHPUnit\Framework\TestCase;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
+use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
-use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class CryptogramPaymentStrategyTest extends TestCase
 {
@@ -18,9 +19,9 @@ class CryptogramPaymentStrategyTest extends TestCase
     protected $strategy;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new CryptogramPaymentStrategy;
     }
@@ -36,7 +37,7 @@ class CryptogramPaymentStrategyTest extends TestCase
 
         $this->assertTrue($response instanceof InvalidRequestResponse);
         $this->assertSame('Amount is required', $response->getMessage());
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
     }
 
     public function testPrepareCryptogram3dSecureAuthRequiredResponse(): void
@@ -55,7 +56,7 @@ class CryptogramPaymentStrategyTest extends TestCase
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof Cryptogram3dSecureAuthRequiredResponse);
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame(504, $response->getModel()->getTransactionId());
     }
@@ -108,7 +109,7 @@ class CryptogramPaymentStrategyTest extends TestCase
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof CryptogramTransactionRejectedResponse);
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame(5051, $response->getModel()->getReasonCode());
     }
@@ -164,7 +165,7 @@ class CryptogramPaymentStrategyTest extends TestCase
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof CryptogramTransactionAcceptedResponse);
-        $this->assertSame(true, $response->isSuccess());
+        $this->assertTrue($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame(3, $response->getModel()->getStatusCode());
     }

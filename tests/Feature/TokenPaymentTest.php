@@ -2,16 +2,17 @@
 
 namespace Korobovn\Tests\Feature;
 
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest;
-use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 
 /**
  * @group feature
  * @group token-payment
  *
  * @see   https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
+ * @coversNothing
  */
 class TokenPaymentTest extends AbstractFeatureTest
 {

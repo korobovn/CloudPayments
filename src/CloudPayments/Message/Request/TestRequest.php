@@ -6,7 +6,6 @@ use Korobovn\CloudPayments\Message\Request\Model\NullModel;
 use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 
 /**
- *
  * @method NullModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#testovyy-metod

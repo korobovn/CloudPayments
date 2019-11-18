@@ -2,16 +2,17 @@
 
 namespace Korobovn\Tests\Feature;
 
+use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
 use Korobovn\CloudPayments\Message\Request\CreateSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
-use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
 
 /**
  * @group feature
  * @group create-subscription
  *
  * @see   https://developers.cloudpayments.ru/#sozdanie-podpiski-na-rekurrentnye-platezhi
+ * @coversNothing
  */
 class CreateSubscriptionTest extends AbstractFeatureTest
 {
@@ -21,8 +22,7 @@ class CreateSubscriptionTest extends AbstractFeatureTest
     public function testCreateSubscription(): string
     {
         /**
-         *
-         * @var CryptogramPaymentOneStepRequest $request
+         * @var CryptogramPaymentOneStepRequest
          */
         $request = new CryptogramPaymentOneStepRequest;
         $request->getModel()
@@ -39,8 +39,7 @@ class CreateSubscriptionTest extends AbstractFeatureTest
         $this->assertInstanceOf(CryptogramTransactionAcceptedResponse::class, $response);
 
         /**
-         *
-         * @var CreateSubscriptionRequest $request
+         * @var CreateSubscriptionRequest
          */
         $request = new CreateSubscriptionRequest;
         $request->getModel()

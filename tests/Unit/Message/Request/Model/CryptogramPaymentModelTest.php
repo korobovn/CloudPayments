@@ -2,13 +2,13 @@
 
 namespace Korobovn\Tests\Unit\Message\Request\Model;
 
-use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 
 /**
- *
  * @group request-model
  * @group unit
+ * @coversNothing
  */
 class CryptogramPaymentModelTest extends TestCase
 {

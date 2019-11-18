@@ -15,11 +15,10 @@ trait FillFromArray
             $setter = sprintf('set%s', ucfirst($name));
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
-            } else {
-                /*throw new SetterMethodIsNotExist(sprintf('The setter method %s for class %s is not exist',
-                    $setter, static::class
-                ));*/
             }
+            /*throw new SetterMethodIsNotExist(sprintf('The setter method %s for class %s is not exist',
+                $setter, static::class
+            ));*/
         }
     }
 }

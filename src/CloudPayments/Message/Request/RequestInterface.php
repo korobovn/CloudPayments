@@ -2,8 +2,9 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
+use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 
 interface RequestInterface
 {
@@ -36,4 +37,9 @@ interface RequestInterface
      * @return array
      */
     public function getHeaders(): array;
+
+    /**
+     * @return ResponseInterface
+     */
+    public function send(): ResponseInterface;
 }

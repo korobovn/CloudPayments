@@ -2,13 +2,14 @@
 
 namespace Korobovn\Tests\Unit\Message\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Korobovn\CloudPayments\Message\Response\Model\NullModel;
 use Korobovn\CloudPayments\Message\Response\SuccessResponse;
 use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class SuccessStrategyTest extends TestCase
 {

@@ -2,11 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionsStrategy;
+use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
 
 /**
- *
  * @method FindSubscriptionModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#poisk-podpisok

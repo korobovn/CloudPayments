@@ -2,17 +2,18 @@
 
 namespace Korobovn\Tests\Feature;
 
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
-use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 
 /**
  * @group feature
  * @group cryptogram-payment
  *
  * @see   https://developers.cloudpayments.ru/#oplata-po-kriptogramme
+ * @coversNothing
  */
 class CryptogramPaymentTest extends AbstractFeatureTest
 {

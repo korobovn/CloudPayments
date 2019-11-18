@@ -4,9 +4,10 @@ namespace Korobovn\CloudPayments;
 
 use GuzzleHttp\ClientInterface;
 use Illuminate\Config\Repository;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Container\Container;
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 
 class CloudPaymentsServiceProvider extends ServiceProvider
 {
@@ -15,12 +16,11 @@ class CloudPaymentsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->initializeConfigs();
 
         $this->app->singleton(CloudPaymentClient::class, function (Container $app) {
-
             $http_client = $app->make(ClientInterface::class);
             /** @var Repository $config */
             $config = $app->make('config');
@@ -31,16 +31,8 @@ class CloudPaymentsServiceProvider extends ServiceProvider
                 $config->get(static::getConfigRootKeyName() . '.cloud_payments.private_key', '')
             );
         });
-    }
 
-    /**
-     * Initialize configs.
-     *
-     * @return void
-     */
-    protected function initializeConfigs()
-    {
-        $this->mergeConfigFrom(static::getConfigPath(), static::getConfigRootKeyName());
+        $this->app->bind(CloudPaymentClientInterface::class, CloudPaymentClient::class);
     }
 
     /**
@@ -50,7 +42,7 @@ class CloudPaymentsServiceProvider extends ServiceProvider
      */
     public static function getConfigPath()
     {
-        return __DIR__ . '/../../config/cloud-payments.php';
+        return __DIR__ . '/../../config/services.php';
     }
 
     /**
@@ -61,5 +53,15 @@ class CloudPaymentsServiceProvider extends ServiceProvider
     public static function getConfigRootKeyName()
     {
         return \basename(static::getConfigPath(), '.php');
+    }
+
+    /**
+     * Initialize configs.
+     *
+     * @return void
+     */
+    protected function initializeConfigs(): void
+    {
+        $this->mergeConfigFrom(static::getConfigPath(), static::getConfigRootKeyName());
     }
 }

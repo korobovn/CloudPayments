@@ -2,14 +2,15 @@
 
 namespace Korobovn\Tests\Feature;
 
-use Korobovn\CloudPayments\Message\Request\UpdateSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
+use Korobovn\CloudPayments\Message\Request\UpdateSubscriptionRequest;
 
 /**
  * @group feature
  * @group update-subscription
  *
  * @see   https://developers.cloudpayments.ru/#izmenenie-podpiski-na-rekurrentnye-platezhi
+ * @coversNothing
  */
 class UpdateSubscriptionTest extends CreateSubscriptionTest
 {

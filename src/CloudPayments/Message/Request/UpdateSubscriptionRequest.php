@@ -2,11 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionStrategy;
+use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
 
 /**
- *
  * @method UpdateSubscriptionModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#izmenenie-podpiski-na-rekurrentnye-platezhi

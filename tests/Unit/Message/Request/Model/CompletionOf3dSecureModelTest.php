@@ -2,16 +2,17 @@
 
 namespace Korobovn\Tests\Unit\Message\Request\Model;
 
-use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 
 /**
  * @see   https://developers.cloudpayments.ru/#obrabotka-3-d-secure
  * @group unit
+ * @coversNothing
  */
 class CompletionOf3dSecureModelTest extends TestCase
 {
-    public function test()
+    public function test(): void
     {
         (new CompletionOf3dSecureModel)
             ->setTransactionId(504)

@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Korobovn\Tests\Unit\Message\Traits;
 
-use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionRejectedModel;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionRejectedModel;
 
 /**
- *
  * @group FillFromArrayTest
+ * @coversNothing
  */
 class FillFromArrayTest extends TestCase
 {

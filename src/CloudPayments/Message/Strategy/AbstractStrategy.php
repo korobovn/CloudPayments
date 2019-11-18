@@ -2,11 +2,11 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Strategy\Exception\IsNotInstanceOfException;
-use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateResponseException;
-use Korobovn\CloudPayments\Message\Response\ResponseInterface;
-use Korobovn\CloudPayments\Message\Strategy\Specification\SpecificationInterface;
 use Tarampampam\Wrappers\Json;
+use Korobovn\CloudPayments\Message\Response\ResponseInterface;
+use Korobovn\CloudPayments\Message\Strategy\Exception\IsNotInstanceOfException;
+use Korobovn\CloudPayments\Message\Strategy\Specification\SpecificationInterface;
+use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateResponseException;
 
 abstract class AbstractStrategy implements StrategyInterface
 {
@@ -16,9 +16,10 @@ abstract class AbstractStrategy implements StrategyInterface
     /**
      * @param array $raw_response
      *
-     * @return ResponseInterface
      * @throws IsNotInstanceOfException
      * @throws StrategyCannotCreateResponseException
+     *
+     * @return ResponseInterface
      */
     public function prepareRawResponse(array $raw_response): ResponseInterface
     {

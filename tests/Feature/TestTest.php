@@ -10,6 +10,7 @@ use Korobovn\CloudPayments\Message\Response\SuccessResponse;
  * @group test
  *
  * @see   https://developers.cloudpayments.ru/#testovyy-metod
+ * @coversNothing
  */
 class TestTest extends AbstractFeatureTest
 {

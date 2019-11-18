@@ -2,12 +2,14 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\CreateSubscriptionModel;
+use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionStrategy;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+use Korobovn\CloudPayments\Message\Request\Model\CreateSubscriptionModel;
 
 /**
- *
  * @method CreateSubscriptionModel getModel()
+ * @method InvalidRequestResponse|SubscriptionResponse send()
  *
  * @see https://developers.cloudpayments.ru/#sozdanie-podpiski-na-rekurrentnye-platezhi
  */

@@ -5,7 +5,6 @@ namespace Korobovn\CloudPayments\Message\Response;
 use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
 
 /**
- *
  * @method SubscriptionModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#sozdanie-podpiski-na-rekurrentnye-platezhi

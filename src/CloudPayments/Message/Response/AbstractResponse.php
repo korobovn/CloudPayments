@@ -16,7 +16,7 @@ abstract class AbstractResponse implements ResponseInterface
     protected $message;
 
     /** @var mixed|null */
-    protected $inner_result = null;
+    protected $inner_result;
 
     /**
      * @param array $data

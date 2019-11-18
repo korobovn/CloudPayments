@@ -2,14 +2,15 @@
 
 namespace Korobovn\Tests\Feature;
 
-use Korobovn\CloudPayments\Message\Request\CancelSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Response\SuccessResponse;
+use Korobovn\CloudPayments\Message\Request\CancelSubscriptionRequest;
 
 /**
  * @group feature
  * @group cancel-subscription
  *
  * @see   https://developers.cloudpayments.ru/#otmena-podpiski-na-rekurrentnye-platezhi
+ * @coversNothing
  */
 class CancelGetSubscriptionTest extends CreateSubscriptionTest
 {

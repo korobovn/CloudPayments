@@ -2,8 +2,8 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Strategy\Specification\SubscriptionSpecification;
 use Korobovn\CloudPayments\Message\Strategy\Specification\InvalidRequestSpecification;
 

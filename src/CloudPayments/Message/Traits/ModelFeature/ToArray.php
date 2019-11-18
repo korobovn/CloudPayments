@@ -18,10 +18,10 @@ trait ToArray
             });
 
             foreach ($getters as $getter) {
-                if (strpos($getter, 'get') === 0) {
-                    $result[substr($getter, 3)] = $this->$getter();
-                } elseif (strpos($getter, 'is') === 0) {
-                    $result[substr($getter, 2)] = $this->$getter();
+                if (mb_strpos($getter, 'get') === 0) {
+                    $result[mb_substr($getter, 3)] = $this->$getter();
+                } elseif (mb_strpos($getter, 'is') === 0) {
+                    $result[mb_substr($getter, 2)] = $this->$getter();
                 }
             }
         }

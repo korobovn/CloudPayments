@@ -7,15 +7,16 @@ use Korobovn\CloudPayments\Message\Strategy\ApplePayStartSessionStrategy;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class ApplePayStartSessionStrategyTest extends AbstractStrategyTest
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new ApplePayStartSessionStrategy;
     }
 
-    public function testCorrectResponse()
+    public function testCorrectResponse(): void
     {
         $raw_response = [
             'Model'   => [
@@ -36,7 +37,7 @@ class ApplePayStartSessionStrategyTest extends AbstractStrategyTest
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof ApplePayStartSessionResponse);
-        $this->assertSame(true, $response->isSuccess());
+        $this->assertTrue($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
 
         $this->assertSame('SSH6FE83F9B853E00F7BD17260001DCF910_0001B0D00068F71D5887F2726CFD997A28E0ED57ABDACDA64934730A24A31583',

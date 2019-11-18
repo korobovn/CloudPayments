@@ -2,11 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
+use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 
 /**
- *
  * @method CryptogramPaymentModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme

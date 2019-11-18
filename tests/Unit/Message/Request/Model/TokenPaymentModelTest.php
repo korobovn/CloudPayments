@@ -2,11 +2,12 @@
 
 namespace Korobovn\Tests\Unit\Message\Request\Model;
 
-use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class TokenPaymentModelTest extends TestCase
 {

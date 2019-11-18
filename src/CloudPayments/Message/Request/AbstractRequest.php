@@ -2,9 +2,11 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
-use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Tarampampam\Wrappers\Json;
+use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Message\Response\ResponseInterface;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 
 class AbstractRequest implements RequestInterface
 {
@@ -27,6 +29,9 @@ class AbstractRequest implements RequestInterface
     protected $headers = [
         'Content-Type' => 'application/json',
     ];
+
+    /** @var CloudPaymentClientInterface */
+    protected $client;
 
     /**
      * @return string
@@ -53,6 +58,8 @@ class AbstractRequest implements RequestInterface
     }
 
     /**
+     * @throws \Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException
+     *
      * @return string|null
      */
     public function getBody(): ?string
@@ -74,5 +81,33 @@ class AbstractRequest implements RequestInterface
     public function getHeaders(): array
     {
         return $this->headers;
+    }
+
+    /**
+     * @param CloudPaymentClientInterface $client
+     *
+     * @return self
+     */
+    public function setClient(CloudPaymentClientInterface $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function send(): ResponseInterface
+    {
+        return $this->client->send($this);
+    }
+
+    /**
+     * @return CloudPaymentClientInterface
+     */
+    protected function getClient(): CloudPaymentClientInterface
+    {
+        return $this->client;
     }
 }

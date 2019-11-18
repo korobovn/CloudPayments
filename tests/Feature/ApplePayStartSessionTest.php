@@ -2,15 +2,16 @@
 
 namespace Korobovn\Tests\Feature;
 
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Request\ApplePayStartSessionRequest;
 use Korobovn\CloudPayments\Message\Response\ApplePayStartSessionResponse;
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
 /**
  * @group feature
  * @group apple-pay-start-session
  *
  * @see https://developers.cloudpayments.ru/#zapusk-sessii-dlya-oplaty-cherez-apple-pay
+ * @coversNothing
  */
 class ApplePayStartSessionTest extends AbstractFeatureTest
 {

@@ -10,6 +10,7 @@ use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedRespons
  * @group completion-of-3d-secure
  *
  * @see   https://developers.cloudpayments.ru/#obrabotka-3-d-secure
+ * @coversNothing
  */
 class CompletionOf3dSecureTest extends AbstractFeatureTest
 {

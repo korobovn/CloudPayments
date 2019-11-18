@@ -6,8 +6,7 @@ use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
 use Korobovn\CloudPayments\Message\Response\Model\SubscriptionsModel;
 
 /**
- *
- * @method SubscriptionsModel|SubscriptionModel[] getModel()
+ * @method SubscriptionModel[]|SubscriptionsModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#poisk-podpisok
  */

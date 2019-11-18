@@ -2,9 +2,9 @@
 
 namespace Korobovn\Tests\Unit\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
 /**
  * @group unit
@@ -25,6 +25,6 @@ abstract class AbstractStrategyTest extends TestCase
 
         $this->assertTrue($response instanceof InvalidRequestResponse);
         $this->assertSame('InvalidRequestResponse', $response->getMessage());
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
     }
 }

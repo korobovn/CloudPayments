@@ -3,9 +3,7 @@
 namespace Korobovn\CloudPayments\Message\Response\Model;
 
 /**
- *
  * @see https://developers.cloudpayments.ru/#poisk-podpisok
- *
  */
 class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAccess, \Countable
 {
@@ -16,7 +14,7 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
     protected $position = 0;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function fillFromArray(array $data): void
     {
@@ -28,7 +26,7 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray(): array
     {
@@ -42,7 +40,7 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
         return $this->subscriptions[$this->position];
     }
 
-    public function next()
+    public function next(): void
     {
         $this->position++;
     }
@@ -57,7 +55,7 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
         return isset($this->subscriptions[$this->position]);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -74,16 +72,16 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
             : null;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        if (is_null($offset)) {
+        if ($offset === null) {
             $this->subscriptions[] = $value;
         } else {
             $this->subscriptions[$offset] = $value;
         }
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->subscriptions[$offset]);
     }

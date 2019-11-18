@@ -2,24 +2,25 @@
 
 namespace Korobovn\Tests\Unit\Message\Strategy;
 
-use Korobovn\CloudPayments\Message\Response\Model\SubscriptionsModel;
 use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionsStrategy;
+use Korobovn\CloudPayments\Message\Response\Model\SubscriptionsModel;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class SubscriptionsStrategyTest extends AbstractStrategyTest
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new SubscriptionsStrategy;
     }
 
-    public function testCorrectResponse()
+    public function testCorrectResponse(): void
     {
         $raw_response = [
             'Model'       => [
@@ -83,12 +84,12 @@ class SubscriptionsStrategyTest extends AbstractStrategyTest
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof SubscriptionsResponse);
-        $this->assertSame(true, $response->isSuccess());
+        $this->assertTrue($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
 
         /** @var SubscriptionsModel $subscriptions */
         $subscriptions = $response->getModel();
-        $this->assertSame(2, count($subscriptions));
+        $this->assertCount(2, $subscriptions);
 
         $this->assertSame('sc_4bae8f5823bb8cdc966ccd1590a3b', $subscriptions[0]->getId());
         $this->assertSame('sc_b4bdedba0e2bdf279be2e0bab9c99', $subscriptions[1]->getId());

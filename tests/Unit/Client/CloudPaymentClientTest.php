@@ -2,19 +2,20 @@
 
 namespace Korobovn\Tests\Unit\Client;
 
+use Tarampampam\Wrappers\Json;
 use GuzzleHttp\ClientInterface;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\ResponseInterface;
 use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
-use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
-use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
-use Tarampampam\Wrappers\Json;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class CloudPaymentClientTest extends TestCase
 {
@@ -22,9 +23,9 @@ class CloudPaymentClientTest extends TestCase
     protected $request;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->request = new CryptogramPaymentOneStepRequest;
         $this->request->getModel()

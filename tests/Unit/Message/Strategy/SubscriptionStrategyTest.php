@@ -7,18 +7,19 @@ use Korobovn\CloudPayments\Message\Strategy\SubscriptionStrategy;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class SubscriptionStrategyTest extends AbstractStrategyTest
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new SubscriptionStrategy;
     }
 
-    public function testCorrectResponse()
+    public function testCorrectResponse(): void
     {
         $raw_response = [
             'Model'   => [
@@ -53,7 +54,7 @@ class SubscriptionStrategyTest extends AbstractStrategyTest
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof SubscriptionResponse);
-        $this->assertSame(true, $response->isSuccess());
+        $this->assertTrue($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame('sc_8cf8a9338fb8ebf7202b08d09c938', $response->getModel()->getId());
     }

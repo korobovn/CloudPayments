@@ -3,16 +3,17 @@
 namespace Korobovn\Tests\Feature;
 
 use GuzzleHttp\Client;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
-use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
-use Korobovn\CloudPayments\Message\Request\TestRequest;
 use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use Korobovn\CloudPayments\Message\Request\TestRequest;
+use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 
 /**
  * @group feature
  * @group error-auth
  *
  * @see   https://developers.cloudpayments.ru/#autentifikatsiya-zaprosov
+ * @coversNothing
  */
 class ErrorAuthTest extends TestCase
 {

@@ -2,14 +2,15 @@
 
 namespace Korobovn\Tests\Unit\Message\Strategy;
 
+use PHPUnit\Framework\TestCase;
+use Korobovn\CloudPayments\Message\Strategy\TokenPaymentStrategy;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
-use Korobovn\CloudPayments\Message\Strategy\TokenPaymentStrategy;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class TokenPaymentStrategyTest extends TestCase
 {
@@ -17,9 +18,9 @@ class TokenPaymentStrategyTest extends TestCase
     protected $strategy;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new TokenPaymentStrategy;
     }
@@ -36,7 +37,7 @@ class TokenPaymentStrategyTest extends TestCase
 
         $this->assertTrue($response instanceof InvalidRequestResponse);
         $this->assertSame('Amount is required', $response->getMessage());
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
     }
 
     public function testTransactionRejectedResponse(): void
@@ -83,7 +84,7 @@ class TokenPaymentStrategyTest extends TestCase
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof TokenTransactionRejectedResponse);
-        $this->assertSame(false, $response->isSuccess());
+        $this->assertFalse($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame(5051, $response->getModel()->getReasonCode());
     }
@@ -138,7 +139,7 @@ class TokenPaymentStrategyTest extends TestCase
         $response = $this->strategy->prepareRawResponse($raw_response);
 
         $this->assertTrue($response instanceof TokenTransactionAcceptedResponse);
-        $this->assertSame(true, $response->isSuccess());
+        $this->assertTrue($response->isSuccess());
         $this->assertSame($raw_response['Model'], $response->getModel()->toArray());
         $this->assertSame(3, $response->getModel()->getStatusCode());
     }

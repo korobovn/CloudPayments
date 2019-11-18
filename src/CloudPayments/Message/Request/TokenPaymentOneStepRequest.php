@@ -2,11 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 use Korobovn\CloudPayments\Message\Strategy\TokenPaymentStrategy;
+use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 
 /**
- *
  * @method TokenPaymentModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring

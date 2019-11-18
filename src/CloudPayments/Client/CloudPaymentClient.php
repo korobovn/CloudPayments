@@ -3,15 +3,15 @@
 namespace Korobovn\CloudPayments\Client;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use Tarampampam\Wrappers\Json;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Request;
-use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
-use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
+use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
-use Tarampampam\Wrappers\Json;
+use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 
 class CloudPaymentClient implements CloudPaymentClientInterface
 {
@@ -25,7 +25,6 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     protected $api_secret;
 
     /**
-     *
      * @param Client $http_client
      * @param string $public_id
      * @param string $api_secret
@@ -34,15 +33,14 @@ class CloudPaymentClient implements CloudPaymentClientInterface
         ClientInterface $http_client,
         string $public_id,
         string $api_secret
-    )
-    {
+    ) {
         $this->http_client = $http_client;
         $this->public_id   = $public_id;
         $this->api_secret  = $api_secret;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function send(RequestInterface $request): ResponseInterface
     {
@@ -71,8 +69,9 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     /**
      * @param PsrRequestInterface $request
      *
-     * @return PsrResponseInterface
      * @throws InvalidHttpResponseCodeException
+     *
+     * @return PsrResponseInterface
      */
     protected function sendHttpRequest(PsrRequestInterface $request): PsrResponseInterface
     {

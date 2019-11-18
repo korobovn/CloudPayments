@@ -2,11 +2,10 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
+use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 
 /**
- *
  * @method CompletionOf3dSecureModel getModel()
  *
  * @see https://developers.cloudpayments.ru/#obrabotka-3-d-secure

@@ -5,7 +5,7 @@ namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 class IsSuccessSpecification implements SpecificationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isSatisfiedBy(array $response): bool
     {

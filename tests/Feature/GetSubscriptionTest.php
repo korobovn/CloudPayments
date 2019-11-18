@@ -2,14 +2,15 @@
 
 namespace Korobovn\Tests\Feature;
 
-use Korobovn\CloudPayments\Message\Request\GetSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
+use Korobovn\CloudPayments\Message\Request\GetSubscriptionRequest;
 
 /**
  * @group feature
  * @group get-subscription
  *
  * @see   https://developers.cloudpayments.ru/#zapros-informatsii-o-podpiske
+ * @coversNothing
  */
 class GetSubscriptionTest extends CreateSubscriptionTest
 {
