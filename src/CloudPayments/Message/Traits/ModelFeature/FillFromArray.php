@@ -16,9 +16,6 @@ trait FillFromArray
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
             }
-            /*throw new SetterMethodIsNotExist(sprintf('The setter method %s for class %s is not exist',
-                $setter, static::class
-            ));*/
         }
     }
 }

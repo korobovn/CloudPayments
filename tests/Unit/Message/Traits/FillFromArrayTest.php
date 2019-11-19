@@ -2,11 +2,15 @@
 
 namespace Tests\Unit\Korobovn\Tests\Unit\Message\Traits;
 
+use Korobovn\CloudPayments\Message\Traits\ModelFeature\FillFromArray;
+use Korobovn\CloudPayments\Message\Traits\ModelFeature\ToArray;
 use PHPUnit\Framework\TestCase;
 use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionRejectedModel;
 
 /**
+ * @group unit
  * @group FillFromArrayTest
+ * @coversDefaultClass \Korobovn\CloudPayments\Message\Traits\ModelFeature\FillFromArray
  */
 class FillFromArrayTest extends TestCase
 {
@@ -54,5 +58,21 @@ class FillFromArrayTest extends TestCase
         $model->fillFromArray($raw);
 
         $this->assertSame($raw, $model->toArray());
+/*
+
+        $foo = new class{
+            use FillFromArray, ToArray;
+
+            public $name;
+
+            public function setName($name){
+                $this->name = $name;
+            }
+        };
+
+        $foo->fillFromArray($raw);
+
+        $this->assertSame(['name'  => 'CARDHOLDER NAME',
+        ],$foo->toArray());*/
     }
 }

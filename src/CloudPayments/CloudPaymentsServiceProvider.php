@@ -20,7 +20,7 @@ class CloudPaymentsServiceProvider extends ServiceProvider
     {
         $this->initializeConfigs();
 
-        $this->app->singleton(CloudPaymentClient::class, function (Container $app) {
+        $this->app->bind(CloudPaymentClient::class, function (Container $app) {
             $http_client = $app->make(ClientInterface::class);
             /** @var Repository $config */
             $config = $app->make('config');

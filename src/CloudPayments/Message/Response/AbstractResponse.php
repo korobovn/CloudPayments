@@ -23,7 +23,7 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public function fillFromArray(array $data): void
     {
-        $this->success = $data['Success'];
+        $this->success = $data['Success'] ?? false;
 
         if (isset($data['Message'])) {
             $this->message = $data['Message'];

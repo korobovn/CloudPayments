@@ -8,6 +8,7 @@ use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
 /**
  * @group unit
+ * @coversNothing
  */
 abstract class AbstractStrategyTest extends TestCase
 {

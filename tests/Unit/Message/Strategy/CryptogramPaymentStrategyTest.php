@@ -11,6 +11,7 @@ use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredRespon
 
 /**
  * @group unit
+ * @coversNothing
  */
 class CryptogramPaymentStrategyTest extends TestCase
 {

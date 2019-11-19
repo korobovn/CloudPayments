@@ -10,6 +10,7 @@ use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
 
 /**
  * @group unit
+ * @coversNothing
  */
 class TokenPaymentStrategyTest extends TestCase
 {

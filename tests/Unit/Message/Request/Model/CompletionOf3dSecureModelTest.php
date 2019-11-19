@@ -8,14 +8,17 @@ use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 /**
  * @see   https://developers.cloudpayments.ru/#obrabotka-3-d-secure
  * @group unit
+ * @coversDefaultClass \Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel
  */
 class CompletionOf3dSecureModelTest extends TestCase
 {
     public function test(): void
     {
-        (new CompletionOf3dSecureModel)
+        $model = (new CompletionOf3dSecureModel)
             ->setTransactionId(504)
-            ->setPaRes('dsdsdsd');
-        $this->assertTrue(true);
+            ->setPaRes('RXDe9mLgo0Z1nhpU9PQasWmPhLYAKksuEChfn13uVR9mGTO7MzZM2dg3qSn0Q');
+
+        $this->assertSame(504, $model->getTransactionId());
+        $this->assertSame('RXDe9mLgo0Z1nhpU9PQasWmPhLYAKksuEChfn13uVR9mGTO7MzZM2dg3qSn0Q', $model->getPaRes());
     }
 }

@@ -10,6 +10,9 @@ use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedRespons
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class ExampleTest extends TestCase
 {
     public function test(): void

@@ -85,6 +85,7 @@ For package testing we use `phpunit` framework. Just write into your terminal:
 ```shell
 $ git clone https://github.com/korobovn/CloudPayments.git ./CloudPayments && cd $_
 $ make build
+$ make composer-install
 $ make unit-tests
 ```
 

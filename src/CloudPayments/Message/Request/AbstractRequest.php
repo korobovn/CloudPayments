@@ -8,7 +8,7 @@ use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 
-class AbstractRequest implements RequestInterface
+abstract class AbstractRequest implements RequestInterface
 {
     /** @var string */
     protected $domain = 'https://api.cloudpayments.ru/';
@@ -58,9 +58,9 @@ class AbstractRequest implements RequestInterface
     }
 
     /**
+     * @return string|null
      * @throws \Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException
      *
-     * @return string|null
      */
     public function getBody(): ?string
     {
@@ -101,13 +101,5 @@ class AbstractRequest implements RequestInterface
     public function send(): ResponseInterface
     {
         return $this->client->send($this);
-    }
-
-    /**
-     * @return CloudPaymentClientInterface
-     */
-    protected function getClient(): CloudPaymentClientInterface
-    {
-        return $this->client;
     }
 }
