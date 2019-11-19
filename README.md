@@ -114,14 +114,14 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_issues]:https://img.shields.io/github/issues/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
 [badge_pulls]:https://img.shields.io/github/issues-pr/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
 [link_releases]:https://github.com/korobovn/CloudPayments/releases
-[link_packagist]:https://packagist.org/packages/tarampampam/wrappers-php
+[link_packagist]:https://packagist.org/packages/korobovn/CloudPayments
 [link_build_status]:https://travis-ci.org/korobovn/CloudPayments
 [link_coverage]:https://codecov.io/gh/korobovn/CloudPayments/
-[link_code_quality]:https://scrutinizer-ci.com/g/tarampampam/wrappers-php/
+[link_code_quality]:https://scrutinizer-ci.com/g/korobovn/CloudPayments/
 [link_changeslog]:https://github.com/korobovn/CloudPayments/blob/master/CHANGELOG.md
 [link_issues]:https://github.com/korobovn/CloudPayments/issues
 [link_create_issue]:https://github.com/korobovn/CloudPayments/issues/new
 [link_commits]:https://github.com/korobovn/CloudPayments/commits
 [link_pulls]:https://github.com/korobovn/CloudPayments/pulls
-[link_license]:https://github.com/tarampampam/CloudPayments/blob/master/LICENSE
+[link_license]:https://github.com/korobovn/CloudPayments/blob/master/LICENSE
 [getcomposer]:https://getcomposer.org/download/
