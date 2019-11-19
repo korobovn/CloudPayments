@@ -76,6 +76,8 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 }
 ```
 
+How to get [CARD_CRYPTOGRAM_PACKET](https://developers.cloudpayments.ru/#skript-checkout)?
+
 ### Testing
 
 For package testing we use `phpunit` framework. Just write into your terminal:
@@ -114,7 +116,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_issues]:https://img.shields.io/github/issues/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
 [badge_pulls]:https://img.shields.io/github/issues-pr/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
 [link_releases]:https://github.com/korobovn/CloudPayments/releases
-[link_packagist]:https://packagist.org/packages/korobovn/CloudPayments
+[link_packagist]:https://packagist.org/packages/korobovn/cloud-payments
 [link_build_status]:https://travis-ci.org/korobovn/CloudPayments
 [link_coverage]:https://codecov.io/gh/korobovn/CloudPayments/
 [link_code_quality]:https://scrutinizer-ci.com/g/korobovn/CloudPayments/
