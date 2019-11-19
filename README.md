@@ -84,8 +84,18 @@ For package testing we use `phpunit` framework. Just write into your terminal:
 $ git clone https://github.com/korobovn/CloudPayments.git ./CloudPayments && cd $_
 $ make build
 $ make unit-tests
+```
+
+## Changes log
+
+[![Release date][badge_release_date]][link_releases]
+[![Commits since latest release][badge_commits_since_release]][link_commits]
 
 ## Support
+
+## License
+
+This is open-sourced software licensed under the [MIT License][link_license].
 
 [![Issues][badge_issues]][link_issues]
 [![Issues][badge_pulls]][link_pulls]
@@ -95,5 +105,23 @@ $ make unit-tests
 [badge_packagist_version]:https://img.shields.io/packagist/v/korobovn/cloud-payments.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/korobovn/cloud-payments.svg?longCache=true
 [badge_build_status]:https://travis-ci.org/korobovn/CloudPayments.svg?branch=master
-[badge_coverage]:https://img.shields.io/codecov/c/github/korobovn/cloud-payments/master.svg?maxAge=60
-[link_packagist]:https://packagist.org/packages/korobovn/cloud-payments
+[badge_code_quality]:https://img.shields.io/scrutinizer/g/korobovn/CloudPayments.svg?maxAge=180
+[badge_coverage]:https://img.shields.io/codecov/c/github/korobovn/CloudPayments/master.svg?maxAge=60
+[badge_downloads_count]:https://img.shields.io/packagist/dt/korobovn/cloud-payments.svg?maxAge=180
+[badge_license]:https://img.shields.io/packagist/l/korobovn/cloud-payments.svg?longCache=true
+[badge_release_date]:https://img.shields.io/github/release-date/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
+[badge_commits_since_release]:https://img.shields.io/github/commits-since/korobovn/CloudPayments/latest.svg?style=flat-square&maxAge=180
+[badge_issues]:https://img.shields.io/github/issues/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
+[badge_pulls]:https://img.shields.io/github/issues-pr/korobovn/CloudPayments.svg?style=flat-square&maxAge=180
+[link_releases]:https://github.com/korobovn/CloudPayments/releases
+[link_packagist]:https://packagist.org/packages/tarampampam/wrappers-php
+[link_build_status]:https://travis-ci.org/korobovn/CloudPayments
+[link_coverage]:https://codecov.io/gh/korobovn/CloudPayments/
+[link_code_quality]:https://scrutinizer-ci.com/g/tarampampam/wrappers-php/
+[link_changeslog]:https://github.com/korobovn/CloudPayments/blob/master/CHANGELOG.md
+[link_issues]:https://github.com/korobovn/CloudPayments/issues
+[link_create_issue]:https://github.com/korobovn/CloudPayments/issues/new
+[link_commits]:https://github.com/korobovn/CloudPayments/commits
+[link_pulls]:https://github.com/korobovn/CloudPayments/pulls
+[link_license]:https://github.com/tarampampam/CloudPayments/blob/master/LICENSE
+[getcomposer]:https://getcomposer.org/download/
