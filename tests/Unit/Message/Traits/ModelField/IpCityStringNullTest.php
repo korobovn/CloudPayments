@@ -16,8 +16,8 @@ class IpCityStringNullTest extends TestCase
     /** @var \Faker\Generator */
     protected $facker;
 
-    protected function setUp()
-    {
+    protected function setUp(): void
+{
         parent::setUp();
 
         $this->facker = Factory::create();
