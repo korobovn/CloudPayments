@@ -14,9 +14,14 @@ use Korobovn\CloudPayments\Message\Request\GetSubscriptionRequest;
  */
 class GetSubscriptionTest extends CreateSubscriptionTest
 {
+    public function testCreateSubscription(): string
+    {
+        return parent::testCreateSubscription();
+    }
+
     /**
      * The test depends on testCreateSubscription. The first step is to create a subscription.
-     * 
+     *
      * @param string $subscription_id
      *
      * @depends testCreateSubscription

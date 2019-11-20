@@ -14,6 +14,11 @@ use Korobovn\CloudPayments\Message\Request\CancelSubscriptionRequest;
  */
 class CancelGetSubscriptionTest extends CreateSubscriptionTest
 {
+    public function testCreateSubscription(): string
+    {
+        return parent::testCreateSubscription();
+    }
+
     /**
      * The test depends on testCreateSubscription. The first step is to create a subscription.
      *
