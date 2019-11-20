@@ -2,8 +2,6 @@
 
 namespace Korobovn\CloudPayments\Message\Traits\ModelFeature;
 
-use Korobovn\CloudPayments\Message\Traits\ModelFeature\Exception\SetterMethodIsNotExist;
-
 trait FillFromArray
 {
     /**

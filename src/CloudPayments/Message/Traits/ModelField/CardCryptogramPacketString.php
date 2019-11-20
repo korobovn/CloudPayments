@@ -2,7 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Traits\ModelField;
 
-trait CardCryptogramPacket
+trait CardCryptogramPacketString
 {
     /** @var string */
     protected $card_cryptogram_packet;

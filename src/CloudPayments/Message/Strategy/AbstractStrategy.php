@@ -2,6 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Strategy;
 
+use Korobovn\CloudPayments\Message\Strategy\Exception\ClassNotFoundException;
 use Tarampampam\Wrappers\Json;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\Exception\IsNotInstanceOfException;
@@ -16,14 +17,21 @@ abstract class AbstractStrategy implements StrategyInterface
     /**
      * @param array $raw_response
      *
-     * @throws IsNotInstanceOfException
+     * @return ResponseInterface
      * @throws StrategyCannotCreateResponseException
      *
-     * @return ResponseInterface
+     * @throws IsNotInstanceOfException
+     * @throws ClassNotFoundException
      */
     public function prepareRawResponse(array $raw_response): ResponseInterface
     {
         foreach ($this->specifications as $specification_class => $response_class) {
+            if (! class_exists($specification_class)) {
+                throw new ClassNotFoundException(sprintf(
+                    'The class %s is not found',
+                    $specification_class
+                ));
+            }
             $specification = new $specification_class;
             if (! ($specification instanceof SpecificationInterface)) {
                 throw new IsNotInstanceOfException(sprintf(
@@ -32,6 +40,12 @@ abstract class AbstractStrategy implements StrategyInterface
                 ));
             }
             if ($specification->isSatisfiedBy($raw_response)) {
+                if (! class_exists($response_class)) {
+                    throw new ClassNotFoundException(sprintf(
+                        'The class %s is not found',
+                        $response_class
+                    ));
+                }
                 $response = new $response_class;
                 if (! ($response instanceof ResponseInterface)) {
                     throw new IsNotInstanceOfException(sprintf(

@@ -10,7 +10,7 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\IpAddressString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\JsonDataStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\AccountIdStringNull;
 use Korobovn\CloudPayments\Message\Traits\ModelField\InvoiceIdStringNull;
-use Korobovn\CloudPayments\Message\Traits\ModelField\CardCryptogramPacket;
+use Korobovn\CloudPayments\Message\Traits\ModelField\CardCryptogramPacketString;
 use Korobovn\CloudPayments\Message\Traits\ModelField\DescriptionStringNull;
 
 /**
@@ -22,7 +22,7 @@ class CryptogramPaymentModel extends AbstractModel
         CurrencyString,
         IpAddressString,
         NameString,
-        CardCryptogramPacket,
+        CardCryptogramPacketString,
         InvoiceIdStringNull,
         DescriptionStringNull,
         AccountIdStringNull,
