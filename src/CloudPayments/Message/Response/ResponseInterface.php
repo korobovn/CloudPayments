@@ -26,4 +26,9 @@ interface ResponseInterface extends Arrayable
      * @return mixed
      */
     public function getInnerResult();
+
+    /**
+     * @param array $data
+     */
+    public function fillFromArray(array $data): void;
 }

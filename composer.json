@@ -37,6 +37,12 @@
     },
     "scripts": {
         "unit-test": "@php ./vendor/bin/phpunit --group unit --no-coverage --colors=always",
-        "unit-test-cover": "@php ./vendor/bin/phpunit --group unit --coverage-html='./coverage'"
+        "unit-test-cover": "@php ./vendor/bin/phpunit --group unit --coverage-html='./coverage'",
+        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src",
+        "php-cs-fixer-check": "@php ./vendor/bin/cs-fix --dry-run --diff --format=txt --ansi",
+        "test": [
+            "@phpstan",
+            "@unit-test"
+        ]
     }
 }

@@ -33,7 +33,8 @@ class CloudPaymentClient implements CloudPaymentClientInterface
         ClientInterface $http_client,
         string $public_id,
         string $api_secret
-    ) {
+    )
+    {
         $this->http_client = $http_client;
         $this->public_id   = $public_id;
         $this->api_secret  = $api_secret;
@@ -63,15 +64,16 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      */
     protected function decodeBody(string $body): array
     {
-        return Json::decode($body, true);
+        return (array) Json::decode($body, true);
     }
 
     /**
      * @param PsrRequestInterface $request
      *
-     * @throws InvalidHttpResponseCodeException
-     *
      * @return PsrResponseInterface
+     * @throws InvalidHttpResponseCodeException
+     * @throws \InvalidArgumentException
+     *
      */
     protected function sendHttpRequest(PsrRequestInterface $request): PsrResponseInterface
     {
@@ -79,9 +81,15 @@ class CloudPaymentClient implements CloudPaymentClientInterface
 
         try {
             $psr_response = $this->http_client->send($request);
+            if ($psr_response == null) {
+                throw new InvalidHttpResponseCodeException('Zero response received');
+            }
         } catch (RequestException $exception) {
             if ($exception->hasResponse()) {
                 $psr_response = $exception->getResponse();
+                if ($psr_response == null) {
+                    throw new InvalidHttpResponseCodeException('Zero response received');
+                }
             } else {
                 throw new InvalidHttpResponseCodeException($exception->getMessage(), $exception->getCode(), $exception);
             }
