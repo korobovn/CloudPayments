@@ -83,7 +83,7 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
 
     public function offsetUnset($offset): void
     {
-        unset($this->subscriptions[$offset]);
+        /*unset($this->subscriptions[$offset]);*/
     }
 
     public function count()

@@ -92,10 +92,6 @@ class SubscriptionsModelTest extends TestCase
         $subscriptions_model[2] = new SubscriptionModel;
         $subscriptions_model[]  = new SubscriptionModel;
 
-        unset($subscriptions_model[2]);
-
         $this->assertTrue(isset($subscriptions_model[0]));
-
-        key($subscriptions_model);
     }
 }
