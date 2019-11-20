@@ -2,11 +2,11 @@
 
 namespace Korobovn\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\TestCase;
 use Korobovn\CloudPayments\CloudPaymentsServiceProvider;
 use Korobovn\Tests\Traits\CreatesApplicationTrait;
 
-abstract class AbstractTestCase extends BaseTestCase
+abstract class AbstractTestCase extends TestCase
 {
     use CreatesApplicationTrait;
 

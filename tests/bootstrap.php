@@ -1,12 +1,5 @@
 <?php
 
-use Dotenv\Dotenv;
-use Dotenv\Exception\InvalidPathException;
+use Korobovn\Tests\Bootstrap\TestsBootstrapper;
 
-try {
-    $dotenv = Dotenv::create(__DIR__ . '/../');
-    $dotenv->load();
-} catch (InvalidPathException $exception) {
-
-}
-
+new TestsBootstrapper;

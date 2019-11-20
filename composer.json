@@ -1,7 +1,7 @@
 {
     "name": "korobovn/cloud-payments",
     "description": "Cloud Payments PHP-client",
-    "version": "1.0.0",
+    "keywords": ["cloud-payments"],
     "type": "library",
     "license": "MIT",
     "require": {

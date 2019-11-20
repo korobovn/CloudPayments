@@ -2,6 +2,7 @@
 
 namespace Korobovn\Tests\Feature;
 
+use Illuminate\Support\Arr;
 use Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse;
@@ -37,7 +38,7 @@ class TokenPaymentTest extends AbstractFeatureTest
             ->setAccountId($this->account_id)
             ->setIpAddress($this->ip_address)
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
+            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
 
         /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);

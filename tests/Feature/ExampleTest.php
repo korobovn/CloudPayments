@@ -8,16 +8,15 @@ use Korobovn\CloudPayments\Client\CloudPaymentClient;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @coversNothing
  */
-class ExampleTest extends TestCase
+class ExampleTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $config      = include __DIR__ . '/../../config/services.php';
+        $config      = include __DIR__ . '/../../config/config.php';
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 
@@ -35,7 +34,7 @@ class ExampleTest extends TestCase
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
 
         $response = $request->send();
 

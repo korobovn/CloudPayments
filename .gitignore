@@ -5,3 +5,4 @@
 /coverage
 /.phpunit.result.cache
 /.env
+/config/config.php
