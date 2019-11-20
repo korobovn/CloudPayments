@@ -53,6 +53,10 @@ class AbstractResponseTest extends TestCase
         $this->assertSame('InnerResult', $this->response->getInnerResult());
         $this->assertInstanceOf(NullModel::class, $this->response->getModel());
 
-        $this->assertSame(sort($data), sort($this->response->toArray()));
+        sort($data);
+        $result = $this->response->toArray();
+        sort($result);
+
+        $this->assertSame($data, $result);
     }
 }
