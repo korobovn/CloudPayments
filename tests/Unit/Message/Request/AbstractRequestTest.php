@@ -11,8 +11,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group unit
- * @group abstract-request
+ * @group  unit
+ * @group  abstract-request
  * @covers \Korobovn\CloudPayments\Message\Request\AbstractRequest
  */
 class AbstractRequestTest extends TestCase
@@ -20,7 +20,7 @@ class AbstractRequestTest extends TestCase
     /** @var RequestInterface */
     protected $request;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

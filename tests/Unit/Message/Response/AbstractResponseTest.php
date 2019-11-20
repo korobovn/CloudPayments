@@ -17,7 +17,7 @@ class AbstractResponseTest extends TestCase
     /** @var ResponseInterface */
     protected $response;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

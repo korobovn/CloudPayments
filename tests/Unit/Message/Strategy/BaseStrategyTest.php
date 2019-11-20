@@ -15,7 +15,7 @@ class BaseStrategyTest extends TestCase
 
     protected $specification;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
