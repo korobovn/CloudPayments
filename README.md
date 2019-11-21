@@ -68,7 +68,7 @@ You can choose the way you like.
 
 ### How to create a request
 
-There are available requests: 
+List of available requests: 
 
 #### Cryptogram payment
 
