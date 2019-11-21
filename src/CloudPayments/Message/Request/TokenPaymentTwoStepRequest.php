@@ -3,11 +3,13 @@
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
 /**
- * Class TokenPaymentAuthRequest.
- *
  * @method TokenPaymentModel getModel()
+ * @method InvalidRequestResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse send()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
  */

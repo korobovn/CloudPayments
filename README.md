@@ -110,7 +110,7 @@ $request
     ->setCurrency('RUB')
     ->setIpAddress('127.0.0.1')
     ->setName('CARDHOLDER NAME')
-    ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS');
+    ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET');
 
 /** @var InvalidRequestResponse|Cryptogram3dSecureAuthRequiredResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse $response */
 $response = $request->send();
@@ -141,6 +141,8 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 
 `CompletionOf3dSecureRequest` - for to complete the 3-D Secure payment.
 
+Possible answers: `InvalidRequestResponse`, `Cryptogram3dSecureAuthRequiredResponse`, `CryptogramTransactionRejectedResponse`, `CryptogramTransactionAcceptedResponse`
+
 #### Token Payment
 
 [Token Payment docs here](https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring).
@@ -149,17 +151,23 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 `TokenPaymentOneStepRequest` - for one-step payment;
 `TokenPaymentTwoStepRequest` - for two-step payment.
 
+Possible answers: `InvalidRequestResponse`, `CryptogramTransactionRejectedResponse`, `CryptogramTransactionAcceptedResponse`
+
 #### Cancel payment
 
 [Cancel payment docs here](https://developers.cloudpayments.ru/#otmena-oplaty).
 
 `CancelPaymentRequest` - сancel payment for two-step payment request
 
+Possible answers: `InvalidRequestResponse`, `SuccessResponse`
+
 #### Refund payment
 
 [Refund payment docs here](https://developers.cloudpayments.ru/#vozvrat-deneg).
 
-`CancelPaymentRequest` - refund for payment made
+`RefundPaymentRequest` - refund for payment made
+
+Possible answers: `InvalidRequestResponse`, `RefundPaymentResponse`
 
 #### Create a recurring payment subscription
 
@@ -167,6 +175,7 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 
 `CreateSubscriptionRequest` - creating a subscription for payments that will be made in the future
 
+Possible answers: `InvalidRequestResponse`, `SubscriptionResponse`
 
 #### Request Subscription Information
 
@@ -174,6 +183,7 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 
 `GetSubscriptionRequest`
 
+Possible answers: `InvalidRequestResponse`, `SubscriptionResponse`
 
 #### Search Subscriptions
 
@@ -181,11 +191,15 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 
 `FindSubscriptionRequest`
 
+Possible answers: `InvalidRequestResponse`, `SubscriptionsResponse`
+
 #### Change subscription
 
 [Change subscription docs here](https://developers.cloudpayments.ru/#izmenenie-podpiski-na-rekurrentnye-platezhi).
 
 `UpdateSubscriptionRequest`
+
+Possible answers: `InvalidRequestResponse`, `SubscriptionResponse`
 
 #### Cancel subscription
 
@@ -194,7 +208,9 @@ if ($response instanceof CryptogramTransactionAcceptedResponse) {
 `CancelSubscriptionRequest`
 
 
-Examples:
+Possible answers: `InvalidRequestResponse`, `SuccessResponse`
+
+#### Usage example without Laravel framework:
 
 ```php
 <?php
@@ -222,7 +238,7 @@ $request
     ->setCurrency('RUB')
     ->setIpAddress('127.0.0.1')
     ->setName('CARDHOLDER NAME')
-    ->setCardCryptogramPacket(env('CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+    ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET');
 
 $response = $request->send();
 
