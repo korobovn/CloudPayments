@@ -37,6 +37,163 @@ Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to man
 
 ## Usage
 
+### How to get a client instance
+
+If using Laravel framework, then you can get an instance of `CloudPaymentClient` or `CloudPaymentClientInterface` using `make` method to resolve.
+
+```php
+$client = $this->app->make('CloudPaymentClient');
+```
+
+or
+
+```php
+$client = $this->app->make('CloudPaymentClientInterface');
+```
+
+You can send a request using the `send` method:
+```php
+$client->send($request);
+```
+Where $request is an instance of `RequestInterface`.
+
+You can also call the `send` method on the `RequestInterface` instance.
+Before that, you must call the `setClient` method on the `RequestInterface` with `CloudPaymentClientInterface`
+
+```php
+$request->setClient($client)->send();
+```
+
+You can choose the way you like.
+
+### How to create a request
+
+There are available requests: 
+
+#### Cryptogram payment
+
+[Cryptogram payment docs here](https://developers.cloudpayments.ru/#oplata-po-kriptogramme).
+
+
+`CryptogramPaymentOneStepRequest` - for one-step payment;
+
+`CryptogramPaymentTwoStepRequest` - for two-step payment.
+
+
+Creating and sending a request:
+
+```php
+<?php
+
+use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
+use Korobovn\CloudPayments\Message\Request\CryptogramPaymentTwoStepRequest;
+use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
+use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
+
+/** @var CloudPaymentClientInterface $client */
+$client = $this->app->make('CloudPaymentClientInterface');
+
+$request = new CryptogramPaymentOneStepRequest;
+/*
+or we can also use:
+
+$request = new CryptogramPaymentTwoStepRequest;
+*/
+
+$request
+    ->setClient($client)
+    ->getModel()
+    ->setAmount(100.0)
+    ->setCurrency('RUB')
+    ->setIpAddress('127.0.0.1')
+    ->setName('CARDHOLDER NAME')
+    ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS');
+
+/** @var InvalidRequestResponse|Cryptogram3dSecureAuthRequiredResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse $response */
+$response = $request->send();
+```
+Before calling the `send` method to send a request, we must fill out the request data model. To do that, call the `getModel` method on `RequestInterface` and use setters to set values. Use autocomplete of your IDE for to access setters.
+
+The `$response` must be an instance of one of the classes: `InvalidRequestResponse`, `Cryptogram3dSecureAuthRequiredResponse`, `CryptogramTransactionRejectedResponse`, `CryptogramTransactionAcceptedResponse`
+
+The `$response` (an instance of `ResponseInterface`) also has its own data model. Use the `getModel` method and getters to access the data.
+
+
+Checking the type of response and accessing the response data model fields:
+```php
+<?php
+
+use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
+
+if ($response instanceof CryptogramTransactionAcceptedResponse) {
+    $transaction_id = $response->getModel()->getTransactionId();
+    $status_code = $response->getModel()->getStatusCode();
+    $token = $response->getModel()->getToken();
+}
+```
+
+#### 3-D Secure Processing
+
+[3-D Secure Processing docs here](https://developers.cloudpayments.ru/#obrabotka-3-d-secure).
+
+`CompletionOf3dSecureRequest` - for to complete the 3-D Secure payment.
+
+#### Token Payment
+
+[Token Payment docs here](https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring).
+
+
+`TokenPaymentOneStepRequest` - for one-step payment;
+`TokenPaymentTwoStepRequest` - for two-step payment.
+
+#### Cancel payment
+
+[Cancel payment docs here](https://developers.cloudpayments.ru/#otmena-oplaty).
+
+`CancelPaymentRequest` - сancel payment for two-step payment request
+
+#### Refund payment
+
+[Refund payment docs here](https://developers.cloudpayments.ru/#vozvrat-deneg).
+
+`CancelPaymentRequest` - refund for payment made
+
+#### Create a recurring payment subscription
+
+[Create a recurring payment subscription docs here](https://developers.cloudpayments.ru/#sozdanie-podpiski-na-rekurrentnye-platezhi).
+
+`CreateSubscriptionRequest` - creating a subscription for payments that will be made in the future
+
+
+#### Request Subscription Information
+
+[Request Subscription Information docs here](https://developers.cloudpayments.ru/#zapros-informatsii-o-podpiske).
+
+`GetSubscriptionRequest`
+
+
+#### Search Subscriptions
+
+[Search Subscriptions docs here](https://developers.cloudpayments.ru/#poisk-podpisok).
+
+`FindSubscriptionRequest`
+
+#### Change subscription
+
+[Change subscription docs here](https://developers.cloudpayments.ru/#izmenenie-podpiski-na-rekurrentnye-platezhi).
+
+`UpdateSubscriptionRequest`
+
+#### Cancel subscription
+
+[Cancel subscription docs here](https://developers.cloudpayments.ru/#otmena-podpiski-na-rekurrentnye-platezhi).
+
+`CancelSubscriptionRequest`
+
+
 Examples:
 
 ```php

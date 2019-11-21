@@ -2,6 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
@@ -42,4 +43,11 @@ interface RequestInterface
      * @return ResponseInterface
      */
     public function send(): ResponseInterface;
+
+    /**
+     * @param CloudPaymentClientInterface $client
+     *
+     * @return $this
+     */
+    public function setClient(CloudPaymentClientInterface $client): self;
 }
