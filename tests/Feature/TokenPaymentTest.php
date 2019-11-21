@@ -38,7 +38,7 @@ class TokenPaymentTest extends AbstractFeatureTest
             ->setAccountId($this->account_id)
             ->setIpAddress($this->ip_address)
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
 
         /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);

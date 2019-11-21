@@ -32,7 +32,7 @@ class CreateSubscriptionTest extends AbstractFeatureTest
             ->setIpAddress('127.0.0.1')
             ->setAccountId($this->account_id)
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env, 'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms, 'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
 
         /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);

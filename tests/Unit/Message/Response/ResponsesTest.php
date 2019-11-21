@@ -12,10 +12,12 @@ use Korobovn\CloudPayments\Message\Response\Model\Cryptogram3dSecureAuthRequired
 use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionAcceptedModel;
 use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionRejectedModel;
 use Korobovn\CloudPayments\Message\Response\Model\NullModel;
+use Korobovn\CloudPayments\Message\Response\Model\RefundPaymentModel;
 use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
 use Korobovn\CloudPayments\Message\Response\Model\SubscriptionsModel;
 use Korobovn\CloudPayments\Message\Response\Model\TokenTransactionAcceptedModel;
 use Korobovn\CloudPayments\Message\Response\Model\TokenTransactionRejectedModel;
+use Korobovn\CloudPayments\Message\Response\RefundPaymentResponse;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
 use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
@@ -37,6 +39,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Korobovn\CloudPayments\Message\Response\SuccessResponse
  * @covers \Korobovn\CloudPayments\Message\Response\TokenTransactionAcceptedResponse
  * @covers \Korobovn\CloudPayments\Message\Response\TokenTransactionRejectedResponse
+ * @covers \Korobovn\CloudPayments\Message\Response\RefundPaymentResponse
  */
 class ResponsesTest extends TestCase
 {
@@ -72,6 +75,9 @@ class ResponsesTest extends TestCase
 
             TokenTransactionRejectedResponse::class =>
                 [TokenTransactionRejectedResponse::class, TokenTransactionRejectedModel::class],
+
+            RefundPaymentResponse::class =>
+                [RefundPaymentResponse::class, RefundPaymentModel::class],
         ];
     }
 

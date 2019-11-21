@@ -26,7 +26,7 @@ class CryptogramPaymentTest extends AbstractFeatureTest
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,'CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS'));
 
         /** @var Cryptogram3dSecureAuthRequiredResponse $response */
         $response = $this->client->send($request);
@@ -42,7 +42,7 @@ class CryptogramPaymentTest extends AbstractFeatureTest
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
 
         /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);
@@ -58,7 +58,7 @@ class CryptogramPaymentTest extends AbstractFeatureTest
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_FAIL'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_FAIL'));
 
         /** @var CryptogramTransactionRejectedResponse $response */
         $response = $this->client->send($request);
@@ -76,7 +76,7 @@ class CryptogramPaymentTest extends AbstractFeatureTest
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->env,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_MASTER_CARD'));
 
         /** @var InvalidRequestResponse $response */
         $response = $this->client->send($request);

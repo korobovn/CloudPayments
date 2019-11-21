@@ -13,3 +13,6 @@ unit-tests:
 
 feature-tests:
 	./php.sh vendor/bin/phpunit --group feature tests
+
+phpstan:
+	./php.sh composer phpstan

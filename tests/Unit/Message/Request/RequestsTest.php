@@ -3,6 +3,7 @@
 namespace Korobovn\Tests\Unit\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\ApplePayStartSessionRequest;
+use Korobovn\CloudPayments\Message\Request\CancelPaymentRequest;
 use Korobovn\CloudPayments\Message\Request\CancelSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Request\CompletionOf3dSecureRequest;
 use Korobovn\CloudPayments\Message\Request\CreateSubscriptionRequest;
@@ -11,6 +12,7 @@ use Korobovn\CloudPayments\Message\Request\CryptogramPaymentTwoStepRequest;
 use Korobovn\CloudPayments\Message\Request\FindSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Request\GetSubscriptionRequest;
 use Korobovn\CloudPayments\Message\Request\Model\ApplePayStartSessionModel;
+use Korobovn\CloudPayments\Message\Request\Model\CancelPaymentModel;
 use Korobovn\CloudPayments\Message\Request\Model\CancelSubscriptionModel;
 use Korobovn\CloudPayments\Message\Request\Model\CompletionOf3dSecureModel;
 use Korobovn\CloudPayments\Message\Request\Model\CreateSubscriptionModel;
@@ -18,8 +20,10 @@ use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
 use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
 use Korobovn\CloudPayments\Message\Request\Model\GetSubscriptionModel;
 use Korobovn\CloudPayments\Message\Request\Model\NullModel;
+use Korobovn\CloudPayments\Message\Request\Model\RefundPaymentModel;
 use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
+use Korobovn\CloudPayments\Message\Request\RefundPaymentRequest;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Korobovn\CloudPayments\Message\Request\TestRequest;
 use Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest;
@@ -42,6 +46,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \Korobovn\CloudPayments\Message\Request\TokenPaymentOneStepRequest
  * @covers \Korobovn\CloudPayments\Message\Request\TokenPaymentTwoStepRequest
  * @covers \Korobovn\CloudPayments\Message\Request\UpdateSubscriptionRequest
+ * @covers \Korobovn\CloudPayments\Message\Request\CancelPaymentRequest
+ * @covers \Korobovn\CloudPayments\Message\Request\RefundPaymentRequest
  *
  **/
 class RequestsTest extends TestCase
@@ -131,6 +137,18 @@ class RequestsTest extends TestCase
                     UpdateSubscriptionRequest::class,
                     UpdateSubscriptionModel::class,
                     'https://api.cloudpayments.ru/subscriptions/update',
+                ],
+            CancelPaymentRequest::class      =>
+                [
+                    CancelPaymentRequest::class,
+                    CancelPaymentModel::class,
+                    'https://api.cloudpayments.ru/payments/void',
+                ],
+            RefundPaymentRequest::class      =>
+                [
+                    RefundPaymentRequest::class,
+                    RefundPaymentModel::class,
+                    'https://api.cloudpayments.ru/payments/refund',
                 ],
         ];
     }

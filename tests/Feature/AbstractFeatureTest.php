@@ -13,7 +13,7 @@ abstract class AbstractFeatureTest extends AbstractTestCase
     protected $client;
 
     /** @var array */
-    protected $env;
+    protected $card_cryptograms;
 
     public function setUp(): void
     {
@@ -22,7 +22,7 @@ abstract class AbstractFeatureTest extends AbstractTestCase
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 
-        $this->env = [
+        $this->card_cryptograms = [
             'CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS'                =>
                 Arr::get($config,
                     'cloud_payments.CARD_CRYPTOGRAM_PACKET_WITH_3D_SUCCESS'),
