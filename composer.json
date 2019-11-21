@@ -5,11 +5,13 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": ">=7.0",
         "ext-json": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/config": "^5.5 || ^6.0",
+        "illuminate/contracts": "^5.5 || ^6.0",
         "illuminate/support": "^5.5 || ^6.0",
         "psr/http-client": "~1.0",
-        "guzzlehttp/guzzle": "~6.0",
         "tarampampam/wrappers-php": "^1.2"
     },
     "require-dev": {
@@ -20,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Korobovn\\CloudPayments\\": "src/CloudPayments/"
+            "Korobovn\\CloudPayments\\": "src/"
         }
     },
     "autoload-dev": {
@@ -36,13 +38,17 @@
         }
     },
     "scripts": {
-        "unit-test": "@php ./vendor/bin/phpunit --group unit --no-coverage --colors=always",
-        "unit-test-cover": "@php ./vendor/bin/phpunit --group unit --coverage-html='./coverage'",
-        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src",
-        "php-cs-fixer-check": "@php ./vendor/bin/cs-fix --dry-run --diff --format=txt --ansi",
-        "test": [
-            "@phpstan",
-            "@unit-test"
-        ]
-    }
+        "test-feature": "@php ./vendor/bin/phpunit --group feature --no-coverage",
+        "test": "@php ./vendor/bin/phpunit --group unit --no-coverage",
+        "test-cover": "@php ./vendor/bin/phpunit --group unit --coverage-html='./coverage'",
+        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src"
+    },
+    "support": {
+        "issues": "https://github.com/korobovn/CloudPayments/issues",
+        "source": "https://github.com/korobovn/CloudPayments"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
 }

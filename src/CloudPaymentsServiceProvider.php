@@ -42,7 +42,7 @@ class CloudPaymentsServiceProvider extends ServiceProvider
      */
     public static function getConfigPath()
     {
-        return __DIR__ . '/../../config/services.php';
+        return __DIR__ . '/../config/services.php';
     }
 
     /**
