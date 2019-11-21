@@ -6,7 +6,7 @@ composer-install:
 	./php.sh composer install
 
 test:
-	./php.sh vendor/bin/phpunit --coverage-html ./coverage tests
+	./php.sh vendor/bin/phpunit tests
 
 unit-tests:
 	./php.sh vendor/bin/phpunit --group unit tests
