@@ -88,7 +88,7 @@ abstract class AbstractRequest implements RequestInterface
      *
      * @return self
      */
-    public function setClient(CloudPaymentClientInterface $client): self
+    public function setClient(CloudPaymentClientInterface $client): RequestInterface
     {
         $this->client = $client;
 
