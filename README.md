@@ -55,7 +55,7 @@ You can send a request using the `send` method:
 ```php
 $client->send($request);
 ```
-Where $request is an instance of `RequestInterface`.
+Where `$request` is an instance of `RequestInterface`.
 
 You can also call the `send` method on the `RequestInterface` instance.
 Before that, you must call the `setClient` method on the `RequestInterface` with `CloudPaymentClientInterface`
