@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Korobovn\Tests\Unit\Message\Traits\ModelFeature;
 
 use Korobovn\CloudPayments\Message\Traits\ModelFeature\FillFromArray;

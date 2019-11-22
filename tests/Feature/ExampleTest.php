@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\Tests\Feature;
 
 use GuzzleHttp\Client;
@@ -10,13 +12,15 @@ use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedRespons
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
 /**
+ * @group feature
+ *
  * @coversNothing
  */
 class ExampleTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $config      = include __DIR__ . '/../../config/config.php';
+        $config      = include __DIR__ . '/config.php';
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 

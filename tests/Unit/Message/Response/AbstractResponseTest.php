@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\Tests\Unit\Message\Response;
 
 use Korobovn\CloudPayments\Message\Response\AbstractResponse;

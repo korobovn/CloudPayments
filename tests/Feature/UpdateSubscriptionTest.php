@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\Tests\Feature;
 
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;

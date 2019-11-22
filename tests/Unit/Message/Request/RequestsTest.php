@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\Tests\Unit\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\ApplePayStartSessionRequest;

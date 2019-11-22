@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\Tests\Unit\Message\Traits\ModelFeature;
 
 use Korobovn\CloudPayments\Message\Traits\ModelFeature\ToArray;

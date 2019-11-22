@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\CloudPayments\Client;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 use Tarampampam\Wrappers\Json;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -25,9 +27,9 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     protected $api_secret;
 
     /**
-     * @param Client $http_client
-     * @param string $public_id
-     * @param string $api_secret
+     * @param ClientInterface $http_client
+     * @param string          $public_id
+     * @param string          $api_secret
      */
     public function __construct(
         ClientInterface $http_client,
@@ -61,6 +63,7 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      * @param string $body
      *
      * @return array
+     * @throws JsonEncodeDecodeException
      */
     protected function decodeBody(string $body): array
     {
@@ -77,7 +80,7 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      */
     protected function sendHttpRequest(PsrRequestInterface $request): PsrResponseInterface
     {
-        $this->setAuthHeader($request);
+        $request = $this->setAuthHeader($request);
 
         try {
             $psr_response = $this->http_client->send($request);
@@ -105,10 +108,12 @@ class CloudPaymentClient implements CloudPaymentClientInterface
 
     /**
      * @param PsrRequestInterface $request
+     *
+     * @return PsrRequestInterface
      */
-    protected function setAuthHeader(PsrRequestInterface &$request): void
+    protected function setAuthHeader(PsrRequestInterface $request): PsrRequestInterface
     {
-        $request = $request->withAddedHeader('Authorization', sprintf('Basic %s',
+        return $request->withAddedHeader('Authorization', sprintf('Basic %s',
             base64_encode($this->public_id . ':' . $this->api_secret)));
     }
 }

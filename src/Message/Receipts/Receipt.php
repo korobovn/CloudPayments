@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\CloudPayments\Message\Receipts;
 
 use Korobovn\CloudPayments\Message\References\TaxationSystem;

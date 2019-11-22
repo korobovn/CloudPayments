@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Korobovn\CloudPayments\Message\Strategy;
 
 use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
