@@ -84,23 +84,18 @@ class CloudPaymentClient implements CloudPaymentClientInterface
 
         try {
             $psr_response = $this->http_client->send($request);
-            if ($psr_response == null) {
-                throw new InvalidHttpResponseCodeException('Zero response received');
-            }
         } catch (RequestException $exception) {
-            if ($exception->hasResponse()) {
-                $psr_response = $exception->getResponse();
-                if ($psr_response == null) {
-                    throw new InvalidHttpResponseCodeException('Zero response received');
-                }
-            } else {
-                throw new InvalidHttpResponseCodeException($exception->getMessage(), $exception->getCode(), $exception);
-            }
+            throw new InvalidHttpResponseCodeException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
-        if ($psr_response->getStatusCode() != 200) {
-            throw new InvalidHttpResponseCodeException(sprintf('%d is an invalid http response code',
-                $psr_response->getStatusCode()));
+        if ($psr_response->getStatusCode() !== 200) {
+            throw new InvalidHttpResponseCodeException(
+                sprintf('Response code is %d: %s %s',
+                    $psr_response->getStatusCode(),
+                    $psr_response->getReasonPhrase(),
+                    \strip_tags($psr_response->getBody()->getContents())
+                ), $psr_response->getStatusCode()
+            );
         }
 
         return $psr_response;

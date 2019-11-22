@@ -12,7 +12,7 @@ class TransactionAcceptedSpecification implements SpecificationInterface
     public function isSatisfiedBy(array $response): bool
     {
         return isset($response['Model']['ReasonCode']) &&
-               $response['Model']['ReasonCode'] == 0 &&
+               $response['Model']['ReasonCode'] === 0 &&
                (new IsSuccessSpecification)->isSatisfiedBy($response) &&
                (new NotMessageSpecification)->isSatisfiedBy($response);
     }

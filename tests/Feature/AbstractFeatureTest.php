@@ -44,6 +44,7 @@ abstract class AbstractFeatureTest extends AbstractTestCase
 
         $this->client = new CloudPaymentClient(
             new Client,
+            //new Client(['http_errors' => false]),
             $public_key,
             $private_key
         );
