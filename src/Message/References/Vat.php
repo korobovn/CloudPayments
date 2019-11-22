@@ -10,32 +10,32 @@ namespace Korobovn\CloudPayments\Message\References;
 class Vat
 {
     /**
-     * НДС не облагается.
+     * NDS is not appearing.
      */
     public const NO_NDS = null;
 
     /**
-     * НДС 0%.
+     * NDS 0%.
      */
     public const NDS_0 = 0;
 
     /**
-     * НДС 10%.
+     * NDS 10%.
      */
     public const NDS_10 = 10;
 
     /**
-     * НДС 20%.
+     * NDS 20%.
      */
     public const NDS_20 = 20;
 
     /**
-     * Расчетный НДС 10/110.
+     * Estimated NDS 10/110.
      */
     public const NDS_10_110 = 110;
 
     /**
-     * Расчетный НДС 20/120.
+     * Estimated NDS 20/120.
      */
     public const NDS_20_120 = 120;
 }

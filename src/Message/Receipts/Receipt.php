@@ -7,21 +7,21 @@ use Korobovn\CloudPayments\Message\References\TaxationSystem;
 class Receipt
 {
     /**
-     * Товарные позиции.
+     * Items
      *
      * @var array|Item[]
      */
     protected $items = [];
 
     /**
-     * Место осуществления расчёта, по умолчанию берется значение из кассы.
+     * Place of settlement, the default value is taken from the cashier.
      *
      * @var string
      */
     protected $calculation_place;
 
     /**
-     * Система налогообложения; необязательный, если у вас одна система налогообложения.
+     * Tax system; optional if you have one tax system.
      *
      * @see TaxationSystem
      *
@@ -30,56 +30,56 @@ class Receipt
     protected $taxation_system;
 
     /**
-     * Email покупателя, если нужно отправить письмо с чеком.
+     * The customer’s email, if you need to send an email with a check.
      *
      * @var string
      */
     protected $email;
 
     /**
-     * Телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек.
+     * The customer’s phone in any format, if you need to send a message with a link to the check.
      *
      * @var string
      */
     protected $phone;
 
     /**
-     * Чек является бланком строгой отчётности.
+     * The check is a form of strict reporting.
      *
      * @var bool
      */
     protected $is_bso = false;
 
     /**
-     * Сумма оплаты электронными деньгами.
+     * The amount of payment by electronic money.
      *
      * @var float
      */
     protected $electronic_amount;
 
     /**
-     * Сумма из предоплаты (зачетом аванса) (2 знака после запятой).
+     * Amount of prepayment (offset by advance) (2 decimal places).
      *
      * @var float
      */
     protected $advance_payment_amount;
 
     /**
-     * Сумма постоплатой(в кредит) (2 знака после запятой).
+     * Postpay amount (on credit) (2 decimal places).
      *
      * @var float
      */
     protected $credit_amount;
 
     /**
-     * Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после запятой).
+     * Amount of payment by counter-provision (certificates, other mat. Value) (2 decimal places).
      *
      * @var float
      */
     protected $provision_amount;
 
     /**
-     * Товарные позиции.
+     * Items
      *
      * @param array $items
      *
@@ -93,7 +93,7 @@ class Receipt
     }
 
     /**
-     * Место осуществления расчёта, по умолчанию берется значение из кассы.
+     * Place of settlement, the default value is taken from the cashier.
      *
      * @param string $calculation_place
      *
@@ -107,7 +107,7 @@ class Receipt
     }
 
     /**
-     * Система налогообложения; необязательный, если у вас одна система налогообложения.
+     * Tax system; optional if you have one tax system.
      *
      * @param int $taxation_system
      *
@@ -121,7 +121,7 @@ class Receipt
     }
 
     /**
-     * Email покупателя, если нужно отправить письмо с чеком.
+     * The customer’s email, if you need to send an email with a check.
      *
      * @param string $email
      *
@@ -135,7 +135,7 @@ class Receipt
     }
 
     /**
-     * Телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек.
+     * The customer’s phone in any format, if you need to send a message with a link to the check.
      *
      * @param string $phone
      *
@@ -149,7 +149,7 @@ class Receipt
     }
 
     /**
-     * Чек является бланком строгой отчётности.
+     * The check is a form of strict reporting.
      *
      * @param bool $is_bso
      *
@@ -163,7 +163,7 @@ class Receipt
     }
 
     /**
-     * Сумма оплаты электронными деньгами.
+     * The amount of payment by electronic money.
      *
      * @param float $electronic_amount
      *
@@ -177,7 +177,7 @@ class Receipt
     }
 
     /**
-     * Сумма из предоплаты (зачетом аванса) (2 знака после запятой).
+     * Amount of prepayment (offset by advance) (2 decimal places).
      *
      * @param float $advance_payment_amount
      *
@@ -191,7 +191,7 @@ class Receipt
     }
 
     /**
-     * Сумма постоплатой(в кредит) (2 знака после запятой).
+     * Postpay amount (on credit) (2 decimal places).
      *
      * @param float $credit_amount
      *
@@ -205,7 +205,7 @@ class Receipt
     }
 
     /**
-     * Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после запятой).
+     * Amount of payment by counter-provision (certificates, other mat. Value) (2 decimal places).
      *
      * @param float $provision_amount
      *
@@ -239,9 +239,6 @@ class Receipt
         foreach ($this->items as $receipt_item) {
             if ($receipt_item instanceof Item) {
                 $receipt_items[] = $receipt_item->toArray();
-            }
-            if (\is_array($receipt_item)) {
-                $receipt_items[] = $receipt_item;
             }
         }
 

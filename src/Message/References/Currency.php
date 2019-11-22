@@ -8,102 +8,102 @@ namespace Korobovn\CloudPayments\Message\References;
 class Currency
 {
     /**
-     *Российский рубль.
+     * Russian ruble.
      */
     public const RUB = 'RUB';
 
     /**
-     *Евро.
+     * Euro.
      */
     public const EUR = 'EUR';
 
     /**
-     *Доллар США.
+     * US dollar.
      */
     public const USD = 'USD';
 
     /**
-     *Фунт стерлингов.
+     * GBP.
      */
     public const GBP = 'GBP';
 
     /**
-     *Украинская гривна.
+     * Ukrainian hryvnia.
      */
     public const UAH = 'UAH';
 
     /**
-     *Белорусский рубль.
+     * Belarusian ruble.
      */
     public const BYN = 'BYN';
 
     /**
-     *Казахский тенге.
+     * Kazakh tenge.
      */
     public const KZT = 'KZT';
 
     /**
-     *Азербайджанский манат
+     * Azerbaijani manat
      */
     public const AZN = 'AZN';
 
     /**
-     *Швейцарский франк.
+     * Swiss frank.
      */
     public const CHF = 'CHF';
 
     /**
-     *Чешская крона.
+     * Czech koruna.
      */
     public const CZK = 'CZK';
 
     /**
-     *Канадский доллар
+     * Canadian dollar
      */
     public const CAD = 'CAD';
 
     /**
-     *Польский злотый.
+     * Polish zloty.
      */
     public const PLN = 'PLN';
 
     /**
-     *Шведская крона.
+     * Swedish krona.
      */
     public const SEK = 'SEK';
 
     /**
-     *Турецкая лира.
+     * Turkish lira.
      */
     public const TRY = 'TRY';
 
     /**
-     *Китайский юань.
+     * CNY.
      */
     public const CNY = 'CNY';
 
     /**
-     *Индийская рупия.
+     * Indian rupee.
      */
     public const INR = 'INR';
 
     /**
-     *Бразильский реал.
+     * Brazilian real.
      */
     public const BRL = 'BRL';
 
     /**
-     *Южноафриканский рэнд.
+     * South African Rand.
      */
     public const ZAR = 'ZAR';
 
     /**
-     *Узбекский сум
+     * Uzbek sum
      */
     public const UZS = 'UZS';
 
     /**
-     *Болгарский лев.
+     * Bulgarian lion.
      */
     public const BGL = 'BGL';
 }

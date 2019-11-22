@@ -10,32 +10,32 @@ namespace Korobovn\CloudPayments\Message\References;
 class TaxationSystem
 {
     /**
-     * Общая система налогообложения.
+     * General tax system.
      */
     public const OSN = 0;
 
     /**
-     * Упрощенная система налогообложения (Доход).
+     * Simplified tax system (Income).
      */
     public const USN_INCOME = 1;
 
     /**
-     * Упрощенная система налогообложения (Доход минус Расход).
+     * Simplified tax system (Income minus Expense).
      */
     public const USN_INCOME_OUTCOME = 2;
 
     /**
-     * Единый налог на вмененный доход.
+     * A single tax on imputed income.
      */
     public const ENVD = 3;
 
     /**
-     * Единый сельскохозяйственный налог.
+     * Single agricultural tax.
      */
     public const ESHN = 4;
 
     /**
-     * Патентная система налогообложения.
+     * Patent tax system.
      */
     public const PATENT = 5;
 }

@@ -10,72 +10,72 @@ namespace Korobovn\CloudPayments\Message\References;
 class PaymentObject
 {
     /**
-     * Неизвестный предмет оплаты.
+     * Unknown item of payment.
      */
     public const UNKNOWN = 0;
 
     /**
-     * Товар.
+     * Product.
      */
     public const COMMODITY = 1;
 
     /**
-     * Подакцизный товар.
+     * Excisable goods.
      */
     public const EXCISED_COMMODITY = 2;
 
     /**
-     * Работа.
+     * Job.
      */
     public const JOB = 3;
 
     /**
-     * Услуга.
+     * Service.
      */
     public const SERVICE = 4;
 
     /**
-     * Ставка азартной игры.
+     * Gambling bet.
      */
     public const GAMBLING_BET = 5;
 
     /**
-     * Выигрыш азартной игры.
+     * Gambling win.
      */
     public const GAMBLING_WIN = 6;
 
     /**
-     * Лотерейный билет
+     * Lottery ticket
      */
     public const LOTTERY_TICKET = 7;
 
     /**
-     * Выигрыш лотереи.
+     * Lottery win.
      */
     public const LOTTERY_WIN = 8;
 
     /**
-     * Предоставление РИД.
+     * Providing Reed.
      */
     public const RID_ACCESS = 9;
 
     /**
-     * Платеж.
+     * Payment.
      */
     public const PAYMENT = 10;
 
     /**
-     * Агентское вознаграждение.
+     * Agent's commission.
      */
     public const AGENT_REWARD = 11;
 
     /**
-     * Составной предмет расчета.
+     * Compound subject of calculation.
      */
     public const COMPOSITE = 12;
 
     /**
-     * Иной предмет расчета.
+     * Another subject of calculation.
      */
     public const ANOTHER = 13;
 }

@@ -2,6 +2,7 @@
 
 namespace Korobovn\CloudPayments\Message\Receipts;
 
+use Korobovn\CloudPayments\Message\References\TaxationSystem;
 use Korobovn\CloudPayments\Message\References\Vat;
 use Korobovn\CloudPayments\Message\References\PaymentType;
 use Korobovn\CloudPayments\Message\References\PaymentObject;
@@ -9,35 +10,35 @@ use Korobovn\CloudPayments\Message\References\PaymentObject;
 class Item
 {
     /**
-     * Наименование товара.
+     * Product name
      *
      * @var string
      */
     protected $label;
 
     /**
-     * Цена.
+     * Price.
      *
      * @var float
      */
     protected $price;
 
     /**
-     * Колличество.
+     * Quantity
      *
      * @var float
      */
     protected $quantity;
 
     /**
-     * Сумма.
+     * Amount.
      *
      * @var float
      */
     protected $amount;
 
     /**
-     * Ставка НДС.
+     * VAT rate.
      *
      * @see Vat
      *
@@ -46,7 +47,7 @@ class Item
     protected $vat;
 
     /**
-     * Признак способа расчета - признак способа расчета.
+     * A sign of a calculation method is a sign of a calculation method.
      *
      * @see PaymentType
      *
@@ -55,7 +56,7 @@ class Item
     protected $method;
 
     /**
-     * Признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета.
+     * Sign of the subject of calculation - a sign of the subject of goods, work, services, payment, payment, other subject of calculation.
      *
      * @see PaymentObject
      *
@@ -64,14 +65,14 @@ class Item
     protected $object;
 
     /**
-     * Единица измерения.
+     * Unit of measurement.
      *
      * @var string
      */
     protected $measurement_unit;
 
     /**
-     * Наименование товара.
+     * Product name.
      *
      * @param string $label
      *
@@ -85,7 +86,7 @@ class Item
     }
 
     /**
-     * Цена.
+     * Price.
      *
      * @param float $price
      *
@@ -99,7 +100,7 @@ class Item
     }
 
     /**
-     * Колличество.
+     * Quantity.
      *
      * @param float $quantity
      *
@@ -113,7 +114,7 @@ class Item
     }
 
     /**
-     * Сумма.
+     * Amount.
      *
      * @param float $amount
      *
@@ -127,7 +128,7 @@ class Item
     }
 
     /**
-     * Ставка НДС.
+     * VAT rate.
      *
      * @param int|null $vat
      *
@@ -141,7 +142,7 @@ class Item
     }
 
     /**
-     * Признак способа расчета - признак способа расчета.
+     * A sign of a calculation method is a sign of a calculation method.
      *
      * @param int $method
      *
@@ -157,7 +158,7 @@ class Item
     }
 
     /**
-     * Признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета.
+     * Sign of the subject of calculation - a sign of the subject of goods, work, services, payment, payment, other subject of calculation.
      *
      * @param int $object
      *
@@ -171,7 +172,7 @@ class Item
     }
 
     /**
-     * Единица измерения.
+     * Unit of measurement.
      *
      * @param string $measurement_unit
      *

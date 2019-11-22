@@ -10,42 +10,42 @@ namespace Korobovn\CloudPayments\Message\References;
 class PaymentType
 {
     /**
-     * Неизвестный способ расчета.
+     * Unknown calculation method.
      */
     public const UNKNOWN = 0;
 
     /**
-     * Предоплата 100%.
+     * 100% prepayment.
      */
     public const FULL_PREPAYMENT = 1;
 
     /**
-     * Предоплата.
+     * Prepayment.
      */
     public const PARTIAL_PREPAYMENT = 2;
 
     /**
-     * Аванс
+     * Prepaid expense
      */
     public const ADVANCE_PAY = 3;
 
     /**
-     * Полный расчёт
+     * Full settlement
      */
     public const FULL_PAY = 4;
 
     /**
-     * Частичный расчёт и кредит
+     * Partial settlement and credit
      */
     public const PARTIAL_PAY_AND_CREDIT = 5;
 
     /**
-     * Передача в кредит
+     * Credit Transfer
      */
     public const CREDIT = 6;
 
     /**
-     * Оплата кредита.
+     * Credit payment.
      */
     public const CREDIT_PAYMENT = 7;
 }
