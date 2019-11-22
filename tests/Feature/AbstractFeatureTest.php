@@ -18,7 +18,7 @@ abstract class AbstractFeatureTest extends AbstractTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config      = include __DIR__ . '/../../config/config.php';
+        $config      = include __DIR__ . '/config.php';
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 
