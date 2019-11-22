@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Korobovn\CloudPayments\Message\Receipts;
+namespace Korobovn\CloudPayments\Message\Receipt;
 
-use Korobovn\CloudPayments\Message\References\Vat;
-use Korobovn\CloudPayments\Message\References\PaymentType;
-use Korobovn\CloudPayments\Message\References\PaymentObject;
+use Korobovn\CloudPayments\Message\Reference\Vat;
+use Korobovn\CloudPayments\Message\Reference\PaymentType;
+use Korobovn\CloudPayments\Message\Reference\PaymentObject;
 
 class Item
 {

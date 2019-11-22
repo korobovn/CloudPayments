@@ -2,7 +2,5 @@
 
 /.idea
 /vendor
-/coverage
 /.phpunit.result.cache
-/.env
 /tests/Feature/config.php

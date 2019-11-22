@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Korobovn\CloudPayments\Message\Receipts;
+namespace Korobovn\CloudPayments\Message\Receipt;
 
-use Korobovn\CloudPayments\Message\References\TaxationSystem;
+use Korobovn\CloudPayments\Message\Reference\TaxationSystem;
 
 class Receipt
 {

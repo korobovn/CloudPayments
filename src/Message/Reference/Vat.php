@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Korobovn\CloudPayments\Message\References;
+namespace Korobovn\CloudPayments\Message\Reference;
 
 /**
  * @see https://developers.cloudpayments.ru/#znacheniya-stavki-nds
