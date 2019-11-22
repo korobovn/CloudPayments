@@ -113,7 +113,10 @@ class CloudPaymentClient implements CloudPaymentClientInterface
      */
     protected function setAuthHeader(PsrRequestInterface $request): PsrRequestInterface
     {
-        return $request->withAddedHeader('Authorization', sprintf('Basic %s',
+        /** @var PsrRequestInterface $request */
+        $request = $request->withAddedHeader('Authorization', sprintf('Basic %s',
             base64_encode($this->public_id . ':' . $this->api_secret)));
+
+        return $request;
     }
 }
