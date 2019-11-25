@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Korobovn\CloudPayments\Message\Response;
 
 use Korobovn\CloudPayments\Message\Response\Model\Cryptogram3dSecureAuthRequiredModel;
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 
 /**
  * @method Cryptogram3dSecureAuthRequiredModel getModel()
@@ -13,8 +14,11 @@ use Korobovn\CloudPayments\Message\Response\Model\Cryptogram3dSecureAuthRequired
  */
 class Cryptogram3dSecureAuthRequiredResponse extends AbstractResponse
 {
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
     {
-        $this->model = new Cryptogram3dSecureAuthRequiredModel;
+        return new Cryptogram3dSecureAuthRequiredModel;
     }
 }

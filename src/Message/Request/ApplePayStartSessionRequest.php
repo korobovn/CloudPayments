@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Strategy\ApplePayStartSessionStrategy;
 use Korobovn\CloudPayments\Message\Request\Model\ApplePayStartSessionModel;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
  * @method ApplePayStartSessionModel getModel()
@@ -14,12 +16,27 @@ use Korobovn\CloudPayments\Message\Request\Model\ApplePayStartSessionModel;
  */
 class ApplePayStartSessionRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/applepay/startsession';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new ApplePayStartSessionModel;
-        $this->strategy = new ApplePayStartSessionStrategy;
+        return '/applepay/startsession';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new ApplePayStartSessionModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new ApplePayStartSessionStrategy;
     }
 }

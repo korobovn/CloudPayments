@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Response;
 
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\Model\TokenTransactionRejectedModel;
 
 /**
@@ -13,8 +14,11 @@ use Korobovn\CloudPayments\Message\Response\Model\TokenTransactionRejectedModel;
  */
 class TokenTransactionRejectedResponse extends AbstractResponse
 {
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
     {
-        $this->model = new TokenTransactionRejectedModel;
+        return new TokenTransactionRejectedModel;
     }
 }

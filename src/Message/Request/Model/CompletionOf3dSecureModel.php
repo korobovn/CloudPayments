@@ -14,4 +14,15 @@ class CompletionOf3dSecureModel extends AbstractModel
 {
     use TransactionIdInt,
         PaResString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'TransactionId' => $this->getTransactionId(),
+            'PaRes'         => $this->getPaRes(),
+        ];
+    }
 }

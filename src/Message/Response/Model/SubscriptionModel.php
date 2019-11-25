@@ -58,4 +58,36 @@ class SubscriptionModel extends AbstractModel
         LastTransactionDateIsoStringNull,
         NextTransactionDateStringNull,
         NextTransactionDateIsoStringNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Id'                           => $this->getId(),
+            'AccountId'                    => $this->getAccountId(),
+            'Description'                  => $this->getDescription(),
+            'Email'                        => $this->getEmail(),
+            'Amount'                       => $this->getAmount(),
+            'CurrencyCode'                 => $this->getCurrencyCode(),
+            'Currency'                     => $this->getCurrency(),
+            'RequireConfirmation'          => $this->isRequireConfirmation(),
+            'StartDate'                    => $this->getStartDate(),
+            'StartDateIso'                 => $this->getStartDateIso(),
+            'IntervalCode'                 => $this->getIntervalCode(),
+            'Interval'                     => $this->getInterval(),
+            'Period'                       => $this->getPeriod(),
+            'MaxPeriods'                   => $this->getMaxPeriods(),
+            'CultureName'                  => $this->getCultureName(),
+            'StatusCode'                   => $this->getStatusCode(),
+            'Status'                       => $this->getStatus(),
+            'SuccessfulTransactionsNumber' => $this->getSuccessfulTransactionsNumber(),
+            'FailedTransactionsNumber'     => $this->getFailedTransactionsNumber(),
+            'LastTransactionDate'          => $this->getLastTransactionDate(),
+            'LastTransactionDateIso'       => $this->getLastTransactionDate(),
+            'NextTransactionDate'          => $this->getNextTransactionDate(),
+            'NextTransactionDateIso'       => $this->getNextTransactionDateIso(),
+        ];
+    }
 }

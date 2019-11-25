@@ -12,4 +12,14 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\TransactionIdInt;
 class CancelPaymentModel extends AbstractModel
 {
     use TransactionIdInt;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'TransactionId' => $this->getTransactionId(),
+        ];
+    }
 }

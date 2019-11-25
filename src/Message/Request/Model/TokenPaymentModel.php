@@ -28,4 +28,22 @@ class TokenPaymentModel extends AbstractModel
         IpAddressStringNull,
         EmailStringNull,
         JsonDataStringNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Amount'      => $this->getAmount(),
+            'Currency'    => $this->getCurrency(),
+            'AccountId'   => $this->getAccountId(),
+            'Token'       => $this->getToken(),
+            'InvoiceId'   => $this->getInvoiceId(),
+            'Description' => $this->getDescription(),
+            'IpAddress'   => $this->getIpAddress(),
+            'Email'       => $this->getEmail(),
+            'JsonData'    => $this->getJsonData(),
+        ];
+    }
 }

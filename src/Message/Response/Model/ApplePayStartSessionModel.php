@@ -24,6 +24,9 @@ class ApplePayStartSessionModel extends AbstractModel
         DisplayNameString,
         SignatureString;
 
+    /**
+     * {@inheritDoc}
+     */
     public function toArray(): array
     {
         return [

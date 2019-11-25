@@ -6,8 +6,10 @@ namespace Korobovn\Tests\Unit\Message\Request;
 
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Message\Request\AbstractRequest;
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Request\Model\NullModel;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -28,14 +30,21 @@ class AbstractRequestTest extends TestCase
 
         $this->request = new class extends AbstractRequest
         {
-            protected $url    = '/test';
-
             protected $method = 'POST';
 
-            public function __construct()
+            protected function getRelativeUrl(): string
             {
-                $this->model    = new NullModel;
-                $this->strategy = new SuccessStrategy;
+                return '/test';
+            }
+
+            public function createModel(): ModelInterface
+            {
+                return new NullModel;
+            }
+
+            public function getStrategy(): StrategyInterface
+            {
+                return new SuccessStrategy;
             }
         };
     }

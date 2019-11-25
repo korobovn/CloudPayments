@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Korobovn\CloudPayments\Message\Response;
 
 use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionAcceptedModel;
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 
 /**
  * @method CryptogramTransactionAcceptedModel getModel()
@@ -13,8 +14,11 @@ use Korobovn\CloudPayments\Message\Response\Model\CryptogramTransactionAcceptedM
  */
 class CryptogramTransactionAcceptedResponse extends AbstractResponse
 {
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
     {
-        $this->model = new CryptogramTransactionAcceptedModel;
+        return new CryptogramTransactionAcceptedModel;
     }
 }

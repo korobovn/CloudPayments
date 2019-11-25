@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Response;
 
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
 
 /**
@@ -15,8 +16,11 @@ use Korobovn\CloudPayments\Message\Response\Model\SubscriptionModel;
  */
 class SubscriptionResponse extends AbstractResponse
 {
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
     {
-        $this->model = new SubscriptionModel;
+        return new SubscriptionModel;
     }
 }

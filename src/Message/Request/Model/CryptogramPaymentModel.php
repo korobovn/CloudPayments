@@ -30,4 +30,23 @@ class CryptogramPaymentModel extends AbstractModel
         AccountIdStringNull,
         EmailStringNull,
         JsonDataStringNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Amount'               => $this->getAmount(),
+            'Currency'             => $this->getCurrency(),
+            'IpAddress'            => $this->getIpAddress(),
+            'Name'                 => $this->getName(),
+            'CardCryptogramPacket' => $this->getCardCryptogramPacket(),
+            'InvoiceId'            => $this->getInvoiceId(),
+            'Description'          => $this->getDescription(),
+            'AccountId'            => $this->getAccountId(),
+            'Email'                => $this->getEmail(),
+            'JsonData'             => $this->getJsonData(),
+        ];
+    }
 }

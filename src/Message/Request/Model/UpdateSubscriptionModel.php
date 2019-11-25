@@ -30,4 +30,23 @@ class UpdateSubscriptionModel extends AbstractModel
         PeriodIntNull,
         MaxPeriodsIntNull,
         CustomerReceiptStringNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Id'                  => $this->getId(),
+            'Description'         => $this->getDescription(),
+            'Amount'              => $this->getAmount(),
+            'Currency'            => $this->getCurrency(),
+            'RequireConfirmation' => $this->isRequireConfirmation(),
+            'StartDate'           => $this->getStartDate(),
+            'Interval'            => $this->getInterval(),
+            'Period'              => $this->getPeriod(),
+            'MaxPeriods'          => $this->getMaxPeriods(),
+            'CustomerReceipt'     => $this->getCustomerReceipt(),
+        ];
+    }
 }

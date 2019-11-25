@@ -9,14 +9,14 @@ use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 abstract class AbstractResponse implements ResponseInterface
 {
     /**
-     * @var ModelInterface
+     * @var ModelInterface|null
      */
     protected $model;
 
     /**
      * @var bool
      */
-    protected $success;
+    protected $success = false;
 
     /**
      * @var string|null
@@ -44,20 +44,29 @@ abstract class AbstractResponse implements ResponseInterface
         }
 
         if (isset($data['Model'])) {
-            $this->model->fillFromArray($data['Model']);
+            $this->getModel()->fillFromArray($data['Model']);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getModel(): ModelInterface
+    {
+        if ($this->model === null) {
+            $this->model = $this->createModel();
+        }
+
+        return $this->model;
     }
 
     /**
      * @return ModelInterface
      */
-    public function getModel(): ModelInterface
-    {
-        return $this->model;
-    }
+    abstract protected function createModel(): ModelInterface;
 
     /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function isSuccess(): bool
     {
@@ -65,7 +74,7 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritDoc}
      */
     public function getMessage(): ?string
     {
@@ -73,17 +82,20 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @return mixed|null
+     * {@inheritDoc}
      */
     public function getInnerResult()
     {
         return $this->inner_result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function toArray(): array
     {
         return [
-            'Model'       => $this->model->toArray(),
+            'Model'       => $this->getModel()->toArray(),
             'Success'     => $this->isSuccess(),
             'Message'     => $this->getMessage(),
             'InnerResult' => $this->getInnerResult(),

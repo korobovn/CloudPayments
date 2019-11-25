@@ -80,4 +80,48 @@ class CryptogramTransactionRejectedModel extends AbstractModel
         ReasonCodeInt,
         CardHolderMessageString,
         NameString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'TransactionId'       => $this->getTransactionId(),
+            'Amount'              => $this->getAmount(),
+            'Currency'            => $this->getCurrency(),
+            'CurrencyCode'        => $this->getCurrencyCode(),
+            'PaymentAmount'       => $this->getPaymentAmount(),
+            'PaymentCurrency'     => $this->getCurrency(),
+            'PaymentCurrencyCode' => $this->getPaymentCurrencyCode(),
+            'InvoiceId'           => $this->getInvoiceId(),
+            'AccountId'           => $this->getAccountId(),
+            'Email'               => $this->getEmail(),
+            'Description'         => $this->getDescription(),
+            'JsonData'            => $this->getJsonData(),
+            'CreatedDate'         => $this->getCreatedDate(),
+            'CreatedDateIso'      => $this->getCreatedDateIso(),
+            'TestMode'            => $this->isTestMode(),
+            'IpAddress'           => $this->getIpAddress(),
+            'IpCountry'           => $this->getIpCountry(),
+            'IpCity'              => $this->getIpCity(),
+            'IpRegion'            => $this->getIpRegion(),
+            'IpDistrict'          => $this->getIpDistrict(),
+            'IpLatitude'          => $this->getIpLatitude(),
+            'IpLongitude'         => $this->getIpLongitude(),
+            'CardFirstSix'        => $this->getCardFirstSix(),
+            'CardLastFour'        => $this->getCardLastFour(),
+            'CardExpDate'         => $this->getCardExpDate(),
+            'CardType'            => $this->getCardType(),
+            'CardTypeCode'        => $this->getCardTypeCode(),
+            'Issuer'              => $this->getIssuer(),
+            'IssuerBankCountry'   => $this->getIssuerBankCountry(),
+            'Status'              => $this->getStatus(),
+            'StatusCode'          => $this->getStatusCode(),
+            'Reason'              => $this->getReason(),
+            'ReasonCode'          => $this->getReasonCode(),
+            'CardHolderMessage'   => $this->getCardHolderMessage(),
+            'Name'                => $this->getName(),
+        ];
+    }
 }

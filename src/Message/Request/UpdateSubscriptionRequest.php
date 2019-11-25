@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SubscriptionResponse;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionStrategy;
 use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
 
@@ -17,12 +19,27 @@ use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
  */
 class UpdateSubscriptionRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/subscriptions/update';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new UpdateSubscriptionModel;
-        $this->strategy = new SubscriptionStrategy;
+        return '/subscriptions/update';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new UpdateSubscriptionModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new SubscriptionStrategy;
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Korobovn\Tests\Unit\Message\Response;
 
 use Korobovn\CloudPayments\Message\Response\AbstractResponse;
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\Model\NullModel;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use PHPUnit\Framework\TestCase;
@@ -25,9 +26,9 @@ class AbstractResponseTest extends TestCase
 
         $this->response = new class extends AbstractResponse
         {
-            public function __construct()
+            public function createModel(): ModelInterface
             {
-                $this->model = new NullModel;
+                return new NullModel;
             }
         };
     }

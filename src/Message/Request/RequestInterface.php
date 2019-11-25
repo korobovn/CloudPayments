@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Message\Request\Exception\ClientCannotBeNull;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
@@ -59,6 +60,8 @@ interface RequestInterface
      * The method to send the request
      *
      * @return ResponseInterface
+     *
+     * @throws ClientCannotBeNull
      */
     public function send(): ResponseInterface;
 

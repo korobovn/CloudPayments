@@ -12,4 +12,14 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\IdString;
 class GetSubscriptionModel extends AbstractModel
 {
     use IdString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Id' => $this->getId(),
+        ];
+    }
 }

@@ -32,4 +32,24 @@ class CreateSubscriptionModel extends AbstractModel
         IntervalString,
         PeriodInt,
         MaxPeriodsIntNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'Token'               => $this->getToken(),
+            'AccountId'           => $this->getAccountId(),
+            'Description'         => $this->getDescription(),
+            'Email'               => $this->getEmail(),
+            'Amount'              => $this->getAmount(),
+            'Currency'            => $this->getCurrency(),
+            'RequireConfirmation' => $this->isRequireConfirmation(),
+            'StartDate'           => $this->getStartDate(),
+            'Interval'            => $this->getInterval(),
+            'Period'              => $this->getPeriod(),
+            'MaxPeriods'          => $this->getMaxPeriods(),
+        ];
+    }
 }

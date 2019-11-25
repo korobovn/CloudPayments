@@ -12,4 +12,14 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\ValidationUrlString;
 class ApplePayStartSessionModel extends AbstractModel
 {
     use ValidationUrlString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'ValidationUrl' => $this->getValidationUrl(),
+        ];
+    }
 }

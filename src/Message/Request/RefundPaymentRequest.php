@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Request\Model\RefundPaymentModel;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\RefundPaymentResponse;
 use Korobovn\CloudPayments\Message\Strategy\RefundPaymentStrategy;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
  * @method RefundPaymentModel getModel()
@@ -17,12 +19,27 @@ use Korobovn\CloudPayments\Message\Strategy\RefundPaymentStrategy;
  */
 class RefundPaymentRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/payments/refund';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new RefundPaymentModel;
-        $this->strategy = new RefundPaymentStrategy;
+        return '/payments/refund';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new RefundPaymentModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new RefundPaymentStrategy;
     }
 }

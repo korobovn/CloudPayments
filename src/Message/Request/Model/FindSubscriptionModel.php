@@ -12,4 +12,14 @@ use Korobovn\CloudPayments\Message\Traits\ModelField\AccountIdString;
 class FindSubscriptionModel extends AbstractModel
 {
     use AccountIdString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'AccountId' => $this->getAccountId(),
+        ];
+    }
 }

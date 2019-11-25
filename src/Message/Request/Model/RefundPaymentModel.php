@@ -16,4 +16,16 @@ class RefundPaymentModel extends AbstractModel
     use TransactionIdInt,
         AmountFloat,
         JsonDataStringNull;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'TransactionId' => $this->getTransactionId(),
+            'Amount'        => $this->getAmount(),
+            'JsonData'      => $this->getJsonData(),
+        ];
+    }
 }

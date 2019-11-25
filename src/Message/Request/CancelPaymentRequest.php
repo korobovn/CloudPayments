@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Model\CancelPaymentModel;
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SuccessResponse;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 
 /**
@@ -17,12 +19,27 @@ use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
  */
 class CancelPaymentRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/payments/void';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new CancelPaymentModel;
-        $this->strategy = new SuccessStrategy;
+        return '/payments/void';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new CancelPaymentModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new SuccessStrategy;
     }
 }

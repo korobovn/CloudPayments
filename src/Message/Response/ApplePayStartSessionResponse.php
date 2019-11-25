@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Korobovn\CloudPayments\Message\Response;
 
 use Korobovn\CloudPayments\Message\Response\Model\ApplePayStartSessionModel;
+use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 
 /**
  * @method ApplePayStartSessionModel getModel()
@@ -13,8 +14,11 @@ use Korobovn\CloudPayments\Message\Response\Model\ApplePayStartSessionModel;
  */
 class ApplePayStartSessionResponse extends AbstractResponse
 {
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
     {
-        $this->model = new ApplePayStartSessionModel;
+        return new ApplePayStartSessionModel;
     }
 }

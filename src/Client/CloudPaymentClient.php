@@ -17,13 +17,19 @@ use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 
 class CloudPaymentClient implements CloudPaymentClientInterface
 {
-    /** @var ClientInterface */
+    /**
+     * @var ClientInterface
+     */
     protected $http_client;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $public_id;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $api_secret;
 
     /**

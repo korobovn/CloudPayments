@@ -16,4 +16,16 @@ class Cryptogram3dSecureAuthRequiredModel extends AbstractModel
     use TransactionIdInt,
         PaReqString,
         AcsUrlString;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'TransactionId' => $this->getTransactionId(),
+            'PaReq'         => $this->getPaReq(),
+            'AcsUrl'        => $this->getAcsUrl(),
+        ];
+    }
 }

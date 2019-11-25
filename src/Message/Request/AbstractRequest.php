@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Exception\ClientCannotBeNull;
 use Tarampampam\Wrappers\Json;
 use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
@@ -15,15 +16,9 @@ abstract class AbstractRequest implements RequestInterface
     protected const API_CLOUD_PAYMENT_DOMAIN = 'https://api.cloudpayments.ru/';
 
     /**
-     * @var string
+     * @var ModelInterface|null
      */
-    protected $url;
-
-    /** @var ModelInterface */
     protected $model;
-
-    /** @var StrategyInterface */
-    protected $strategy;
 
     /**
      * @var string
@@ -38,16 +33,23 @@ abstract class AbstractRequest implements RequestInterface
     ];
 
     /**
-     * @var CloudPaymentClientInterface
+     * @var CloudPaymentClientInterface|null
      */
     protected $client;
+
+    /**
+     * Returns relative url of request (without domain part)
+     *
+     * @return string
+     */
+    abstract protected function getRelativeUrl(): string;
 
     /**
      * {@inheritDoc}
      */
     public function getUrl(): string
     {
-        return rtrim($this->getDomain(), '/') . '/' . ltrim($this->url, '/');
+        return rtrim($this->getDomain(), '/') . '/' . ltrim($this->getRelativeUrl(), '/');
     }
 
     /**
@@ -65,16 +67,22 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function getModel(): ModelInterface
     {
+        if ($this->model === null) {
+            $this->model = $this->createModel();
+        }
+
         return $this->model;
     }
 
     /**
+     * @return ModelInterface
+     */
+    abstract protected function createModel(): ModelInterface;
+
+    /**
      * {@inheritDoc}
      */
-    public function getStrategy(): StrategyInterface
-    {
-        return $this->strategy;
-    }
+    abstract public function getStrategy(): StrategyInterface;
 
     /**
      * {@inheritDoc}
@@ -111,10 +119,23 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
+     * @return CloudPaymentClientInterface
+     * @throws \LogicException
+     */
+    protected function getClient(): CloudPaymentClientInterface
+    {
+        if ($this->client === null) {
+            throw new ClientCannotBeNull('The client cannot be null');
+        }
+
+        return $this->client;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function send(): ResponseInterface
     {
-        return $this->client->send($this);
+        return $this->getClient()->send($this);
     }
 }

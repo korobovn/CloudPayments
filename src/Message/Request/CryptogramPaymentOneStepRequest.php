@@ -4,12 +4,14 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Strategy\CryptogramPaymentStrategy;
 use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
  * @method CryptogramPaymentModel getModel()
@@ -19,12 +21,27 @@ use Korobovn\CloudPayments\Message\Request\Model\CryptogramPaymentModel;
  */
 class CryptogramPaymentOneStepRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/payments/cards/charge';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new CryptogramPaymentModel;
-        $this->strategy = new CryptogramPaymentStrategy;
+        return '/payments/cards/charge';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new CryptogramPaymentModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new CryptogramPaymentStrategy;
     }
 }

@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
+use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 use Korobovn\CloudPayments\Message\Response\SubscriptionsResponse;
+use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Strategy\SubscriptionsStrategy;
 use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
 
@@ -17,12 +19,27 @@ use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
  */
 class FindSubscriptionRequest extends AbstractRequest
 {
-    /** @var string */
-    protected $url = '/subscriptions/find';
-
-    public function __construct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getRelativeUrl(): string
     {
-        $this->model    = new FindSubscriptionModel;
-        $this->strategy = new SubscriptionsStrategy;
+        return '/subscriptions/find';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createModel(): ModelInterface
+    {
+        return new FindSubscriptionModel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStrategy(): StrategyInterface
+    {
+        return new SubscriptionsStrategy;
     }
 }
