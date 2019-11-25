@@ -31,7 +31,7 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * {@inheritDoc}
      */
-    public function fillFromArray(array $data): void
+    public function fillObjectFromArray(array $data): void
     {
         $this->success = $data['Success'] ?? false;
 
@@ -44,7 +44,7 @@ abstract class AbstractResponse implements ResponseInterface
         }
 
         if (isset($data['Model'])) {
-            $this->getModel()->fillFromArray($data['Model']);
+            $this->getModel()->fillObjectFromArray($data['Model']);
         }
     }
 

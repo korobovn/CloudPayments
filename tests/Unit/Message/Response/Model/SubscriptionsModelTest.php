@@ -78,7 +78,7 @@ class SubscriptionsModelTest extends TestCase
 
         $subscriptions_model = new SubscriptionsModel;
 
-        $subscriptions_model->fillFromArray($raw_response['Model']);
+        $subscriptions_model->fillObjectFromArray($raw_response['Model']);
 
         $this->assertSame($raw_response['Model'], $subscriptions_model->toArray());
 

@@ -55,7 +55,7 @@ abstract class AbstractStrategy implements StrategyInterface
                     ));
                 }
 
-                $response->fillFromArray($raw_response);
+                $response->fillObjectFromArray($raw_response);
 
                 return $response;
             }

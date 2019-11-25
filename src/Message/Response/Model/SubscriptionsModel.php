@@ -18,11 +18,11 @@ class SubscriptionsModel extends AbstractModel implements \Iterator, \ArrayAcces
     /**
      * {@inheritdoc}
      */
-    public function fillFromArray(array $data): void
+    public function fillObjectFromArray(array $data): void
     {
         foreach ($data as $subscription_data) {
             $subscription = new SubscriptionModel;
-            $subscription->fillFromArray($subscription_data);
+            $subscription->fillObjectFromArray($subscription_data);
             $this->subscriptions[] = $subscription;
         }
     }

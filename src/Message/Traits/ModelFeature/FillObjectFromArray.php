@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Traits\ModelFeature;
 
-trait FillFromArray
+trait FillObjectFromArray
 {
     /**
      * Filling an object from an array
      *
      * @param array $data
      */
-    public function fillFromArray(array $data): void
+    public function fillObjectFromArray(array $data): void
     {
         foreach ($data as $name => $value) {
             $setter = sprintf('set%s', ucfirst($name));

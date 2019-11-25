@@ -4,15 +4,15 @@ declare(strict_types = 1);
 
 namespace Tests\Unit\Korobovn\Tests\Unit\Message\Traits\ModelFeature;
 
-use Korobovn\CloudPayments\Message\Traits\ModelFeature\FillFromArray;
+use Korobovn\CloudPayments\Message\Traits\ModelFeature\FillObjectFromArray;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit
  * @group fill-from-array
- * @coversDefaultClass \Korobovn\CloudPayments\Message\Traits\ModelFeature\FillFromArray
+ * @coversDefaultClass \Korobovn\CloudPayments\Message\Traits\ModelFeature\FillObjectFromArray
  */
-class FillFromArrayTest extends TestCase
+class FillObjectFromArrayTest extends TestCase
 {
     protected $class;
 
@@ -22,7 +22,7 @@ class FillFromArrayTest extends TestCase
 
         $this->class = new class
         {
-            use FillFromArray;
+            use FillObjectFromArray;
 
             /** @var string */
             protected $test_field;
@@ -52,7 +52,7 @@ class FillFromArrayTest extends TestCase
     public function testSuccessLoad(): void
     {
 
-        $this->class->fillFromArray([
+        $this->class->fillObjectFromArray([
             'TestField'     => 'test_value',
             'UnloadedField' => 'value',
         ]);
@@ -63,7 +63,7 @@ class FillFromArrayTest extends TestCase
     public function testFailLoad(): void
     {
 
-        $this->class->fillFromArray([
+        $this->class->fillObjectFromArray([
             'test_field' => 'test_value',
         ]);
 

@@ -41,7 +41,7 @@ class ApplePayStartSessionModelTest extends TestCase
             'signature'                 => '308006092a864886f70d010702a0803080020101310f300d06096086480165030402010',
         ];
 
-        $model->fillFromArray($data);
+        $model->fillObjectFromArray($data);
 
         $this->assertSame($data, $model->toArray());
     }

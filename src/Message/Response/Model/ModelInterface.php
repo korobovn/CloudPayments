@@ -13,5 +13,5 @@ interface ModelInterface extends Arrayable
      *
      * @param array $data
      */
-    public function fillFromArray(array $data): void;
+    public function fillObjectFromArray(array $data): void;
 }

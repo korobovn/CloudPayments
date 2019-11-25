@@ -34,7 +34,7 @@ class AbstractResponseTest extends TestCase
     }
 
     /**
-     * @cover ::fillFromArray
+     * @cover ::fillObjectFromArray
      * @cover ::isSuccess
      * @cover ::getMessage
      * @cover ::getInnerResult
@@ -49,7 +49,7 @@ class AbstractResponseTest extends TestCase
             'InnerResult' => 'InnerResult',
         ];
 
-        $this->response->fillFromArray($data);
+        $this->response->fillObjectFromArray($data);
 
         $this->assertSame(true, $this->response->isSuccess());
         $this->assertSame('Message', $this->response->getMessage());
