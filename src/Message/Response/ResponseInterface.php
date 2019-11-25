@@ -10,16 +10,22 @@ use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 interface ResponseInterface extends Arrayable
 {
     /**
+     * Get a data model of response. Different data models are set for different responses.
+     *
      * @return ModelInterface
      */
     public function getModel(): ModelInterface;
 
     /**
+     * Request status
+     *
      * @return bool
      */
     public function isSuccess(): bool;
 
     /**
+     * Response message text
+     *
      * @return string|null
      */
     public function getMessage(): ?string;
@@ -30,6 +36,8 @@ interface ResponseInterface extends Arrayable
     public function getInnerResult();
 
     /**
+     * Filling an object from an array
+     *
      * @param array $data
      */
     public function fillFromArray(array $data): void;

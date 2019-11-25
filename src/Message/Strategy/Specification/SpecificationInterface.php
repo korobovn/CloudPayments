@@ -7,6 +7,8 @@ namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 interface SpecificationInterface
 {
     /**
+     * Is a satisfactory request for this specification
+     *
      * @param array $response
      *
      * @return bool

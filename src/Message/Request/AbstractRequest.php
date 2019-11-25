@@ -12,10 +12,11 @@ use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 
 abstract class AbstractRequest implements RequestInterface
 {
-    /** @var string */
-    protected $domain = 'https://api.cloudpayments.ru/';
+    protected const API_CLOUD_PAYMENT_DOMAIN = 'https://api.cloudpayments.ru/';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $url;
 
     /** @var ModelInterface */
@@ -24,27 +25,43 @@ abstract class AbstractRequest implements RequestInterface
     /** @var StrategyInterface */
     protected $strategy;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $method = 'POST';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $headers = [
         'Content-Type' => 'application/json',
     ];
 
-    /** @var CloudPaymentClientInterface */
+    /**
+     * @var CloudPaymentClientInterface
+     */
     protected $client;
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getUrl(): string
     {
-        return rtrim($this->domain, '/') . '/' . ltrim($this->url, '/');
+        return rtrim($this->getDomain(), '/') . '/' . ltrim($this->url, '/');
     }
 
     /**
-     * @return ModelInterface
+     * Main domain name of cloud payments api server
+     *
+     * @return string
+     */
+    protected function getDomain(): string
+    {
+        return static::API_CLOUD_PAYMENT_DOMAIN;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getModel(): ModelInterface
     {
@@ -52,7 +69,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return StrategyInterface
+     * {@inheritDoc}
      */
     public function getStrategy(): StrategyInterface
     {
@@ -60,9 +77,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
-     * @throws \Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException
-     *
+     * {@inheritDoc}
      */
     public function getBody(): ?string
     {
@@ -70,7 +85,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getMethod(): string
     {
@@ -78,7 +93,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function getHeaders(): array
     {
@@ -86,9 +101,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @param CloudPaymentClientInterface $client
-     *
-     * @return self
+     * {@inheritDoc}
      */
     public function setClient(CloudPaymentClientInterface $client): RequestInterface
     {
@@ -98,7 +111,7 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return ResponseInterface
+     * {@inheritDoc}
      */
     public function send(): ResponseInterface
     {

@@ -13,17 +13,16 @@ use Korobovn\CloudPayments\Message\Strategy\Exception\StrategyCannotCreateRespon
 
 abstract class AbstractStrategy implements StrategyInterface
 {
-    /** @var array */
+    /**
+     * Map matching between the `SpecificationInterface` and the `ResponseInterface`.
+     * If the raw request meets a `SpecificationInterface`, a `ResponseInterface` is returned
+     *
+     * @var array
+     */
     protected $specifications = [];
 
     /**
-     * @param array $raw_response
-     *
-     * @return ResponseInterface
-     * @throws StrategyCannotCreateResponseException
-     *
-     * @throws IsNotInstanceOfException
-     * @throws ClassNotFoundException
+     * {@inheritDoc}
      */
     public function prepareRawResponse(array $raw_response): ResponseInterface
     {

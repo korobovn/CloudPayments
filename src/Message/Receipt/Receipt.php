@@ -233,6 +233,8 @@ class Receipt
     }
 
     /**
+     * Converting the object to an array using the `array_filter` function to remove empty items
+     *
      * @return array
      */
     public function toArray(): array

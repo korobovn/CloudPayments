@@ -9,5 +9,12 @@ use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 
 interface CloudPaymentClientInterface
 {
+    /**
+     * Sending request
+     *
+     * @param RequestInterface $request
+     *
+     * @return ResponseInterface
+     */
     public function send(RequestInterface $request): ResponseInterface;
 }

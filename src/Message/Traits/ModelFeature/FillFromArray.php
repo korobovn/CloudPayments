@@ -7,6 +7,8 @@ namespace Korobovn\CloudPayments\Message\Traits\ModelFeature;
 trait FillFromArray
 {
     /**
+     * Filling an object from an array
+     *
      * @param array $data
      */
     public function fillFromArray(array $data): void

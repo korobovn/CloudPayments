@@ -8,20 +8,28 @@ use Korobovn\CloudPayments\Message\Response\Model\ModelInterface;
 
 abstract class AbstractResponse implements ResponseInterface
 {
-    /** @var ModelInterface */
+    /**
+     * @var ModelInterface
+     */
     protected $model;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $success;
 
-    /** @var string|null */
+    /**
+     * @var string|null
+     */
     protected $message;
 
-    /** @var mixed|null */
+    /**
+     * @var mixed|null
+     */
     protected $inner_result;
 
     /**
-     * @param array $data
+     * {@inheritDoc}
      */
     public function fillFromArray(array $data): void
     {

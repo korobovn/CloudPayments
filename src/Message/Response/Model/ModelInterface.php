@@ -9,6 +9,8 @@ use Illuminate\Contracts\Support\Arrayable;
 interface ModelInterface extends Arrayable
 {
     /**
+     * Filling an object from an array
+     *
      * @param array $data
      */
     public function fillFromArray(array $data): void;
