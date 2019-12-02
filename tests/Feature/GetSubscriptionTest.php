@@ -30,7 +30,7 @@ class GetSubscriptionTest extends CreateSubscriptionTest
      */
     public function testGetSubscription(string $subscription_id): void
     {
-        $request = new GetSubscriptionRequest;
+        $request = GetSubscriptionRequest::create();
         $request->getModel()
             ->setId($subscription_id);
 

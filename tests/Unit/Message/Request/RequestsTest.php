@@ -165,7 +165,7 @@ class RequestsTest extends TestCase
     public function testGetUrl(string $request_class_name, string $model_class_name, string $url)
     {
         /** @var RequestInterface $request */
-        $request = new $request_class_name;
+        $request = $request_class_name::create();
         $this->assertSame($url, $request->getUrl());
         $this->assertInstanceOf($model_class_name, $request->getModel());
     }

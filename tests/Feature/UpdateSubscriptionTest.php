@@ -30,7 +30,7 @@ class UpdateSubscriptionTest extends CreateSubscriptionTest
      */
     public function testUpdateSubscription($subscription_id): void
     {
-        $request = new UpdateSubscriptionRequest;
+        $request = UpdateSubscriptionRequest::create();
         $request->getModel()
             ->setId($subscription_id)
             ->setDescription('new price')

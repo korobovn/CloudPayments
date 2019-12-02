@@ -18,7 +18,7 @@ class TestTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $request = new TestRequest;
+        $request = TestRequest::create();
 
         $response = $this->client->send($request);
 

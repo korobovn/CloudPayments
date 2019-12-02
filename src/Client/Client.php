@@ -7,7 +7,7 @@ namespace Korobovn\CloudPayments\Client;
 use GuzzleHttp\Psr7\Request;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 use Tarampampam\Wrappers\Json;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\ClientInterface as GuzzleHttpClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
@@ -15,10 +15,10 @@ use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 
-class CloudPaymentClient implements CloudPaymentClientInterface
+class Client implements ClientInterface
 {
     /**
-     * @var ClientInterface
+     * @var GuzzleHttpClientInterface
      */
     protected $http_client;
 
@@ -33,12 +33,12 @@ class CloudPaymentClient implements CloudPaymentClientInterface
     protected $api_secret;
 
     /**
-     * @param ClientInterface $http_client
-     * @param string          $public_id
-     * @param string          $api_secret
+     * @param GuzzleHttpClientInterface $http_client
+     * @param string                    $public_id
+     * @param string                    $api_secret
      */
     public function __construct(
-        ClientInterface $http_client,
+        GuzzleHttpClientInterface $http_client,
         string $public_id,
         string $api_secret
     )

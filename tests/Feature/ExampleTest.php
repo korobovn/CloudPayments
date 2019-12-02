@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Korobovn\Tests\Feature;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\Arr;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use Korobovn\CloudPayments\Client\Client;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
@@ -24,13 +24,13 @@ class ExampleTest extends AbstractFeatureTest
         $public_key  = Arr::get($config, 'cloud_payments.public_key');
         $private_key = Arr::get($config, 'cloud_payments.private_key');
 
-        $client = new CloudPaymentClient(
-            new Client,
+        $client = new Client(
+            new GuzzleHttpClient,
             $public_key,
             $private_key
         );
 
-        $request = new CryptogramPaymentOneStepRequest;
+        $request = CryptogramPaymentOneStepRequest::create();
         $request
             ->setClient($client)
             ->getModel()

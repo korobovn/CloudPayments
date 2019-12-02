@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Request\Model\CancelSubscriptionModel;
 /**
  * @method CancelSubscriptionModel getModel()
  * @method InvalidRequestResponse|SuccessResponse send()
+ * @method static CancelSubscriptionRequest create()
  *
  * @see https://developers.cloudpayments.ru/#otmena-podpiski-na-rekurrentnye-platezhi
  */

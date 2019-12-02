@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 /**
  * @method RefundPaymentModel getModel()
  * @method InvalidRequestResponse|RefundPaymentResponse send()
+ * @method static RefundPaymentRequest create()
  *
  * @see https://developers.cloudpayments.ru/#vozvrat-deneg
  */

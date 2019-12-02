@@ -16,6 +16,7 @@ use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 /**
  * @method CompletionOf3dSecureModel getModel()
  * @method InvalidRequestResponse|Cryptogram3dSecureAuthRequiredResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse send()
+ * @method static CompletionOf3dSecureRequest create()
  *
  * @see https://developers.cloudpayments.ru/#obrabotka-3-d-secure
  */

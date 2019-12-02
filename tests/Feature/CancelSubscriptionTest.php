@@ -30,7 +30,7 @@ class CancelGetSubscriptionTest extends CreateSubscriptionTest
      */
     public function testCancelGetSubscription($subscription_id): void
     {
-        $request = new CancelSubscriptionRequest;
+        $request = CancelSubscriptionRequest::create();
         $request->getModel()
             ->setId($subscription_id);
 

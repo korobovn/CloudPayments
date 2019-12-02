@@ -19,7 +19,7 @@ class ApplePayStartSessionTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $request = new ApplePayStartSessionRequest;
+        $request = ApplePayStartSessionRequest::create();
         $request->getModel()
             ->setValidationUrl('https://apple-pay-gateway.apple.com/paymentservices/startSession');
 

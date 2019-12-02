@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Korobovn\Tests\Unit;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\ClientInterface as GuzzleHttpClientInterface;
+use Korobovn\CloudPayments\Client\Client;
+use Korobovn\CloudPayments\Client\ClientInterface;
 use Korobovn\Tests\AbstractTestCase;
 
 /**
@@ -20,14 +20,14 @@ class CloudPaymentsServiceProviderTest extends AbstractTestCase
     public function test()
     {
 
-        $this->app->bind(ClientInterface::class, function () {
-            return new Client;
+        $this->app->bind(GuzzleHttpClientInterface::class, function () {
+            return new GuzzleHttpClient;
         });
 
-        $cloud_payment_client           = $this->app->make(CloudPaymentClient::class);
-        $cloud_payment_client_interface = $this->app->make(CloudPaymentClientInterface::class);
+        $cloud_payment_client           = $this->app->make(Client::class);
+        $cloud_payment_client_interface = $this->app->make(ClientInterface::class);
 
-        $this->assertInstanceOf(CloudPaymentClient::class, $cloud_payment_client);
-        $this->assertInstanceOf(CloudPaymentClientInterface::class, $cloud_payment_client_interface);
+        $this->assertInstanceOf(Client::class, $cloud_payment_client);
+        $this->assertInstanceOf(ClientInterface::class, $cloud_payment_client_interface);
     }
 }

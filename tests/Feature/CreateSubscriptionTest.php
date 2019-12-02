@@ -27,14 +27,15 @@ class CreateSubscriptionTest extends AbstractFeatureTest
         /**
          * @var CryptogramPaymentOneStepRequest
          */
-        $request = new CryptogramPaymentOneStepRequest;
+        $request = CryptogramPaymentOneStepRequest::create();
         $request->getModel()
             ->setAmount(100.0)
             ->setCurrency('RUB')
             ->setIpAddress('127.0.0.1')
             ->setAccountId($this->account_id)
             ->setName('CARDHOLDER NAME')
-            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms, 'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
+            ->setCardCryptogramPacket(Arr::get($this->card_cryptograms,
+                'CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_SUCCESS_VISA'));
 
         /** @var CryptogramTransactionAcceptedResponse $response */
         $response = $this->client->send($request);
@@ -44,7 +45,7 @@ class CreateSubscriptionTest extends AbstractFeatureTest
         /**
          * @var CreateSubscriptionRequest
          */
-        $request = new CreateSubscriptionRequest;
+        $request = CreateSubscriptionRequest::create();
         $request->getModel()
             ->setToken($response->getModel()->getToken())
             ->setAccountId($this->account_id)

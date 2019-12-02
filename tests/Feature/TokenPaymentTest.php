@@ -33,7 +33,7 @@ class TokenPaymentTest extends AbstractFeatureTest
 
     public function test(): void
     {
-        $request = new CryptogramPaymentOneStepRequest;
+        $request = CryptogramPaymentOneStepRequest::create();
         $request->getModel()
             ->setAmount($this->amount)
             ->setCurrency($this->currency)
@@ -49,7 +49,7 @@ class TokenPaymentTest extends AbstractFeatureTest
 
         $token = $response->getModel()->getToken();
 
-        $request = new TokenPaymentOneStepRequest;
+        $request = TokenPaymentOneStepRequest::create();
         $request->getModel()
             ->setAmount($this->amount)
             ->setCurrency($this->currency)

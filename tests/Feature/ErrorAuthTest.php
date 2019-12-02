@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Korobovn\Tests\Feature;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use PHPUnit\Framework\TestCase;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use Korobovn\CloudPayments\Client\Client;
 use Korobovn\CloudPayments\Message\Request\TestRequest;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 
@@ -21,13 +21,13 @@ class ErrorAuthTest extends TestCase
 {
     public function test(): void
     {
-        $client = new CloudPaymentClient(
-            new Client,
+        $client = new Client(
+            new GuzzleHttpClient,
             '',
             ''
         );
 
-        $request = new TestRequest;
+        $request = TestRequest::create();
 
         $this->expectException(InvalidHttpResponseCodeException::class);
 

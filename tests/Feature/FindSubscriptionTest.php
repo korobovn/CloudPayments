@@ -31,7 +31,7 @@ class FindSubscriptionTest extends CreateSubscriptionTest
      */
     public function test($subscription_id): void
     {
-        $request = new FindSubscriptionRequest;
+        $request = FindSubscriptionRequest::create();
         $request->getModel()
             ->setAccountId($this->account_id);
 

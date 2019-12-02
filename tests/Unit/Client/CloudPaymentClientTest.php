@@ -9,20 +9,19 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Korobovn\CloudPayments\Client\Exception\InvalidHttpResponseCodeException;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
-use Korobovn\CloudPayments\Message\Request\TestRequest;
 use PHPUnit\Framework\MockObject\MockObject;
 use Tarampampam\Wrappers\Json;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\ClientInterface as GuzzleHttpClientInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Client\Client;
+use Korobovn\CloudPayments\Client\ClientInterface;
 
 /**
  * @group unit
  * @group cloud-payment-client
- * @coversDefaultClass \Korobovn\CloudPayments\Client\CloudPaymentClient
+ * @coversDefaultClass \Korobovn\CloudPayments\Client\Client
  */
 class CloudPaymentClientTest extends TestCase
 {
@@ -97,14 +96,14 @@ class CloudPaymentClientTest extends TestCase
      * @param array $raw_response
      * @param int   $status_code
      *
-     * @return CloudPaymentClientInterface
+     * @return ClientInterface
      */
     protected function createCloudPaymentClient(array $raw_response,
-                                                int $status_code = 200): CloudPaymentClientInterface
+                                                int $status_code = 200): ClientInterface
     {
         $http_client = $this->createHttpClientMock($raw_response, $status_code);
 
-        $cloud_payment_client = new CloudPaymentClient(
+        $cloud_payment_client = new Client(
             $http_client,
             '',
             ''
@@ -117,7 +116,7 @@ class CloudPaymentClientTest extends TestCase
      * @param array $raw_response
      * @param int   $status_code
      *
-     * @return MockObject|ClientInterface
+     * @return MockObject|GuzzleHttpClientInterface
      */
     protected function createHttpClientMock(array $raw_response, int $status_code = 200)
     {
@@ -134,18 +133,19 @@ class CloudPaymentClientTest extends TestCase
         $psr_response->method('getBody')
             ->willReturn($stream);
 
-        $http_client = $this->createMock(ClientInterface::class);
+        $http_client = $this->createMock(GuzzleHttpClientInterface::class);
         $http_client->method('send')
             ->willReturn($psr_response);
 
         return $http_client;
     }
 
-    protected function createCloudPaymentClientException(\Throwable $class_exception): CloudPaymentClientInterface
+    protected function createCloudPaymentClientException(\Throwable $class_exception): ClientInterface
     {
+        /** @var GuzzleHttpClientInterface $http_client */
         $http_client = $this->createHttpClientMockWithException($class_exception);
 
-        $cloud_payment_client = new CloudPaymentClient(
+        $cloud_payment_client = new Client(
             $http_client,
             '',
             ''
@@ -157,11 +157,11 @@ class CloudPaymentClientTest extends TestCase
     /**
      * @param \Throwable $class_exception
      *
-     * @return MockObject|ClientInterface
+     * @return MockObject|GuzzleHttpClientInterface
      */
     protected function createHttpClientMockWithException(\Throwable $class_exception)
     {
-        $http_client = $this->createMock(ClientInterface::class);
+        $http_client = $this->createMock(GuzzleHttpClientInterface::class);
         $http_client->method('send')
             ->willThrowException($class_exception);
 

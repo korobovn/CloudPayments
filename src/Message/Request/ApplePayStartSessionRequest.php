@@ -11,6 +11,7 @@ use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 
 /**
  * @method ApplePayStartSessionModel getModel()
+ * @method static ApplePayStartSessionRequest create()
  *
  * @see https://developers.cloudpayments.ru/#zapusk-sessii-dlya-oplaty-cherez-apple-pay
  */

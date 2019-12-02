@@ -4,6 +4,9 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Strategy\Specification;
 
+/**
+ * @see https://developers.cloudpayments.ru/#poisk-podpisok
+ */
 class SubscriptionsInModelSpecification implements SpecificationInterface
 {
     /**

@@ -25,7 +25,7 @@ class RefundPaymentTest extends AbstractFeatureTest
 
     public function test(): void
     {
-        $cryptogram_payment_one_step_request = new CryptogramPaymentOneStepRequest;
+        $cryptogram_payment_one_step_request = CryptogramPaymentOneStepRequest::create();
         $cryptogram_payment_one_step_request
             ->setClient($this->client)
             ->getModel()
@@ -42,7 +42,7 @@ class RefundPaymentTest extends AbstractFeatureTest
         $this->assertInstanceOf(CryptogramTransactionAcceptedResponse::class,
             $cryptogram_transaction_accepted_response);
 
-        $refund_payment_request = new RefundPaymentRequest;
+        $refund_payment_request = RefundPaymentRequest::create();
         $refund_payment_request
             ->setClient($this->client)
             ->getModel()

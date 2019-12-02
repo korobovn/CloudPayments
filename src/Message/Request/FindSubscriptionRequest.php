@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Request\Model\FindSubscriptionModel;
 /**
  * @method FindSubscriptionModel getModel()
  * @method InvalidRequestResponse|SubscriptionsResponse send()
+ * @method static FindSubscriptionRequest create()
  *
  * @see https://developers.cloudpayments.ru/#poisk-podpisok
  */

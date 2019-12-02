@@ -7,7 +7,7 @@ namespace Korobovn\CloudPayments\Client;
 use Korobovn\CloudPayments\Message\Request\RequestInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 
-interface CloudPaymentClientInterface
+interface ClientInterface
 {
     /**
      * Sending request

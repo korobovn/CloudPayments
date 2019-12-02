@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Request\Model\UpdateSubscriptionModel;
 /**
  * @method UpdateSubscriptionModel getModel()
  * @method InvalidRequestResponse|SubscriptionResponse send()
+ * @method static UpdateSubscriptionRequest create()
  *
  * @see https://developers.cloudpayments.ru/#izmenenie-podpiski-na-rekurrentnye-platezhi
  */

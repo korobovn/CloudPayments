@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments;
 
-use GuzzleHttp\ClientInterface;
-use Illuminate\Config\Repository;
+use GuzzleHttp\ClientInterface as GuzzleHttpClientInterface;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Container\Container;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Client\Client;
+use Korobovn\CloudPayments\Client\ClientInterface;
 
 class CloudPaymentsServiceProvider extends ServiceProvider
 {
@@ -22,19 +22,19 @@ class CloudPaymentsServiceProvider extends ServiceProvider
     {
         $this->initializeConfigs();
 
-        $this->app->bind(CloudPaymentClient::class, function (Container $app) {
-            $http_client = $app->make(ClientInterface::class);
+        $this->app->bind(Client::class, function (Container $app) {
+            $http_client = $app->make(GuzzleHttpClientInterface::class);
             /** @var Repository $config */
-            $config = $app->make('config');
+            $config = $app->make(Repository::class);
 
-            return new CloudPaymentClient(
+            return new Client(
                 $http_client,
                 $config->get(static::getConfigRootKeyName() . '.cloud_payments.public_key', ''),
                 $config->get(static::getConfigRootKeyName() . '.cloud_payments.private_key', '')
             );
         });
 
-        $this->app->bind(CloudPaymentClientInterface::class, CloudPaymentClient::class);
+        $this->app->bind(ClientInterface::class, Client::class);
     }
 
     /**

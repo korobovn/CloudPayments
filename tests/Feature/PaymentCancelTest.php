@@ -21,7 +21,7 @@ class PaymentCancelTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $cryptogram_payment_two_step_request = new CryptogramPaymentTwoStepRequest;
+        $cryptogram_payment_two_step_request = CryptogramPaymentTwoStepRequest::create();
         $cryptogram_payment_two_step_request
             ->setClient($this->client)
             ->getModel()
@@ -38,7 +38,8 @@ class PaymentCancelTest extends AbstractFeatureTest
         $this->assertInstanceOf(CryptogramTransactionAcceptedResponse::class,
             $cryptogram_transaction_accepted_response);
 
-        $cancel_payment_request = new CancelPaymentRequest;
+        $cancel_payment_request = CancelPaymentRequest::create();
+
         $cancel_payment_request
             ->setClient($this->client)
             ->getModel()

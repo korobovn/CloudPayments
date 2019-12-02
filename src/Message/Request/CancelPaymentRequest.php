@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 /**
  * @method CancelPaymentModel getModel()
  * @method InvalidRequestResponse|SuccessResponse send()
+ * @method static CancelPaymentRequest create()
  *
  * @see https://developers.cloudpayments.ru/#otmena-oplaty
  */

@@ -6,7 +6,7 @@ namespace Korobovn\CloudPayments\Message\Request;
 
 use Korobovn\CloudPayments\Message\Request\Exception\ClientCannotBeNull;
 use Tarampampam\Wrappers\Json;
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Client\ClientInterface;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
@@ -33,9 +33,21 @@ abstract class AbstractRequest implements RequestInterface
     ];
 
     /**
-     * @var CloudPaymentClientInterface|null
+     * @var ClientInterface|null
      */
     protected $client;
+
+    protected function __construct()
+    {
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    public static function create(): RequestInterface
+    {
+        return new static;
+    }
 
     /**
      * Returns relative url of request (without domain part)
@@ -111,7 +123,7 @@ abstract class AbstractRequest implements RequestInterface
     /**
      * {@inheritDoc}
      */
-    public function setClient(CloudPaymentClientInterface $client): RequestInterface
+    public function setClient(ClientInterface $client): RequestInterface
     {
         $this->client = $client;
 
@@ -119,10 +131,10 @@ abstract class AbstractRequest implements RequestInterface
     }
 
     /**
-     * @return CloudPaymentClientInterface
+     * @return ClientInterface
      * @throws \LogicException
      */
-    protected function getClient(): CloudPaymentClientInterface
+    protected function getClient(): ClientInterface
     {
         if ($this->client === null) {
             throw new ClientCannotBeNull('The client cannot be null');

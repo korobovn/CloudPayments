@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace Korobovn\Tests\Feature;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\Arr;
 use Korobovn\Tests\AbstractTestCase;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use Korobovn\CloudPayments\Client\Client;
 
 abstract class AbstractFeatureTest extends AbstractTestCase
 {
-    /** @var CloudPaymentClient */
+    /** @var Client */
     protected $client;
 
     /** @var array */
@@ -42,8 +42,8 @@ abstract class AbstractFeatureTest extends AbstractTestCase
                     'cloud_payments.CARD_CRYPTOGRAM_PACKET_WITHOUT_3D_FAIL'),
         ];
 
-        $this->client = new CloudPaymentClient(
-            new Client,
+        $this->client = new Client(
+            new GuzzleHttpClient,
             //new Client(['http_errors' => false]),
             $public_key,
             $private_key

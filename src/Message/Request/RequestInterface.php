@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Korobovn\CloudPayments\Message\Request;
 
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Client\ClientInterface;
 use Korobovn\CloudPayments\Message\Request\Exception\ClientCannotBeNull;
 use Korobovn\CloudPayments\Message\Response\ResponseInterface;
 use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
@@ -12,6 +12,11 @@ use Korobovn\CloudPayments\Message\Request\Model\ModelInterface;
 
 interface RequestInterface
 {
+    /**
+     * @return static
+     */
+    public static function create(): RequestInterface;
+
     /**
      * Get a payment url. Request sent to this address
      *
@@ -68,9 +73,9 @@ interface RequestInterface
     /**
      * If we want use the `send` method, we should set a `CloudPaymentClientInterface`
      *
-     * @param CloudPaymentClientInterface $client
+     * @param ClientInterface $client
      *
      * @return self
      */
-    public function setClient(CloudPaymentClientInterface $client): self;
+    public function setClient(ClientInterface $client): self;
 }

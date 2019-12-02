@@ -16,6 +16,7 @@ use Korobovn\CloudPayments\Message\Strategy\StrategyInterface;
 /**
  * @method CryptogramPaymentModel getModel()
  * @method InvalidRequestResponse|Cryptogram3dSecureAuthRequiredResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse send()
+ * @method static CryptogramPaymentOneStepRequest create()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-kriptogramme
  */

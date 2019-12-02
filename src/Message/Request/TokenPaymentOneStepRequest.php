@@ -15,6 +15,7 @@ use Korobovn\CloudPayments\Message\Request\Model\TokenPaymentModel;
 /**
  * @method TokenPaymentModel getModel()
  * @method InvalidRequestResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse send()
+ * @method static TokenPaymentOneStepRequest create()
  *
  * @see https://developers.cloudpayments.ru/#oplata-po-tokenu-rekarring
  */

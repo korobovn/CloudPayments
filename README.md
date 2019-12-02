@@ -39,16 +39,10 @@ Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to man
 
 ### How to get a client instance
 
-If using Laravel framework, then you can get an instance of `CloudPaymentClient` or `CloudPaymentClientInterface` using `make` method to resolve.
+If using Laravel framework, then you can get an instance of `CloudPaymentClientInterface` using `make` method to resolve.
 
 ```php
-$client = $this->app->make('CloudPaymentClient');
-```
-
-or
-
-```php
-$client = $this->app->make('CloudPaymentClientInterface');
+$client = $this->app->make(Korobovn\CloudPayments\Client\ClientInterface::class);
 ```
 
 You can send a request using the `send` method:
@@ -85,7 +79,7 @@ Creating and sending a request:
 ```php
 <?php
 
-use Korobovn\CloudPayments\Client\CloudPaymentClientInterface;
+use Korobovn\CloudPayments\Client\ClientInterface;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentTwoStepRequest;
 use Korobovn\CloudPayments\Message\Response\Cryptogram3dSecureAuthRequiredResponse;
@@ -93,10 +87,10 @@ use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedRespons
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionRejectedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 
-/** @var CloudPaymentClientInterface $client */
-$client = $this->app->make('CloudPaymentClientInterface');
+/** @var ClientInterface $client */
+$client = $this->app->make(ClientInterface::class);
 
-$request = new CryptogramPaymentOneStepRequest;
+$request = CryptogramPaymentOneStepRequest::create();
 /*
 or we can also use:
 
@@ -104,7 +98,6 @@ $request = new CryptogramPaymentTwoStepRequest;
 */
 
 $request
-    ->setClient($client)
     ->getModel()
     ->setAmount(100.0)
     ->setCurrency('RUB')
@@ -113,7 +106,7 @@ $request
     ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET');
 
 /** @var InvalidRequestResponse|Cryptogram3dSecureAuthRequiredResponse|CryptogramTransactionRejectedResponse|CryptogramTransactionAcceptedResponse $response */
-$response = $request->send();
+$response = $request->setClient($client)->send();
 ```
 Before calling the `send` method to send a request, we must fill out the request data model. To do that, call the `getModel` method on `RequestInterface` and use setters to set values. Use autocomplete of your IDE for to access setters.
 
@@ -215,8 +208,8 @@ Possible answers: `InvalidRequestResponse`, `SuccessResponse`
 ```php
 <?php
 
-use GuzzleHttp\Client;
-use Korobovn\CloudPayments\Client\CloudPaymentClient;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use Korobovn\CloudPayments\Client\Client;
 use Korobovn\CloudPayments\Message\Request\CryptogramPaymentOneStepRequest;
 use Korobovn\CloudPayments\Message\Response\CryptogramTransactionAcceptedResponse;
 use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
@@ -224,15 +217,14 @@ use Korobovn\CloudPayments\Message\Response\InvalidRequestResponse;
 $public_key  = '';
 $private_key = '';
 
-$client = new CloudPaymentClient(
-    new Client(),
+$client = new Client(
+    new GuzzleHttpClient(),
     $public_key,
     $private_key
 );
 
-$request = new CryptogramPaymentOneStepRequest;
+$request = CryptogramPaymentOneStepRequest::create();
 $request
-    ->setClient($client)
     ->getModel()
     ->setAmount(100.0)
     ->setCurrency('RUB')
@@ -240,7 +232,7 @@ $request
     ->setName('CARDHOLDER NAME')
     ->setCardCryptogramPacket('CARD_CRYPTOGRAM_PACKET');
 
-$response = $request->send();
+$response = $request->setClient($client)->send();
 
 if ($response instanceof CryptogramTransactionAcceptedResponse) {
     $transaction_id = $response->getModel()->getTransactionId();

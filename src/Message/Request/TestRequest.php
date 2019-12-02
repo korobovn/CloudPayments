@@ -14,6 +14,7 @@ use Korobovn\CloudPayments\Message\Strategy\SuccessStrategy;
 /**
  * @method NullModel getModel()
  * @method InvalidRequestResponse|SuccessResponse send()
+ * @method static TestRequest create()
  *
  * @see https://developers.cloudpayments.ru/#testovyy-metod
  */

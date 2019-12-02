@@ -18,7 +18,7 @@ class CompletionOf3dSecureTest extends AbstractFeatureTest
 {
     public function test(): void
     {
-        $request = new CompletionOf3dSecureRequest;
+        $request = CompletionOf3dSecureRequest::create();
         $request->getModel()
             ->setTransactionId(504)
             ->setPaRes('534534');
