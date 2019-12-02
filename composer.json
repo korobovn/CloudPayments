@@ -1,0 +1,54 @@
+{
+    "name": "korobovn/cloud-payments",
+    "description": "Cloud Payments PHP-client",
+    "keywords": ["cloud-payments"],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/config": "^5.5 || ^6.0",
+        "illuminate/contracts": "^5.5 || ^6.0",
+        "illuminate/support": "^5.5 || ^6.0",
+        "psr/http-client": "~1.0",
+        "tarampampam/wrappers-php": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.5 || ^8",
+        "phpstan/phpstan": "^0.11.19",
+        "laravel/laravel": "^5.5 || ^6.0",
+        "fzaninotto/faker": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Korobovn\\CloudPayments\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Korobovn\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Korobovn\\CloudPayments\\CloudPaymentsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test-feature": "@php ./vendor/bin/phpunit --group feature --no-coverage",
+        "test": "@php ./vendor/bin/phpunit --group unit --no-coverage",
+        "test-cover": "@php ./vendor/bin/phpunit --group unit --coverage-html='./coverage'",
+        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src"
+    },
+    "support": {
+        "issues": "https://github.com/korobovn/CloudPayments/issues",
+        "source": "https://github.com/korobovn/CloudPayments"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
