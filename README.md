@@ -39,7 +39,7 @@ Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to man
 
 ### How to get a client instance
 
-If using Laravel framework, then you can get an instance of `CloudPaymentClientInterface` using `make` method to resolve.
+If using Laravel framework, then you can get an instance of `ClientInterface` using `make` method to resolve.
 
 ```php
 $client = $this->app->make(Korobovn\CloudPayments\Client\ClientInterface::class);
@@ -52,7 +52,7 @@ $client->send($request);
 Where `$request` is an instance of `RequestInterface`.
 
 You can also call the `send` method on the `RequestInterface` instance.
-Before that, you must call the `setClient` method on the `RequestInterface` with `CloudPaymentClientInterface`
+Before that, you must call the `setClient` method on the `RequestInterface` with `ClientInterface`
 
 ```php
 $request->setClient($client)->send();
